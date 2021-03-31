@@ -27,11 +27,12 @@ plot (p224r63_2011, col=cl)
 plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
 
+# 1 row, 2 columns
 par(mfrow=c(1,2))
 plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
 
-# 2 row, 1 columns
+# 2 rows, 1 column
 par(mfrow=c(2,1))
 plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
@@ -122,7 +123,3 @@ plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
 plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
 dev.off()
-
-bash scripting: pdftk *.pdf  cat output mergedfile.pdf
-
-
