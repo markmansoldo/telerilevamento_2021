@@ -1,9 +1,44 @@
-# install.packages("raster")
-library(raster)
+#Time series analysis
+#Greenland increase of temperature
 
+library(raster)  #extract this file from inside R
 setwd("C:/lab/greenland")
 
+#07/04/21
 
+#To import each file from outside R and assign a name
+lst_2000 <- raster("lst_2000.tif")
+lst_2005 <- raster("lst_2005.tif")
+lst_2010 <- raster("lst_2010.tif")
+lst_2015 <- raster("lst_2015.tif")
+
+#To plot the maps with 2 rows and 2 columns
+# par (multipanel)
+par(mfrow=c(2,2))
+plot(lst_2000)
+plot(lst_2005)
+plot(lst_2010)
+plot(lst_2015)
+
+#list files with a common expression/pattern and assign a name to the list
+rlist <- list.files(pattern="lst")
+rlist
+
+#lapply: applies a function over a list-like or vector-like object
+import <- lapply(rlist,raster)
+import
+
+#stack function: stacking files into one block
+TGr <- stack(import) #assign name TGr
+TGr
+plot(TGr) #plot this file with all the files inside the stack
+
+#To add the colour depending on the year/file order
+#All files selected overlap in the plot
+#First is red, second is green, third is blue
+plotRGB(TGr, 1, 2, 3, stretch="Lin") 
+plotRGB(TGr, 2, 3, 4, stretch="Lin") 
+plotRGB(TGr, 4, 3, 2, stretch="Lin") 
 
 #09/04/21
 
@@ -11,15 +46,15 @@ library(rasterVis) #extract this file from inside R
 
 #3 key steps:
 
-  #To create a list using a common pattern in the file name (i.e. 1st):
+  #1 To create a list using a common pattern in the file name (i.e. 1st):
 rlist <- list.files(pattern="lst") #assign this name to this list using a common pattern
 rlist
 
-  #Import the file:
+  #2 Import the file:
 import <- lapply(rlist,raster) #assign this name to this list
 import
 
-  #Stack/group the files to put them together in a block:
+  #3 Stack/group the files to put them together in a block:
 TGr <- stack(import)
 TGr
 
