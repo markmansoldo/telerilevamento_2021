@@ -3,3 +3,6 @@
 
 ("C:/lab/")
 install.packages("knitr")
+library(knitr)
+
+stitch("rcodegreenland.r", template=system.file("misc", "knitr-template.Rnw", package="knitr"))
