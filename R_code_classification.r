@@ -1,9 +1,10 @@
 #21/04/21
 #R_code_classification.r
 
+setwd("C:/lab/")
+
 library(raster)
 library(RStoolbox)
-setwd("C:/lab/")
 
 #To create a RasterBrick object, use "brick" and assign the name with the <-
 so <- brick("Solar_Orbiter_s_first_views_of_the_Sun_pillars.jpg")
@@ -27,4 +28,18 @@ sun <- brick("sun.png")
 sunc <- unsuperClass(sun, nClasses=3)
 plot(sunc$map)
 
+cl <- colorRampPalette(c('yellow','black','red'))(100)
+plot(sunc$map,col=cl)
+
+#23/04/21
+
+gc <- brick("dolansprings_oli_2013088_canyon_lrg.jpg")
+plotRGB(gc, r=1, g=2, b=3, stretch="lin") #linear stretch
+plotRGB(gc, r=1, g=2, b=3, stretch="hist") #histogram stretch
+
+gcc2 <- unsuperClass(gc, nClasses=2)
+plot(gcc2$map)
+
+gcc4 <- unsuperClass(gc, nClasses=4)
+plot(gcc4$map)
 
