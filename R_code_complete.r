@@ -11,9 +11,10 @@
 #   8. R_code_vegetation_indices
 #   9. R_code_land_cover
 #  10. R_code_variability
+#  11. R_code_spectral_signatures
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 1st file: R_code_remote_sensing_first
+# 1: R_code_remote_sensing_first
 
 # Il mio primo codice in R per il telerilevamento!
 
@@ -142,7 +143,7 @@ plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
 dev.off()
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 2nd file: R_code_time_series
+# 2: R_code_time_series
 # Time series analysis
 # Greenland increase of temperature
 
@@ -240,7 +241,7 @@ plot(melt_amount, col=clb) #create plot with this colour palette clb
 levelplot(melt_amount, col.regions=clb) #create level plot with this colour palette clb
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 3rd file: R_code_Copernicus
+# 3: R_code_Copernicus
 # Visualizing Copernicus data
 
 install.packages("ncdf4")
@@ -262,7 +263,7 @@ copernicusagg <- aggregate(copernicus, fact=100) #assign name to new aggregate
 plot(copernicusagg, col=cl) #plot new aggregate using this palette
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 4th file: R_code_knitr
+# 4: R_code_knitr
 
 #16/04/21
 
@@ -273,7 +274,7 @@ library(knitr)
 stitch("rcodegreenland.r", template=system.file("misc", "knitr-template.Rnw", package="knitr"))
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 5th file: R_code_multivariate_analysis
+# 5: R_code_multivariate_analysis
 
 #23/04/21
 
@@ -322,7 +323,7 @@ dev.off()
 plotRGB(p224r63_2011res_pca$map, r=1, g=2, b=3, stretch="lin")
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 6th file: R_code_classification
+# 6: R_code_classification
 
 #21/04/21
 
@@ -369,7 +370,7 @@ gcc4 <- unsuperClass(gc, nClasses=4)
 plot(gcc4$map)
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 7th file: R_code_ggplot2
+# 7: R_code_ggplot2
 
 library(raster)
 library(RStoolbox)
@@ -389,7 +390,7 @@ p2 <- ggRGB(p224r63,4,3,2, stretch="lin")
 grid.arrange(p1, p2, nrow = 2) # this needs gridExtra
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 8th file: R_code_vegetation_indices
+# 8: R_code_vegetation_indices
 
 #28/04/21
 
@@ -487,7 +488,7 @@ plot(difndvi, col=cld)
   #NDWI: Normalized Difference Water Index
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 9th file: R_code_land_cover
+# 9: R_code_land_cover
 
 #05/05/21
 
@@ -588,7 +589,7 @@ p2 <- ggplot(percentages, aes(x=cover, y=percent_2006, color=cover)) + geom_bar(
 grid.arrange(p1, p2, nrow=1)
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 10th file: R_code_variability
+# 10: R_code_variability
 
 # 19/05/21
 
@@ -722,6 +723,106 @@ ggtitle("Standard deviation of PC1 by turbo colour scale")
 grid.arrange(p1, p2, p3, nrow = 1)
 
 # in general, rainbow palettes are often avoided as the central value is yellow, but the human eye incorrectly assumes that yellow is the extreme value
+
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 11: R_code_spectral_signatures
+
+# 16/06/21
+
+library(raster)
+library(rgdal)      # look at gdal.org
+
+setwd("C:/lab/")
+
+defor2 <- brick("defor2.jpg")
+
+# defor2.1, defor2.2, defor2.3
+# NIR, red, green
+
+plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
+plotRGB(defor2, r=1, g=2, b=3, stretch="hist")
+
+click(defor2, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
+
+# id(identity), xy(spatial data), cell(pixel), type(point)
+# then click on the image and you will see the information for that particular pixel
+
+# define the columns of the dataset:
+band <- c(1,2,3)
+forest <- c(206,6,19)
+water <- c(40,99,139)
+
+# create the data frame:
+spectrals <- data.frame(band, forest, water)
+
+# plot the spectral signatures:
+ ggplot(spectrals, aes(x=band)) +
+ geom_line(aes(y=forest), color="green") +
+ geom_line(aes(y=water), color="blue") 
+
+#________Multitemporal_______________________________________________
+
+# spectral signatures defor1:
+
+defor1 <- brick("defor1.jpg")
+plotRGB(defor1, r=1, g=2, b=3, stretch="lin")
+click(defor1, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
+
+# spectral signatures defor2:
+
+plotRGB(defor2, r=1, g=2, b=3, stretch="lin")
+click(defor2, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
+
+# define the columns of the dataset:
+
+band <- c(1,2,3)
+time1 <- c(223,11,33)
+time2 <- c(197,163,151)
+
+spectralst <- data.frame(band, time1, time2)
+
+# plot the sepctral signatures:
+
+ggplot(spectrals, aes(x=band)) +
+ geom_line(aes(y=time1), color="red") +
+ geom_line(aes(y=time2), color="gray") +
+ labs(x="band",y="reflectance")
+
+# define the columns of the dataset:
+
+band <- c(1,2,3)
+time1 <- c(223,11,33)
+time1p2 <- c(218,16,38)
+time2 <- c(197,163,151)
+time2p2 <- c(149.157,133)
+ 
+spectralst <- data.frame(band, time1, time2, time1p2, time2p2)
+
+# plot the sepctral signatures:
+
+ggplot(spectralst, aes(x=band)) +
+ geom_line(aes(y=time1), color="red") +
+ geom_line(aes(y=time1p2), color="red") +
+ geom_line(aes(y=time2), color="gray") +
+ geom_line(aes(y=time2p2), color="gray") +
+ labs(x="band",y="reflectance")
+
+# define the columns of the dataset:
+
+band <- c(1,2,3)
+stratum1 <- c(187,163,11)
+stratum2 <- c(11,140,0)
+stratum3 <- c(41,40,20)
+
+spectralsg <- data.frame(band, stratum1, stratum2, stratum3)
+
+# plot the sepctral signatures:
+
+ggplot(spectralsg, aes(x=band)) +
+ geom_line(aes(y=stratum1), color="yellow") +
+ geom_line(aes(y=stratum2), color="green") +
+ geom_line(aes(y=stratum3), color="blue") +
+ labs(x="band",y="reflectance")
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # END FILE
