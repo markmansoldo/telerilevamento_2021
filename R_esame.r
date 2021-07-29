@@ -1,7 +1,9 @@
 # Esame di Telerilevamento
 
 library(raster)
-library()
+library(rasterdiv)
+library(ggplot2)
+library(viridis)
 library(RStoolbox)
 setwd("C:/esame/")
 
