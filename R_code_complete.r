@@ -189,7 +189,7 @@ par(mfrow=c(2,1))
 plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
 
-#Lin and hist
+# To print a PDF:
 pdf("multitemp.pdf")
 par(mfrow=c(2,2))
 plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
@@ -198,118 +198,138 @@ plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="hist")
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="hist")
 dev.off()
 
+# Here we can compare how linear and histogram stretching emphasise things differently:
+# "Lin" = useful for vegetation
+# "hist" = useful for contrasting large areas, for example the extension of urbanization, water bodies, agricultural fields etc.
+
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 2: R_code_time_series
 # Time series analysis
 # Greenland increase of temperature
 
-library(raster)  #extract this file from inside R
+# To extract this file from inside R, so no need to use speech marks "")
+# Always put the libraries and set working directory at the beginning of the file:
+library(raster)
 setwd("C:/lab/greenland")
 
 #07/04/21
 
-#To import each file from outside R and assign a name
+# To import each file from outside R and assign a name:
 lst_2000 <- raster("lst_2000.tif")
 lst_2005 <- raster("lst_2005.tif")
 lst_2010 <- raster("lst_2010.tif")
 lst_2015 <- raster("lst_2015.tif")
 
-#To plot the maps with 2 rows and 2 columns
-# par (multipanel)
+# To plot the maps with 2 rows and 2 columns:
+# par (multipanel/quadrat)
 par(mfrow=c(2,2))
 plot(lst_2000)
 plot(lst_2005)
 plot(lst_2010)
 plot(lst_2015)
 
-#list files with a common expression/pattern and assign a name to the list
+# To list files with a common expression/pattern that is present in each file and assign a name to the list:
 rlist <- list.files(pattern="lst")
 rlist
 
-#lapply: applies a function over a list-like or vector-like object
+# lapply function: import a list-like or vector-like object as a raster
 import <- lapply(rlist,raster)
 import
 
-#stack function: stacking files into one block
-TGr <- stack(import) #assign name TGr
+# stack function: stacking files into one block to avoid uploading each image separately:
+TGr <- stack(import)
 TGr
-plot(TGr) #plot this file with all the files inside the stack
+plot(TGr) # Plot this file with all the files inside the stack
 
-#To add the colour depending on the year/file order
-#All files selected overlap in the plot
-#First is red, second is green, third is blue
+# To add the colour depending on the year/file order
+# All files selected overlap in the plot
+# First is red, second is green, third is blue
+# No need to write the "r=" each time as the colour channels are implied:
 plotRGB(TGr, 1, 2, 3, stretch="Lin") 
 plotRGB(TGr, 2, 3, 4, stretch="Lin") 
 plotRGB(TGr, 4, 3, 2, stretch="Lin") 
 
 #09/04/21
 
-library(rasterVis) #extract this file from inside R
+# File found within R so no need for ""
+library(rasterVis)
 
 #3 key steps:
 
-  #1 To create a list using a common pattern in the file name (i.e. 1st):
-rlist <- list.files(pattern="lst") #assign this name to this list using a common pattern
-rlist
+                   #1 To create a list using a common pattern in the file name (i.e. 1st):
+                 rlist <- list.files(pattern="lst") #assign this name to this list using a common pattern
+                 rlist
 
-  #2 Import the file:
-import <- lapply(rlist,raster) #assign this name to this list
-import
+                   #2 Import the file:
+                 import <- lapply(rlist,raster) #assign this name to this list
+                 import
 
-  #3 Stack/group the files to put them together in a block:
-TGr <- stack(import)
-TGr
+                   #3 Stack/group the files to put them together in a block:
+                 TGr <- stack(import)
+                 TGr
 
-levelplot(TGr) #draw level plots: more powerful and useful than normal plots
+ # To draw level plots: more powerful and useful than normal plots as they provide a scale to compare colours and values:
+levelplot(TGr)
 
-library(rgdal) #extract this file from inside R
+# Use the dollar symbol $ to select a layer within:
+library(rgdal) 
 levelplot(TGr$lst_2000)
 levelplot(TGr)
 
-cl <- colorRampPalette(c("blue","light blue","pink","red"))(100) #colour gradient
+# To create a colour scheme and plot with it:
+cl <- colorRampPalette(c("blue","light blue","pink","red"))(100)
 levelplot(TGr, col.regions=cl)
 
-levelplot(TGr,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015")) #level plot with several years
+# Level plots over several years
+# To assign a title to each graph, use: names.attr=c("","")
+levelplot(TGr,col.regions=cl, names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
 
+# To assign a main title to the document, use: main=""
 levelplot(TGr,col.regions=cl, main="LST variation in time",
           names.attr=c("July 2000","July 2005", "July 2010", "July 2015"))
 
-#Melt
-#3 key steps:
+# Melt
+# 3 key steps:
 
-  #To create a list using a common pattern in the file name (i.e. melt):
-meltlist <- list.files(pattern="melt")
+              #1 To create a list using a common pattern in the file name (i.e. melt):
+            meltlist <- list.files(pattern="melt")
 
-  #Import the file:
-melt_import <- lapply(meltlist,raster)
+              #2 Import the file:
+            melt_import <- lapply(meltlist,raster)
 
-  #Stack/group the files to put them together in a block:
-melt <- stack(melt_import)
+              #3 Stack/group the files to put them together in a block:
+            melt <- stack(melt_import)
 
 melt
 levelplot(melt)
 
-melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt #use the dollar to attach the file within the folder
+# Use the dollar symbol $ to specify the file within the folder
 
-clb <- colorRampPalette(c("blue","white","red"))(100) #assign these colours to this palette name
-plot(melt_amount, col=clb) #create plot with this colour palette clb
+# IMPORTANT: To calculate the difference between the two years:
+melt_amount <- melt$X2007annual_melt - melt$X1979annual_melt
 
-levelplot(melt_amount, col.regions=clb) #create level plot with this colour palette clb
+# To create a colour scheme:
+clb <- colorRampPalette(c("blue","white","red"))(100) 
+plot(melt_amount, col=clb) 
+
+# To create level plot with this colour palette clb
+levelplot(melt_amount, col.regions=clb) 
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 3: R_code_Copernicus
 # Visualizing Copernicus data
 
+# Always place libraries and the set working directory at the beginning of the file:
 install.packages("ncdf4")
 library(raster)
 library(ncdf4)
 setwd("C:/lab/")
 
-#Import copernicus data file
+# Import copernicus data file:
 copernicus <- raster("copernicus_data.nc")
 copernicus
 
-#Colour palette to be used for the plot
+# Colour palette to be used for the plot:
 cl <- colorRampPalette(c('light blue','green','red','yellow'))(100)
 plot(copernicus, col=cl)
 
@@ -336,10 +356,9 @@ stitch("rcodegreenland.r", template=system.file("misc", "knitr-template.Rnw", pa
 
 library(raster)
 library(RStoolbox)
-
 setwd("C:/lab/")
 
-#We use brick to upload the whole data package together
+#We use brick to upload the whole data package together:
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
 
 plot(p224r63_2011)
