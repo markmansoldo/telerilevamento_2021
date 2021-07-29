@@ -18,32 +18,61 @@
 
 # Il mio primo codice in R per il telerilevamento!
 
+# To open the file in the set working directory:
 setwd("C:/lab/")
 
+# To use the "raster" package, already downloaded
+# Put all libraries here at the beginning of each file:
 library(raster)
 
+# Brick function: upload file with all bands included (a multi-layered raster object from a multi-banded file)
+# Use "<-" to assign a name to an object:
 p224r63_2011 <- brick("p224r63_2011_masked.grd")
 p224r63_2011
 
+# To plot this object:
 plot(p224r63_2011)
 
-#colour change
+# colorRampPalette function: create a colour scheme. "100" is the colour depth.
+# Use "<-" to assign a name to this colour palette:
 cl <- colorRampPalette(c("black","grey","light grey")) (100)
 
-#colour change inserted into plot
+# To plot the image with this colour scheme:
 plot(p224r63_2011, col=cl)
 
-#colour change exercise
+# To create another colour scheme and plot it:
 cl2 <- colorRampPalette(c("dark blue","medium blue","light blue")) (100)
 plot(p224r63_2011, col=cl2)
 
+# To experiment with alternative colours and colour depth:
 cls <- colorRampPalette(c("red","pink","orange","purple")) (200)
 plot(p224r63_2011, col=cls)
 
+# To close current graphic:
 dev.off()
+
+# To plot image with "cl" colour scheme:
 plot (p224r63_2011, col=cl)
+
+# To plot images with specific bands attached, use band codes.
+# For Landsat bands, these are the colour reference codes:
+# B1: blu
+# B2: verde
+# B3: rosso
+# B4: infrarosso vicino (NIR Near Infra Red)
+# B5: infrarosso medio
+# B6: infrarosso termico
+# B7: infrarosso medio
+
+# To plot the image with the blue band (B1) attached:
 plot(p224r63_2011$B1_sre)
+
+# To plot the image with the green band (B2) attached:
 plot(p224r63_2011$B2_sre)
+
+# To change the layout of the graphics:
+# First number = row
+# Second number = column
 
 # 1 row, 2 columns
 par(mfrow=c(1,2))
@@ -55,35 +84,40 @@ par(mfrow=c(2,1))
 plot(p224r63_2011$B1_sre)
 plot(p224r63_2011$B2_sre)
 
-# plot the first four bands of Landsat
+# To plot the first four bands of Landsat in 4 rows and 2 columns:
 par(mfrow=c(4,1))
-plot(p224r63_2011$B1_sre)
-plot(p224r63_2011$B2_sre)
-plot(p224r63_2011$B3_sre)
-plot(p224r63_2011$B4_sre)
+plot(p224r63_2011$B1_sre) # blue
+plot(p224r63_2011$B2_sre) # green
+plot(p224r63_2011$B3_sre) # red
+plot(p224r63_2011$B4_sre) # NIR (Near Infra Red)
 
-# a quadrat of bands...:
+# To plot a quadrat of bands in 2 rows and 2 columns:
 par(mfrow=c(2,2))
-plot(p224r63_2011$B1_sre)
-plot(p224r63_2011$B2_sre)
-plot(p224r63_2011$B3_sre)
-plot(p224r63_2011$B4_sre)
+plot(p224r63_2011$B1_sre) # blue
+plot(p224r63_2011$B2_sre) # green
+plot(p224r63_2011$B3_sre) # red
+plot(p224r63_2011$B4_sre) # NIR (Near Infra Red)
 
+# To plot a quadrat of bands in 2 rows and 2 columns, with a different colour scheme for each band:
 par(mfrow=c(2,2))
  
-clb <- colorRampPalette(c("dark blue","blue","light blue")) (100)
-plot(p224r63_2011$B1_sre, col=clb)
+     # Various shades of blue for the blue band (B1):
+     clb <- colorRampPalette(c("dark blue","blue","light blue")) (100)
+     plot(p224r63_2011$B1_sre, col=clb)
 
-clg <- colorRampPalette(c("dark green","green","light green")) (100)
-plot(p224r63_2011$B2_sre, col=clg)
+     # Various shades of green for the green band (B2):
+     clg <- colorRampPalette(c("dark green","green","light green")) (100)
+     plot(p224r63_2011$B2_sre, col=clg)
 
-clr <- colorRampPalette(c("dark red","red","pink")) (100)
-plot(p224r63_2011$B3_sre, col=clr)
+     # Various shades of red for the red band (B3):
+     clr <- colorRampPalette(c("dark red","red","pink")) (100)
+     plot(p224r63_2011$B3_sre, col=clr)
 
-clnir <- colorRampPalette(c("red","orange","yellow")) (100)
-plot(p224r63_2011$B4_sre, col=clnir)
+     # Alternative shades of red for the NIR Near Infra Red band (B4):
+     clnir <- colorRampPalette(c("red","orange","yellow")) (100)
+     plot(p224r63_2011$B4_sre, col=clnir)
 
-# Bande Landsat
+# Landsat Bands
 # B1: blu
 # B2: verde
 # B3: rosso
@@ -92,16 +126,30 @@ plot(p224r63_2011$B4_sre, col=clnir)
 # B6: infrarosso termico
 # B7: infrarosso medio
 
-plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin") #molto scuro
+# plotRGB function: Make a Red-Green-Blue plot based on three layers (in a RasterBrick or RasterStack).
+         # Three layers (sometimes referred to as "bands" because they may represent different bandwidths in the electromagnetic spectrum)
+         # are combined such that they represent the red, green and blue channel. This function can be used to make 'true (or false) color images' from Landsat
+         # and other multi-band satellite images.
 
-plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin") #molto rosso
+# To plot the image using the RGB function, assigning the Landsat Bands to each colour channel:
+# stretch="Lin": The stretch is normalized from 0 to 1 (Linear)
+# stretch="hist": The stretch is divided into regular intervals (Histogram)
 
-plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin") #molto verde
+# r=red (B3), g=green (B2), b=blue (B1)
+plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin") # very dark
 
-plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin") #molto blu
+# r=NIR (B4), g=red (B3), b=green (B2)
+plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin") # very red
+
+# r=red (B3), g=NIR (B4), b=green (B2)
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin") # very green
+
+# r=red (B3), g=green (B2), b=NIR (B4)
+plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin") # very blue
 
 # Exercise: mount a 2x2 multiframe
 
+# To print a PDF in R:
 pdf("il_mio_primo_pdf_con_R.pdf")
 par(mfrow=c(2,2))
 plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
@@ -110,25 +158,33 @@ plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=2, b=4, stretch="Lin")
 dev.off()
 
-plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist") #verde con magenta
+# To plot using the RGB function, assigned bands to each colour channel and the histogram stretch:
+plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist") # green with magenta
 
- # par natural colours, false colours, and false colours with histogram stretching
+ # To plot natural colours with aligned bands and channels, false colours and false colours with histogram stretching:
 par(mfrow=c(3,1))
 plotRGB(p224r63_2011, r=3, g=2, b=1, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=3, g=4, b=2, stretch="hist")
 
+# To install a package:
 install.packages("RStoolbox")
+
+# To use a package, already installed:
 library(RStoolbox)
 
-#Multitemporal set
+# Multitemporal set with assigned name to brick function object:
 p224r63_1988 <- brick("p224r63_1988_masked.grd")
 p224r63_1988
+
+# To plot this object:
 plot(p224r63_1988)
+
+# To plot this object with colour channels and linear stretching:
 plotRGB(p224r63_1988, r=3, g=2, b=1, stretch="Lin")
 plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
 
-#Compare 1988 and 2011
+# To compare differences between years (1988 and 2011):
 par(mfrow=c(2,1))
 plotRGB(p224r63_1988, r=4, g=3, b=2, stretch="Lin")
 plotRGB(p224r63_2011, r=4, g=3, b=2, stretch="Lin")
