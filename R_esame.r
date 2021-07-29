@@ -1,3 +1,10 @@
 # Esame di Telerilevamento
 
-setwd("C:\esame")
+library(raster)
+library()
+library(RStoolbox)
+setwd("C:/esame/")
+
+
+
+
