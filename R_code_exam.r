@@ -40,7 +40,7 @@ plot(cod1993$cod_1993.1, col=colour)
 
 # _____________________________________________________________________________________________
 
-# To upload the raster
+# To upload the first raster
 cod1993 <- raster("cod_1993.jpg")
 
 # To plot the raster
@@ -55,6 +55,13 @@ newcrop1993 <- crop(x = cod1993, y = codcrop1993)
 # To plot the cropped object
 plot(newcrop1993)
 
+# To set the x and y values for the cropped area to be used with any of the rasters:
+new_extent <- extent(1815, 2374, 291, 1003)
+class(new_extent)
+
+# To plot the new cropped area
+newcrop2003 <- crop(x = cod2003, y = new_extent)
+
 # _______________________________________________________________________________________________
 
 # To assign a name to each raster
@@ -64,6 +71,23 @@ cod2003 <- raster("cod_2003.jpg")
 cod2008 <- raster("cod_2008.jpg")
 cod2013 <- raster("cod_2013.jpg")
 cod2018 <- raster("cod_2018.jpg")
+
+# To use the specified extent box to crop all images:
+newcrop1993 <- crop(x = cod1993, y = new_extent)
+newcrop1997 <- crop(x = cod1997, y = new_extent)
+newcrop2003 <- crop(x = cod2003, y = new_extent)
+newcrop2008 <- crop(x = cod2008, y = new_extent)
+newcrop2013 <- crop(x = cod2013, y = new_extent)
+newcrop2018 <- crop(x = cod2018, y = new_extent)
+
+# To plot each cropped area in black and white:
+par(mfrow=c(2,3))
+plot(newcrop1993, col=colour)
+plot(newcrop1997, col=colour)
+plot(newcrop2003, col=colour)
+plot(newcrop2008, col=colour)
+plot(newcrop2013, col=colour)
+plot(newcrop2018, col=colour)
 
 codlist <- list.files(pattern="cod")
 codlist
@@ -88,6 +112,5 @@ plot(cod2018, col=colour)
 par(mfrow=c(1,2))
 plot(cod1993, col=colour)
 plot(cod2018, col=colour)
-
 
 
