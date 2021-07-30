@@ -41,23 +41,53 @@ plot(cod1993$cod_1993.1, col=colour)
 # _____________________________________________________________________________________________
 
 # To upload the raster
-codimage1 <- raster("cod_1993.jpg")
+cod1993 <- raster("cod_1993.jpg")
 
 # To plot the raster
-plot(codimage1)
+plot(cod1993)
 
 # To draw the area I want to crop
-codcrop <- drawExtent(show=TRUE, col="red") 
+codcrop1993 <- drawExtent(show=TRUE, col="red") 
 
 # To create the cropped object
-newcrop <- crop(x = codimage1, y = codcrop)
+newcrop1993 <- crop(x = cod1993, y = codcrop1993)
 
 # To plot the cropped object
-plot(newcrop)
+plot(newcrop1993)
 
 # _______________________________________________________________________________________________
 
+# To assign a name to each raster
+cod1993 <- raster("cod_1993.jpg")
+cod1997 <- raster("cod_1997.jpg")
+cod2003 <- raster("cod_2003.jpg")
+cod2008 <- raster("cod_2008.jpg")
+cod2013 <- raster("cod_2013.jpg")
+cod2018 <- raster("cod_2018.jpg")
 
+codlist <- list.files(pattern="cod")
+codlist
+
+codimport <- lapply(codlist,brick)
+codimport
+
+# To import all of the images as a stack:
+codstack <- stack(codimport)
+codstack
+
+# To plot all of them together
+par(mfrow=c(2,3))
+plot(cod1993, col=colour)
+plot(cod1997, col=colour)
+plot(cod2003, col=colour)
+plot(cod2008, col=colour)
+plot(cod2013, col=colour)
+plot(cod2018, col=colour)
+
+# First and last year
+par(mfrow=c(1,2))
+plot(cod1993, col=colour)
+plot(cod2018, col=colour)
 
 
 
