@@ -465,7 +465,7 @@ library(raster)
 library(RStoolbox)
 library(ggplot2)
 library(gridExtra)
-setwd("~/lab/")
+setwd("C:/lab/")
 
 # Use the brick function to upload a multi-layered raster:
 p224r63 <- brick("p224r63_2011_masked.grd")
