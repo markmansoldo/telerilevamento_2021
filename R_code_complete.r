@@ -481,8 +481,8 @@ ggRGB(p224r63,4,3,2, stretch="lin")
 p1 <- ggRGB(p224r63,3,2,1, stretch="lin")
 p2 <- ggRGB(p224r63,4,3,2, stretch="lin")
 
-# 
-grid.arrange(p1, p2, nrow = 2) # This needs gridExtra
+# This needs gridExtra:
+grid.arrange(p1, p2, nrow = 2)
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # 8: R_code_vegetation_indices
