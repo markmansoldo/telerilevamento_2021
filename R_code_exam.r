@@ -37,3 +37,27 @@ plotRGB(cod1993, 2, 1, 3, stretch="Lin")
 
 # To view ONLY the first layer of the first image, using the colour palette:
 plot(cod1993$cod_1993.1, col=colour)
+
+# _____________________________________________________________________________________________
+
+# To upload the raster
+codimage1 <- raster("cod_1993.jpg")
+
+# To plot the raster
+plot(codimage1)
+
+# To draw the area I want to crop
+codcrop <- drawExtent(show=TRUE, col="red") 
+
+# To create the cropped object
+newcrop <- crop(x = codimage1, y = codcrop)
+
+# To plot the cropped object
+plot(newcrop)
+
+# _______________________________________________________________________________________________
+
+
+
+
+
