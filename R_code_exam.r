@@ -178,6 +178,8 @@ plotRGB(newcrop2018brick, 2, 1, 3, stretch="hist")
 
 # __________Experimenting with different bands within the bricks to visualize underwater sediment_____________________________________________________________________________
 
+
+
 # __________Calculating the degree of change in geomorphology between 1993 and 2018___________________________________________________________________________________________
 
 # Subtracting the first year from the last year to find the difference:
@@ -190,5 +192,8 @@ codchange <- newcrop2018brick$cod_2018.1 - newcrop1993brick$cod_1993.1
 # Levelplot, using previously created colour palette, to analyse the degree of change:
 levelplot(codchange, col.regions=blbl)
 
+# __________Unsupervised classification_______________________________________________________________________________________________________________________________________
 
+newcrop1993brickunclass <- unsuperClass(newcrop1993brick, nClasses=2)
+plot(newcrop1993brickunclass)
 
