@@ -46,7 +46,7 @@ class(new_extent)
 # To check that the "extent" works and create a new cropped area for raster 2003:
 newcrop2003 <- crop(x = cod2003, y = new_extent)
 
-# _______________________________________________________________________________________________________________________________________
+# ___________Importing rasters, assigning names and cropping them with extent__________________________________________________________________
 
 # To assign names to images as rasters:
 cod1993 <- raster("cod_1993.jpg")
@@ -65,7 +65,6 @@ newcrop2013 <- crop(x = cod2013, y = new_extent)
 newcrop2018 <- crop(x = cod2018, y = new_extent)
 
 # __________Experimenting with rasters and colours____________________________________________________________________________________________
-
 
 # To create a colour palette:
 colour <- colorRampPalette(c("black","dark grey","light grey"))(100)
