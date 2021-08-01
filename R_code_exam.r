@@ -208,8 +208,16 @@ codchangefirstband <- newcrop2018brick$cod_2018.1 - newcrop1993brick$cod_1993.1
 # Levelplot, using previously created colour palette, to analyse the degree of change in the first band:
 levelplot(codchangefirstband, col.regions=blbl)
 
+# __________Principal Components Analysis (PCA)_______________________________________________________________________________________________________________________________
+
+# Aggregate the raster cells and look at the dimensions to see how many pixels there are per band:
+# Resampling by a factor of 10:
+
+# To conduct a PCA:
+
 # __________Unsupervised classification_______________________________________________________________________________________________________________________________________
 
 newcrop1993brickunclass <- unsuperClass(newcrop1993brick, nClasses=2)
 plot(newcrop1993brickunclass)
 
+# ____________________________________________________________________________________________________________________________________________________________________________
