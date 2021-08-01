@@ -24,18 +24,6 @@ codimport
 codstack <- stack(codimport)
 codstack
 
-# To assign a name to the first rasterbrick:
-codimage1 <- brick("cod_1993.jpg")
-
-# To crop the first rasterbrick:
-cod1993 <- crop(codimage1, extent(codimage1, 10, 2000, 10, 2000))
-
-# To create a colour palette:
-colour <- colorRampPalette(c("black","dark grey","light grey"))(100)
-
-# To plot the image with this colour palette:
-plot(cod1993, col=colour)
-
 # To use the RGB function, showing sediment load:
 plotRGB(cod1993, 2, 1, 3, stretch="Lin")
 
@@ -44,29 +32,29 @@ plot(cod1993$cod_1993.1, col=colour)
 
 # __________Cropping original images_____________________________________________________________________________________________________
 
-# To upload the first raster
+# To upload the first raster:
 cod1993 <- raster("cod_1993.jpg")
 
-# To plot the raster
+# To plot the raster:
 plot(cod1993)
 
-# To draw the area I want to crop
+# To specify the area I want to crop by drawing a box around it:
 codcrop1993 <- drawExtent(show=TRUE, col="red") 
 
-# To create the cropped object
+# To create the cropped object for raster 1993:
 newcrop1993 <- crop(x = cod1993, y = codcrop1993)
 
-# To plot the cropped object
+# To plot the cropped object:
 plot(newcrop1993)
 
 # To set the x and y values for the cropped area to be used with any of the rasters:
 new_extent <- extent(1815, 2374, 291, 1003)
 class(new_extent)
 
-# To plot the new cropped area
+# To check that the "extent" works and create a new cropped area for raster 2003:
 newcrop2003 <- crop(x = cod2003, y = new_extent)
 
-# _______________________________________________________________________________________________
+# _______________________________________________________________________________________________________________________________________
 
 # To assign names to images as rasters:
 cod1993 <- raster("cod_1993.jpg")
@@ -84,9 +72,13 @@ newcrop2008 <- crop(x = cod2008, y = new_extent)
 newcrop2013 <- crop(x = cod2013, y = new_extent)
 newcrop2018 <- crop(x = cod2018, y = new_extent)
 
-# __________Experimenting with colours_____________________________________________________________________________________________________
+# __________Experimenting with rasters and colours____________________________________________________________________________________________
 
-# To plot each cropped area in black and white:
+
+# To create a colour palette:
+colour <- colorRampPalette(c("black","dark grey","light grey"))(100)
+
+# To plot all of them together
 par(mfrow=c(2,3))
 plot(newcrop1993, col=colour)
 plot(newcrop1997, col=colour)
@@ -95,29 +87,29 @@ plot(newcrop2008, col=colour)
 plot(newcrop2013, col=colour)
 plot(newcrop2018, col=colour)
 
-codlist <- list.files(pattern="cod")
-codlist
-
-codimport <- lapply(codlist,brick)
-codimport
-
-# To import all of the images as a stack:
-codstack <- stack(codimport)
-codstack
-
-# To plot all of them together
-par(mfrow=c(2,3))
-plot(cod1993, col=colour)
-plot(cod1997, col=colour)
-plot(cod2003, col=colour)
-plot(cod2008, col=colour)
-plot(cod2013, col=colour)
-plot(cod2018, col=colour)
-
 # First and last year
 par(mfrow=c(1,2))
-plot(cod1993, col=colour)
-plot(cod2018, col=colour)
+plot(newcrop1993, col=colour)
+plot(newcrop2018, col=colour)
+
+# To create a colour palette:
+greek <- colorRampPalette(c("dark blue","blue","white"))(100)
+
+# First and last year with "greek"
+par(mfrow=c(1,2))
+plot(newcrop1993, col=greek)
+plot(newcrop2018, col=greek)
+# Shows some contrast with ocean in dark blue, land in blue and exposed sands in white
+
+# To create a colour palette:
+blbl <- colorRampPalette(c("black","blue","white"))(100)
+
+# First and last year with "blbl"
+par(mfrow=c(1,2))
+plot(newcrop1993, col=blbl)
+plot(newcrop2018, col=blbl)
+# Shows great contrast with ocean in black, land in blue and exposed sands in white
+
 
 # __________Experimenting with bricks and RGB plots to best visualize the geomorphology of the coast_______________________________________
 
@@ -173,13 +165,22 @@ plotRGB(newcrop2008brick, 3, 1, 2, stretch="Lin")
 plotRGB(newcrop2013brick, 3, 1, 2, stretch="Lin")
 plotRGB(newcrop2018brick, 3, 1, 2, stretch="Lin")
 
+# Underwater sediment is magenta and inland is green, with white sand and good contrast:
+par(mfrow=c(2,3))
+plotRGB(newcrop1993brick, 2, 1, 3, stretch="Lin")
+plotRGB(newcrop1997brick, 2, 1, 3, stretch="Lin")
+plotRGB(newcrop2003brick, 2, 1, 3, stretch="Lin")
+plotRGB(newcrop2008brick, 2, 1, 3, stretch="Lin")
+plotRGB(newcrop2013brick, 2, 1, 3, stretch="Lin")
+plotRGB(newcrop2018brick, 2, 1, 3, stretch="Lin")
+
 # Underwater sediment is magenta and inland is green but "hist" is too blurry and hinders visualization of geomorphology
 par(mfrow=c(2,3))
-plotRGB(newcrop1993brick, 3, 1, 2, stretch="hist")
-plotRGB(newcrop1997brick, 3, 1, 2, stretch="hist")
-plotRGB(newcrop2003brick, 3, 1, 2, stretch="hist")
-plotRGB(newcrop2008brick, 3, 1, 2, stretch="hist")
-plotRGB(newcrop2013brick, 3, 1, 2, stretch="hist")
-plotRGB(newcrop2018brick, 3, 1, 2, stretch="hist")
+plotRGB(newcrop1993brick, 2, 1, 3, stretch="hist")
+plotRGB(newcrop1997brick, 2, 1, 3, stretch="hist")
+plotRGB(newcrop2003brick, 2, 1, 3, stretch="hist")
+plotRGB(newcrop2008brick, 2, 1, 3, stretch="hist")
+plotRGB(newcrop2013brick, 2, 1, 3, stretch="hist")
+plotRGB(newcrop2018brick, 2, 1, 3, stretch="hist")
 
 
