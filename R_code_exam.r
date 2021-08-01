@@ -20,15 +20,7 @@ codlist
 codimport <- lapply(codlist,brick)
 codimport
 
-# To import all of the images as a stack:
-codstack <- stack(codimport)
-codstack
-
-# To use the RGB function, showing sediment load:
-plotRGB(cod1993, 2, 1, 3, stretch="Lin")
-
-# To view ONLY the first layer of the first image, using the colour palette:
-plot(cod1993$cod_1993.1, col=colour)
+# Did not import them as a stack as one image had a slightly different extent so I uploaded them manually as rasters or bricks accordingly (see below)
 
 # __________Cropping original images_____________________________________________________________________________________________________
 
@@ -110,8 +102,7 @@ plot(newcrop1993, col=blbl)
 plot(newcrop2018, col=blbl)
 # Shows great contrast with ocean in black, land in blue and exposed sands in white
 
-
-# __________Experimenting with bricks and RGB plots to best visualize the geomorphology of the coast_______________________________________
+# __________Importing bricks, assigning names and cropping them with extent_________________________________________________________________
 
 # To assign names to bricks with all bands:
 cod1993brick <- brick("cod_1993.jpg")
@@ -128,6 +119,8 @@ newcrop2003brick <- crop(x = cod2003brick, y = new_extent)
 newcrop2008brick <- crop(x = cod2008brick, y = new_extent)
 newcrop2013brick <- crop(x = cod2013brick, y = new_extent)
 newcrop2018brick <- crop(x = cod2018brick, y = new_extent)
+
+# __________Experimenting with bricks and RGB plots to best visualize the geomorphology of the coast_______________________________________
 
 # Underwater sediment is yellow and inland is green
 par(mfrow=c(2,3))
@@ -182,5 +175,7 @@ plotRGB(newcrop2003brick, 2, 1, 3, stretch="hist")
 plotRGB(newcrop2008brick, 2, 1, 3, stretch="hist")
 plotRGB(newcrop2013brick, 2, 1, 3, stretch="hist")
 plotRGB(newcrop2018brick, 2, 1, 3, stretch="hist")
+
+# __________Experimenting with different bands within the bricks to visualize underwater sediment________________________________________
 
 
