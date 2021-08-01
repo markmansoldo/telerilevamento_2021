@@ -1,16 +1,17 @@
 # Remote Sensing Exam
 
-# __________Libraries and working directory_______________________________________________________________________________________________
+# __________Libraries and working directory___________________________________________________________________________________________________________________________________
 
+library(RStoolbox)
 library(raster)
 library(rasterdiv)
+library(rasterVis)
 library(ggplot2)
 library(viridis)
-library(RStoolbox)
 library(imagefx)
 setwd("C:/esame/")
 
-# __________Importing images____________________________________________________________________________________________________________
+# __________Importing images__________________________________________________________________________________________________________________________________________________
 
 # To list all the files together, with the common pattern "cod" in the file name:
 codlist <- list.files(pattern="cod")
@@ -22,7 +23,7 @@ codimport
 
 # Did not import them as a stack as one image had a slightly different extent so I uploaded them manually as rasters or bricks accordingly (see below)
 
-# __________Cropping original images_____________________________________________________________________________________________________
+# __________Cropping original images__________________________________________________________________________________________________________________________________________
 
 # To upload the first raster:
 cod1993 <- raster("cod_1993.jpg")
@@ -46,7 +47,7 @@ class(new_extent)
 # To check that the "extent" works and create a new cropped area for raster 2003:
 newcrop2003 <- crop(x = cod2003, y = new_extent)
 
-# ___________Importing rasters, assigning names and cropping them with extent__________________________________________________________________
+# ___________Importing rasters, assigning names and cropping them with extent_________________________________________________________________________________________________
 
 # To assign names to images as rasters:
 cod1993 <- raster("cod_1993.jpg")
@@ -64,7 +65,7 @@ newcrop2008 <- crop(x = cod2008, y = new_extent)
 newcrop2013 <- crop(x = cod2013, y = new_extent)
 newcrop2018 <- crop(x = cod2018, y = new_extent)
 
-# __________Experimenting with rasters and colours____________________________________________________________________________________________
+# __________Experimenting with rasters and colours____________________________________________________________________________________________________________________________
 
 # To create a colour palette:
 colour <- colorRampPalette(c("black","dark grey","light grey"))(100)
@@ -101,7 +102,7 @@ plot(newcrop1993, col=blbl)
 plot(newcrop2018, col=blbl)
 # Shows great contrast with ocean in black, land in blue and exposed sands in white
 
-# __________Importing bricks, assigning names and cropping them with extent_________________________________________________________________
+# __________Importing bricks, assigning names and cropping them with extent___________________________________________________________________________________________________
 
 # To assign names to bricks with all bands:
 cod1993brick <- brick("cod_1993.jpg")
@@ -119,7 +120,7 @@ newcrop2008brick <- crop(x = cod2008brick, y = new_extent)
 newcrop2013brick <- crop(x = cod2013brick, y = new_extent)
 newcrop2018brick <- crop(x = cod2018brick, y = new_extent)
 
-# __________Experimenting with bricks and RGB plots to best visualize the geomorphology of the coast_______________________________________
+# __________Experimenting with bricks and RGB plots to best visualize the geomorphology of the coast__________________________________________________________________________
 
 # Underwater sediment is yellow and inland is green
 par(mfrow=c(2,3))
@@ -175,6 +176,19 @@ plotRGB(newcrop2008brick, 2, 1, 3, stretch="hist")
 plotRGB(newcrop2013brick, 2, 1, 3, stretch="hist")
 plotRGB(newcrop2018brick, 2, 1, 3, stretch="hist")
 
-# __________Experimenting with different bands within the bricks to visualize underwater sediment________________________________________
+# __________Experimenting with different bands within the bricks to visualize underwater sediment_____________________________________________________________________________
+
+# __________Calculating the degree of change in geomorphology between 1993 and 2018___________________________________________________________________________________________
+
+# Subtracting the first year from the last year to find the difference:
+codchange <- newcrop2018brick - newcrop1993brick
+plot(codchange)
+
+# Investigating the degree of change shown by the first layer of each year, as it shows good contrast between stable and altered zones:
+codchange <- newcrop2018brick$cod_2018.1 - newcrop1993brick$cod_1993.1
+
+# Levelplot, using previously created colour palette, to analyse the degree of change:
+levelplot(codchange, col.regions=blbl)
+
 
 
