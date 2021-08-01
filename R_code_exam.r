@@ -68,7 +68,7 @@ newcrop2003 <- crop(x = cod2003, y = new_extent)
 
 # _______________________________________________________________________________________________
 
-# To assign a name to each raster
+# To assign names to images as rasters:
 cod1993 <- raster("cod_1993.jpg")
 cod1997 <- raster("cod_1997.jpg")
 cod2003 <- raster("cod_2003.jpg")
@@ -119,4 +119,27 @@ par(mfrow=c(1,2))
 plot(cod1993, col=colour)
 plot(cod2018, col=colour)
 
+# To assign names to bricks with all bands:
+cod1993brick <- brick("cod_1993.jpg")
+cod1997brick <- brick("cod_1997.jpg")
+cod2003brick <- brick("cod_2003.jpg")
+cod2008brick <- brick("cod_2008.jpg")
+cod2013brick <- brick("cod_2013.jpg")
+cod2018brick <- brick("cod_2018.jpg")
 
+# To use the specified extent box to crop all raster bricks:
+newcrop1993brick <- crop(x = cod1993brick, y = new_extent)
+newcrop1997brick <- crop(x = cod1997brick, y = new_extent)
+newcrop2003brick <- crop(x = cod2003brick, y = new_extent)
+newcrop2008brick <- crop(x = cod2008brick, y = new_extent)
+newcrop2013brick <- crop(x = cod2013brick, y = new_extent)
+newcrop2018brick <- crop(x = cod2018brick, y = new_extent)
+
+# To plot bricks
+par(mfrow=c(2,3))
+plot(cod1993brick, col=colour)
+plot(cod1997brick, col=colour)
+plot(cod2003brick, col=colour)
+plot(cod2008brick, col=colour)
+plot(cod2013brick, col=colour)
+plot(cod2018brick, col=colour)
