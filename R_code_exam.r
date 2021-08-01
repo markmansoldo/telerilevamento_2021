@@ -119,6 +119,8 @@ par(mfrow=c(1,2))
 plot(cod1993, col=colour)
 plot(cod2018, col=colour)
 
+# __________Experimenting with bricks and RGB plots to best visualize the geomorphology of the coast_______________________________________
+
 # To assign names to bricks with all bands:
 cod1993brick <- brick("cod_1993.jpg")
 cod1997brick <- brick("cod_1997.jpg")
@@ -137,46 +139,47 @@ newcrop2018brick <- crop(x = cod2018brick, y = new_extent)
 
 # Underwater sediment is yellow and inland is green
 par(mfrow=c(2,3))
-plotRGB(newcrop1993brick, 3, 2, 1, stretch="Lin", col=colour)
-plotRGB(newcrop1997brick, 3, 2, 1, stretch="Lin", col=colour)
-plotRGB(newcrop2003brick, 3, 2, 1, stretch="Lin", col=colour)
-plotRGB(newcrop2008brick, 3, 2, 1, stretch="Lin", col=colour)
-plotRGB(newcrop2013brick, 3, 2, 1, stretch="Lin", col=colour)
-plotRGB(newcrop2018brick, 3, 2, 1, stretch="Lin", col=colour)
+plotRGB(newcrop1993brick, 3, 2, 1, stretch="Lin")
+plotRGB(newcrop1997brick, 3, 2, 1, stretch="Lin")
+plotRGB(newcrop2003brick, 3, 2, 1, stretch="Lin")
+plotRGB(newcrop2008brick, 3, 2, 1, stretch="Lin")
+plotRGB(newcrop2013brick, 3, 2, 1, stretch="Lin")
+plotRGB(newcrop2018brick, 3, 2, 1, stretch="Lin")
 
 # Underwater sediement is yellow and inland is magenta
 par(mfrow=c(2,3))
-plotRGB(newcrop1993brick, 2, 3, 1, stretch="Lin", col=colour)
-plotRGB(newcrop1997brick, 2, 3, 1, stretch="Lin", col=colour)
-plotRGB(newcrop2003brick, 2, 3, 1, stretch="Lin", col=colour)
-plotRGB(newcrop2008brick, 2, 3, 1, stretch="Lin", col=colour)
-plotRGB(newcrop2013brick, 2, 3, 1, stretch="Lin", col=colour)
-plotRGB(newcrop2018brick, 2, 3, 1, stretch="Lin", col=colour)
+plotRGB(newcrop1993brick, 2, 3, 1, stretch="Lin")
+plotRGB(newcrop1997brick, 2, 3, 1, stretch="Lin")
+plotRGB(newcrop2003brick, 2, 3, 1, stretch="Lin")
+plotRGB(newcrop2008brick, 2, 3, 1, stretch="Lin")
+plotRGB(newcrop2013brick, 2, 3, 1, stretch="Lin")
+plotRGB(newcrop2018brick, 2, 3, 1, stretch="Lin")
 
 # Underwater sediment is turquoise and inland is green
 par(mfrow=c(2,3))
-plotRGB(newcrop1993brick, 1, 2, 3, stretch="Lin", col=colour)
-plotRGB(newcrop1997brick, 1, 2, 3, stretch="Lin", col=colour)
-plotRGB(newcrop2003brick, 1, 2, 3, stretch="Lin", col=colour)
-plotRGB(newcrop2008brick, 1, 2, 3, stretch="Lin", col=colour)
-plotRGB(newcrop2013brick, 1, 2, 3, stretch="Lin", col=colour)
-plotRGB(newcrop2018brick, 1, 2, 3, stretch="Lin", col=colour)
+plotRGB(newcrop1993brick, 1, 2, 3, stretch="Lin")
+plotRGB(newcrop1997brick, 1, 2, 3, stretch="Lin")
+plotRGB(newcrop2003brick, 1, 2, 3, stretch="Lin")
+plotRGB(newcrop2008brick, 1, 2, 3, stretch="Lin")
+plotRGB(newcrop2013brick, 1, 2, 3, stretch="Lin")
+plotRGB(newcrop2018brick, 1, 2, 3, stretch="Lin")
 
 # Underwater sediment is magenta and inland is green
 par(mfrow=c(2,3))
-plotRGB(newcrop1993brick, 3, 1, 2, stretch="Lin", col=colour)
-plotRGB(newcrop1997brick, 3, 1, 2, stretch="Lin", col=colour)
-plotRGB(newcrop2003brick, 3, 1, 2, stretch="Lin", col=colour)
-plotRGB(newcrop2008brick, 3, 1, 2, stretch="Lin", col=colour)
-plotRGB(newcrop2013brick, 3, 1, 2, stretch="Lin", col=colour)
-plotRGB(newcrop2018brick, 3, 1, 2, stretch="Lin", col=colour)
+plotRGB(newcrop1993brick, 3, 1, 2, stretch="Lin")
+plotRGB(newcrop1997brick, 3, 1, 2, stretch="Lin")
+plotRGB(newcrop2003brick, 3, 1, 2, stretch="Lin")
+plotRGB(newcrop2008brick, 3, 1, 2, stretch="Lin")
+plotRGB(newcrop2013brick, 3, 1, 2, stretch="Lin")
+plotRGB(newcrop2018brick, 3, 1, 2, stretch="Lin")
 
-# Underwater sediment is magenta and inland is green but "hist" is too blurry
+# Underwater sediment is magenta and inland is green but "hist" is too blurry and hinders visualization of geomorphology
 par(mfrow=c(2,3))
-plotRGB(newcrop1993brick, 3, 1, 2, stretch="hist", col=colour)
-plotRGB(newcrop1997brick, 3, 1, 2, stretch="hist", col=colour)
-plotRGB(newcrop2003brick, 3, 1, 2, stretch="hist", col=colour)
-plotRGB(newcrop2008brick, 3, 1, 2, stretch="hist", col=colour)
-plotRGB(newcrop2013brick, 3, 1, 2, stretch="hist", col=colour)
-plotRGB(newcrop2018brick, 3, 1, 2, stretch="hist", col=colour)
+plotRGB(newcrop1993brick, 3, 1, 2, stretch="hist")
+plotRGB(newcrop1997brick, 3, 1, 2, stretch="hist")
+plotRGB(newcrop2003brick, 3, 1, 2, stretch="hist")
+plotRGB(newcrop2008brick, 3, 1, 2, stretch="hist")
+plotRGB(newcrop2013brick, 3, 1, 2, stretch="hist")
+plotRGB(newcrop2018brick, 3, 1, 2, stretch="hist")
+
 
