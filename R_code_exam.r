@@ -176,9 +176,25 @@ plotRGB(newcrop2008brick, 2, 1, 3, stretch="hist")
 plotRGB(newcrop2013brick, 2, 1, 3, stretch="hist")
 plotRGB(newcrop2018brick, 2, 1, 3, stretch="hist")
 
-# __________Experimenting with different bands within the bricks to visualize underwater sediment_____________________________________________________________________________
+# __________Experimenting with different bands within the bricks to visualize geomorphology___________________________________________________________________________________
 
+# Coastal geomorphology with first band of first and last year:
+par(mfrow=c(1,2))
+plot(newcrop1993brick$cod_1993.1, col=blbl)
+plot(newcrop2018brick$cod_2018.1, col=blbl)
+        # First band is useful for visualizing the geomorphological changes above sea level
 
+# Coastal geomorphology with second band of first and last year:
+par(mfrow=c(1,2))
+plot(newcrop1993brick$cod_1993.2, col=blbl)
+plot(newcrop2018brick$cod_2018.2, col=blbl)
+        # Second band is useful for visualizing underwater sediment
+
+# Coastal geomorphology with third band of first and last year:
+par(mfrow=c(1,2))
+plot(newcrop1993brick$cod_1993.3, col=blbl)
+plot(newcrop2018brick$cod_2018.3, col=blbl)
+        # Third band is a mid-way reflection between the first two bands and removes the noise of the second band
 
 # __________Calculating the degree of change in geomorphology between 1993 and 2018___________________________________________________________________________________________
 
@@ -186,7 +202,7 @@ plotRGB(newcrop2018brick, 2, 1, 3, stretch="hist")
 codchange <- newcrop2018brick - newcrop1993brick
 plot(codchange)
 
-# Investigating the degree of change shown by the first layer of each year, as it shows good contrast between stable and altered zones:
+# Investigating the degree of change shown by the first layer of each year, as it shows good contrast between stable and active sediment zones:
 codchangefirstband <- newcrop2018brick$cod_2018.1 - newcrop1993brick$cod_1993.1
 
 # Levelplot, using previously created colour palette, to analyse the degree of change in the first band:
