@@ -1,4 +1,6 @@
-# Esame di Telerilevamento
+# Remote Sensing Exam
+
+# __________Libraries and working directory_______________________________________________________________________________________________
 
 library(raster)
 library(rasterdiv)
@@ -7,6 +9,8 @@ library(viridis)
 library(RStoolbox)
 library(imagefx)
 setwd("C:/esame/")
+
+# __________Importing images____________________________________________________________________________________________________________
 
 # To list all the files together, with the common pattern "cod" in the file name:
 codlist <- list.files(pattern="cod")
@@ -38,7 +42,7 @@ plotRGB(cod1993, 2, 1, 3, stretch="Lin")
 # To view ONLY the first layer of the first image, using the colour palette:
 plot(cod1993$cod_1993.1, col=colour)
 
-# _____________________________________________________________________________________________
+# __________Cropping original images_____________________________________________________________________________________________________
 
 # To upload the first raster
 cod1993 <- raster("cod_1993.jpg")
@@ -79,6 +83,8 @@ newcrop2003 <- crop(x = cod2003, y = new_extent)
 newcrop2008 <- crop(x = cod2008, y = new_extent)
 newcrop2013 <- crop(x = cod2013, y = new_extent)
 newcrop2018 <- crop(x = cod2018, y = new_extent)
+
+# __________Experimenting with colours_____________________________________________________________________________________________________
 
 # To plot each cropped area in black and white:
 par(mfrow=c(2,3))
