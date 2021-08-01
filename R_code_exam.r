@@ -135,11 +135,40 @@ newcrop2008brick <- crop(x = cod2008brick, y = new_extent)
 newcrop2013brick <- crop(x = cod2013brick, y = new_extent)
 newcrop2018brick <- crop(x = cod2018brick, y = new_extent)
 
-# To plot bricks
+# Underwater sediment is yellow and inland is green
 par(mfrow=c(2,3))
-plot(cod1993brick, col=colour)
-plot(cod1997brick, col=colour)
-plot(cod2003brick, col=colour)
-plot(cod2008brick, col=colour)
-plot(cod2013brick, col=colour)
-plot(cod2018brick, col=colour)
+plotRGB(newcrop1993brick, 3, 2, 1, stretch="Lin", col=colour)
+plotRGB(newcrop1997brick, 3, 2, 1, stretch="Lin", col=colour)
+plotRGB(newcrop2003brick, 3, 2, 1, stretch="Lin", col=colour)
+plotRGB(newcrop2008brick, 3, 2, 1, stretch="Lin", col=colour)
+plotRGB(newcrop2013brick, 3, 2, 1, stretch="Lin", col=colour)
+plotRGB(newcrop2018brick, 3, 2, 1, stretch="Lin", col=colour)
+
+# Underwater sediement is yellow and inland is magenta
+par(mfrow=c(2,3))
+plotRGB(newcrop1993brick, 2, 3, 1, stretch="Lin", col=colour)
+plotRGB(newcrop1997brick, 2, 3, 1, stretch="Lin", col=colour)
+plotRGB(newcrop2003brick, 2, 3, 1, stretch="Lin", col=colour)
+plotRGB(newcrop2008brick, 2, 3, 1, stretch="Lin", col=colour)
+plotRGB(newcrop2013brick, 2, 3, 1, stretch="Lin", col=colour)
+plotRGB(newcrop2018brick, 2, 3, 1, stretch="Lin", col=colour)
+
+# Underwater sediment is turquoise and inland is green
+par(mfrow=c(2,3))
+plotRGB(newcrop1993brick, 1, 2, 3, stretch="Lin", col=colour)
+plotRGB(newcrop1997brick, 1, 2, 3, stretch="Lin", col=colour)
+plotRGB(newcrop2003brick, 1, 2, 3, stretch="Lin", col=colour)
+plotRGB(newcrop2008brick, 1, 2, 3, stretch="Lin", col=colour)
+plotRGB(newcrop2013brick, 1, 2, 3, stretch="Lin", col=colour)
+plotRGB(newcrop2018brick, 1, 2, 3, stretch="Lin", col=colour)
+
+# Underwater sediment is magenta and inland is green
+par(mfrow=c(2,3))
+plotRGB(newcrop1993brick, 3, 1, 2, stretch="Lin", col=colour)
+plotRGB(newcrop1997brick, 3, 1, 2, stretch="Lin", col=colour)
+plotRGB(newcrop2003brick, 3, 1, 2, stretch="Lin", col=colour)
+plotRGB(newcrop2008brick, 3, 1, 2, stretch="Lin", col=colour)
+plotRGB(newcrop2013brick, 3, 1, 2, stretch="Lin", col=colour)
+plotRGB(newcrop2018brick, 3, 1, 2, stretch="Lin", col=colour)
+
+
