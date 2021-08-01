@@ -187,10 +187,10 @@ codchange <- newcrop2018brick - newcrop1993brick
 plot(codchange)
 
 # Investigating the degree of change shown by the first layer of each year, as it shows good contrast between stable and altered zones:
-codchange <- newcrop2018brick$cod_2018.1 - newcrop1993brick$cod_1993.1
+codchangefirstband <- newcrop2018brick$cod_2018.1 - newcrop1993brick$cod_1993.1
 
-# Levelplot, using previously created colour palette, to analyse the degree of change:
-levelplot(codchange, col.regions=blbl)
+# Levelplot, using previously created colour palette, to analyse the degree of change in the first band:
+levelplot(codchangefirstband, col.regions=blbl)
 
 # __________Unsupervised classification_______________________________________________________________________________________________________________________________________
 
