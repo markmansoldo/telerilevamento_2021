@@ -171,4 +171,12 @@ plotRGB(newcrop2008brick, 3, 1, 2, stretch="Lin", col=colour)
 plotRGB(newcrop2013brick, 3, 1, 2, stretch="Lin", col=colour)
 plotRGB(newcrop2018brick, 3, 1, 2, stretch="Lin", col=colour)
 
+# Underwater sediment is magenta and inland is green but "hist" is too blurry
+par(mfrow=c(2,3))
+plotRGB(newcrop1993brick, 3, 1, 2, stretch="hist", col=colour)
+plotRGB(newcrop1997brick, 3, 1, 2, stretch="hist", col=colour)
+plotRGB(newcrop2003brick, 3, 1, 2, stretch="hist", col=colour)
+plotRGB(newcrop2008brick, 3, 1, 2, stretch="hist", col=colour)
+plotRGB(newcrop2013brick, 3, 1, 2, stretch="hist", col=colour)
+plotRGB(newcrop2018brick, 3, 1, 2, stretch="hist", col=colour)
 
