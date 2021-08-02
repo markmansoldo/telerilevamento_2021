@@ -87,7 +87,7 @@ plot(newcrop1993, col=colour)
 plot(newcrop2018, col=colour)
 
 # To create a colour palette:
-greek <- colorRampPalette(c("dark blue","blue","yellow"))(100)
+greek <- colorRampPalette(c("dark blue","blue","white"))(100)
 
 # First and last year with "greek"
 par(mfrow=c(1,2))
@@ -96,7 +96,7 @@ plot(newcrop2018, col=greek)
 # Shows some contrast with ocean in dark blue, land in blue and exposed sands in white
 
 # To create a colour palette:
-blbl <- colorRampPalette(c("steelblue3","black","white"))(100)
+blbl <- colorRampPalette(c("steelblue3","black","yellow"))(100)
 
 # First and last year with "blbl"
 par(mfrow=c(1,2))
