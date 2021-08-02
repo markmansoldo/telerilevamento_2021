@@ -87,7 +87,7 @@ plot(newcrop1993, col=colour)
 plot(newcrop2018, col=colour)
 
 # To create a colour palette:
-greek <- colorRampPalette(c("dark blue","blue","white"))(100)
+greek <- colorRampPalette(c("dark blue","blue","yellow"))(100)
 
 # First and last year with "greek"
 par(mfrow=c(1,2))
