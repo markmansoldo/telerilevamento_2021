@@ -96,13 +96,19 @@ plot(newcrop2018, col=greek)
 # Shows some contrast with ocean in dark blue, land in blue and exposed sands in white
 
 # To create a colour palette:
-blbl <- colorRampPalette(c("steelblue3","black","yellow"))(100)
+blbl <- colorRampPalette(c("black","blue","white"))(100)
 
 # First and last year with "blbl"
 par(mfrow=c(1,2))
 plot(newcrop1993, col=blbl)
 plot(newcrop2018, col=blbl)
 # Shows great contrast with ocean in black and sedimentation differences in blue or yellow
+
+# To create a colour palette:
+changer <- colorRampPalette(c("steelblue3","black","yellow"))(100)
+
+# To create a colour palette:
+fire <- colorRampPalette(c("white","orange3","purple"))(100)
 
 # __________Importing bricks, assigning names and cropping them with extent___________________________________________________________________________________________________
 
@@ -202,13 +208,13 @@ plot(newcrop2018brick$cod_2018.3, col=blbl)
 
 # Subtracting the first year from the last year to find the difference:
 codchange <- newcrop2018brick - newcrop1993brick
-plot(codchange)
+plot(codchange, col=changer)
 
 # Investigating the degree of change shown by the first layer of each year, as it shows good contrast between stable and active sediment zones:
 codchangefirstband <- newcrop2018brick$cod_2018.1 - newcrop1993brick$cod_1993.1
 
 # Levelplot, using previously created colour palette, to analyse the degree of change in the first band:
-levelplot(codchangefirstband, col.regions=blbl)
+levelplot(codchangefirstband, col.regions=changer)
 
 # __________Principal Components Analysis (PCA)_______________________________________________________________________________________________________________________________
 
@@ -225,5 +231,10 @@ plot(class1993$map)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
+NDWI1997 <- (newcrop1997brick$cod_1997.3 - newcrop1997brick$cod_1997.1)/(newcrop1997brick$cod_1997.3 + newcrop1997brick$cod_1997.1)
+NDWI1993 <- (newcrop1993brick$cod_1993.3 - newcrop1993brick$cod_1993.1)/(newcrop1993brick$cod_1993.3 + newcrop1993brick$cod_1993.1)
+NDWI2018 <- (newcrop2018brick$cod_2018.3 - newcrop2018brick$cod_2018.1)/(newcrop2018brick$cod_2018.3 + newcrop2018brick$cod_2018.1)
+
+NDWIdiff <- NDWI2018-NDWI1997
 
 # ____________________________________________________________________________________________________________________________________________________________________________
