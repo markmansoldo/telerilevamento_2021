@@ -231,10 +231,9 @@ plot(class1993$map)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
-NDWI1997 <- (newcrop1997brick$cod_1997.3 - newcrop1997brick$cod_1997.1)/(newcrop1997brick$cod_1997.3 + newcrop1997brick$cod_1997.1)
-NDWI1993 <- (newcrop1993brick$cod_1993.3 - newcrop1993brick$cod_1993.1)/(newcrop1993brick$cod_1993.3 + newcrop1993brick$cod_1993.1)
-NDWI2018 <- (newcrop2018brick$cod_2018.3 - newcrop2018brick$cod_2018.1)/(newcrop2018brick$cod_2018.3 + newcrop2018brick$cod_2018.1)
+NDWI1993 <- (newcrop1993brick$cod_1993.2 - newcrop1993brick$cod_1993.3)/(newcrop1993brick$cod_1993.2 + newcrop1993brick$cod_1993.3)
+NDWI2018 <- (newcrop2018brick$cod_2018.2 - newcrop2018brick$cod_2018.3)/(newcrop2018brick$cod_2018.2 + newcrop2018brick$cod_2018.3)
 
-NDWIdiff <- NDWI2018-NDWI1997
+NDWIdiff <- NDWI2018-NDWI1993
 
 # ____________________________________________________________________________________________________________________________________________________________________________
