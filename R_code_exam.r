@@ -9,6 +9,7 @@ library(rasterVis)
 library(ggplot2)
 library(viridis)
 library(imagefx)
+library(rgdal)
 setwd("C:/esame/")
 
 # __________Importing images__________________________________________________________________________________________________________________________________________________
@@ -217,8 +218,10 @@ levelplot(codchangefirstband, col.regions=blbl)
 
 # __________Unsupervised classification_______________________________________________________________________________________________________________________________________
 
-newcrop1993brickunclass <- unsuperClass(newcrop1993brick, nClasses=2)
-plot(newcrop1993brickunclass)
+
+
+newcrop1993brickunclass <- unsuperClass(newcrop1993brick, nClasses=3)
+plot(newcrop1993brickunclass$map)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
