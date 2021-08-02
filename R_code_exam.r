@@ -10,6 +10,7 @@ library(ggplot2)
 library(viridis)
 library(imagefx)
 library(rgdal)
+library(Rcpp)
 setwd("C:/esame/")
 
 # __________Importing images__________________________________________________________________________________________________________________________________________________
