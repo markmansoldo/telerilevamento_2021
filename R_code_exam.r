@@ -220,8 +220,8 @@ levelplot(codchangefirstband, col.regions=blbl)
 # __________Unsupervised classification_______________________________________________________________________________________________________________________________________
 
 # To classify the brick into 2 classes:
-1993brickclass <- unsuperClass(newcrop1993brick, nClasses=2)
-plot(1993brickclass$map)
+class1993 <- unsuperClass(newcrop1993brick, nClasses=2)
+plot(class1993$map)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
