@@ -96,13 +96,13 @@ plot(newcrop2018, col=greek)
 # Shows some contrast with ocean in dark blue, land in blue and exposed sands in white
 
 # To create a colour palette:
-blbl <- colorRampPalette(c("black","blue","white"))(100)
+blbl <- colorRampPalette(c("steelblue3","black","white"))(100)
 
 # First and last year with "blbl"
 par(mfrow=c(1,2))
 plot(newcrop1993, col=blbl)
 plot(newcrop2018, col=blbl)
-# Shows great contrast with ocean in black, land in blue and exposed sands in white
+# Shows great contrast with ocean in black and sedimentation differences in blue or yellow
 
 # __________Importing bricks, assigning names and cropping them with extent___________________________________________________________________________________________________
 
