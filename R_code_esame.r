@@ -56,7 +56,7 @@ cod_2014
 # __________Selecting study area using drawExtent to crop the images__________________________________________________________________________________________________________
 
 # Upload one image to understand the dimensions to be cropped:
-cropbackground <- raster("cod_2020_B1.tif")
+cropbackground <- raster("cod_2020_B5.tif")
 plot(cropbackground)
 
 # Use the drawExtent function to select the area to crop on the image:
