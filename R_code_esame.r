@@ -53,12 +53,11 @@ import2006
 cod_2006 <- stack(import2006)
 cod_2006
 
-# ____________________________________________________________________________________________________________________________________________________________________________
-
 # __________Selecting study area using drawExtent to crop the images__________________________________________________________________________________________________________
 
 # Upload one image to understand the dimensions to be cropped:
-cropbackground <- raster("cod_2021_B1.tif")
+cropbackground <- raster("cod_2006_B1.tif")
+plot(cropbackground)
 
 # Use the drawExtent function to select the area to crop on the image:
 cod_drawextent <- drawExtent(show=TRUE, col="red")
@@ -73,4 +72,9 @@ plot(cropcodtemplate)
 new_extent <- extent(412065, 425655, 4596555, 4614825)
 class(new_extent)
 
+# To check that the "extent" works and create a new cropped area for another image:
+cropcod_2006 <- crop(x = cod_2006, y = new_extent)
 
+# __________A new crop extent is required for each year due to slight variations in satellite flight path_____________________________________________________________________
+
+# __________drawExtent 2016___________________________________________________________________________________________________________________________________________________
