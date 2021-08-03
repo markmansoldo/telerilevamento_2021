@@ -89,5 +89,21 @@ plot(cropcod_2016)
 cropcod_2014 <- crop(x = cod_2014, y = new_extent)
 plot(cropcod_2014)
 
-# ____________________________________________________________________________________________________________________________________________________________________________
+# __________Colour palettes___________________________________________________________________________________________________________________________________________________
+
+# Colour palettes I created:
+mono <- colorRampPalette(c("black","dark grey","light grey"))(100)
+greek <- colorRampPalette(c("dark blue","blue","white"))(100)
+blbl <- colorRampPalette(c("black","blue","white"))(100)
+changer <- colorRampPalette(c("steelblue3","black","yellow"))(100)
+fire <- colorRampPalette(c("white","orange3","purple"))(100)
+
+# __________Experimenting with RGB plots______________________________________________________________________________________________________________________________________
+
+# To plot all of them together
+par(mfrow=c(2,2))
+plotRGB(cropcod_2014, 4, 3, 2, stretch="Lin")
+plotRGB(cropcod_2018, 4, 3, 2, stretch="Lin")
+plotRGB(cropcod_2016, 4, 3, 2, stretch="Lin")
+plotRGB(cropcod_2020, 4, 3, 2, stretch="Lin")
 
