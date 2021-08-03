@@ -55,3 +55,20 @@ cod_2006
 
 # ____________________________________________________________________________________________________________________________________________________________________________
 
+# __________Selecting study area using drawExtent to crop the images__________________________________________________________________________________________________________
+
+# Upload one image to understand the dimensions to be cropped:
+cropbackground <- raster("cod_2021_B1.tif")
+
+# Use the drawExtent function to select the area to crop on the image:
+cod_drawextent <- drawExtent(show=TRUE, col="red")
+
+# New crop template acquired:
+cropcodtemplate <- crop(x = cropbackground, y = cod_drawextent)
+
+# Plot the template to check that the dimensions are correct:
+plot(cropcodtemplate)
+
+
+
+
