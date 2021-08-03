@@ -69,9 +69,25 @@ cropcodtemplate <- crop(x = cropbackground, y = cod_drawextent)
 plot(cropcodtemplate)
 
 # To set the x and y values for the cropped area to be used with any of the rasters:
-new_extent <- extent(412065, 425655, 4596555, 4614825)
+new_extent <- extent(415065, 424545, 4602375, 4615485)
 class(new_extent)
 
 # To check that the "extent" works and create a new cropped area for another image:
 cropcod_2018 <- crop(x = cod_2018, y = new_extent)
+
+# __________All images were cropped using this extent_________________________________________________________________________________________________________________________
+
+cropcod_2020 <- crop(x = cod_2020, y = new_extent)
+plot(cropcod_2020)
+
+cropcod_2018 <- crop(x = cod_2018, y = new_extent)
+plot(cropcod_2018)
+
+cropcod_2016 <- crop(x = cod_2016, y = new_extent)
+plot(cropcod_2016)
+
+cropcod_2014 <- crop(x = cod_2014, y = new_extent)
+plot(cropcod_2014)
+
+# ____________________________________________________________________________________________________________________________________________________________________________
 
