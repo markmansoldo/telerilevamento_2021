@@ -69,6 +69,8 @@ cropcodtemplate <- crop(x = cropbackground, y = cod_drawextent)
 # Plot the template to check that the dimensions are correct:
 plot(cropcodtemplate)
 
-
+# To set the x and y values for the cropped area to be used with any of the rasters:
+new_extent <- extent(412065, 425655, 4596555, 4614825)
+class(new_extent)
 
 
