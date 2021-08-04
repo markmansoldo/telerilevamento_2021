@@ -228,7 +228,7 @@ NDWIdiff <- NDWI2020-NDWI2014
 
 plot(NDWIdiff, col=changer)
 
-# __________Normalized Difference Water Index (NDWI)__________(Wolf, 2010)____________________________________________________________________________________________________
+# __________Normalized Difference Water Index (NDWI)__________(Wolf, 2012)_____________________________________________________________________________________________________
 
 NDWIa2014 <- (cropcod_2014$cod_2014_B1 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B1 + cropcod_2014$cod_2014_B5)
 NDWIa2020 <- (cropcod_2020$cod_2020_B1 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B1 + cropcod_2020$cod_2020_B5)
@@ -237,7 +237,7 @@ NDWIadiff <- NDWIa2020-NDWIa2014
 
 plot(NDWIadiff, col=changer)
 
-# __________Normalized Difference Water Index (NDWI)__________(??????)__________________________________________________________________________________________________
+# __________Normalized Difference Water Index (NDWI)__________(??????)_________________________________________________________________________________________________________
 
 NDWIb2014 <- (cropcod_2014$cod_2014_B5 - cropcod_2014$cod_2014_B6)/(cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B6)
 NDWIb2020 <- (cropcod_2020$cod_2020_B5 - cropcod_2020$cod_2020_B6)/(cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B6)
@@ -246,7 +246,7 @@ NDWIbdiff <- NDWIb2020-NDWIb2014
 
 plot(NDWIbdiff, col=changer)
 
-# __________Urban Index (UI)__________________________________________________________________________________________________________________________
+# __________Urban Index (UI)___________________________________________________________________________________________________________________________________________________
 
 NDBI2014 <- (cropcod_2014$cod_2014_B7 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B7 + cropcod_2014$cod_2014_B5)
 NDBI2020 <- (cropcod_2020$cod_2020_B7 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B7 + cropcod_2020$cod_2020_B5)
@@ -258,6 +258,21 @@ plot(NDBI2020, col=mono)
 NDBIdiff <- NDBI2020-NDBI2014
 
 plot(NDBIdiff, col=changer)
+
+# __________New Built-Up Index (BUI)__________(Kaimaris & Patias, 2016)_______________________________________________________________________________________________________
+
+# This index considers newly emerged sands and sediment with values very similar to those of urbanized areas
+
+BUI2014 <- (cropcod_2014$cod_2014_B4 * cropcod_2014$cod_2014_B6)/(cropcod_2014$cod_2014_B5)
+BUI2020 <- (cropcod_2020$cod_2020_B4 * cropcod_2020$cod_2020_B6)/(cropcod_2020$cod_2020_B5)
+
+par(mfrow=c(1,2))
+plot(BUI2014, col=mono)
+plot(BUI2020, col=mono)
+
+BUIdiff <- BUI2020-BUI2014
+
+plot(BUIdiff, col=changer)
 
 # __________Normalized Suspended Material Index (NSMI)________________________________________________________________________________________________________________________
 # CHANGE THIS
