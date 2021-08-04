@@ -211,12 +211,16 @@ levelplot(codchangeB7, col.regions=changer)
 
 # __________Unsupervised classification_______________________________________________________________________________________________________________________________________
 
-# 2 classes:
+# 2 classes with all four years:
 class2014_2 <- unsuperClass(cropcod_2014, nClasses=2)
+class2016_2 <- unsuperClass(cropcod_2016, nClasses=2)
+class2018_2 <- unsuperClass(cropcod_2018, nClasses=2)
 class2020_2 <- unsuperClass(cropcod_2020, nClasses=2)
 
-par(mfrow=c(1,2))
+par(mfrow=c(1,4))
 plot(class2014_2$map)
+plot(class2016_2$map)
+plot(class2018_2$map)
 plot(class2020_2$map)
 
 # Using the frequencies function to count the pixels for 2 classes in 2014:
@@ -225,6 +229,20 @@ freq(class2014_2$map)
 #      value  count (2014)
 # [1,]     1 116482 (water)
 # [2,]     2  21610 (land)
+
+# Using the frequencies function to count the pixels for 2 classes in 2016:
+freq(class2016_2$map)
+
+#      value  count (2016)
+# [1,]     1 112807 (water)
+# [2,]     2  25285 (land)
+
+# Using the frequencies function to count the pixels for 2 classes in 2018:
+freq(class2018_2$map)
+
+#      value  count (2018)
+# [1,]     1 114223 (water)
+# [2,]     2  23869 (land)
 
 # Using the frequencies function to count the pixels for 2 classes in 2020:
 freq(class2020_2$map)
