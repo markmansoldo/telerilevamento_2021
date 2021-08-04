@@ -219,6 +219,33 @@ NDWIdiff <- NDWI2020-NDWI2014
 
 plot(NDWIdiff, col=changer)
 
+# __________Normalized Difference Water Index (NDWI)__________(Wolf, 2010)____________________________________________________________________________________________________
+
+NDWIa2014 <- (cropcod_2014$cod_2014_B1 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B1 + cropcod_2014$cod_2014_B5)
+NDWIa2020 <- (cropcod_2020$cod_2020_B1 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B1 + cropcod_2020$cod_2020_B5)
+
+NDWIadiff <- NDWIa2020-NDWIa2014
+
+plot(NDWIadiff, col=changer)
+
+# __________Normalized Difference Water Index (NDWI)__________(??????)__________________________________________________________________________________________________
+
+NDWIb2014 <- (cropcod_2014$cod_2014_B5 - cropcod_2014$cod_2014_B6)/(cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B6)
+NDWIb2020 <- (cropcod_2020$cod_2020_B5 - cropcod_2020$cod_2020_B6)/(cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B6)
+
+NDWIbdiff <- NDWIb2020-NDWIb2014
+
+plot(NDWIbdiff, col=changer)
+
+# __________Normalized Difference Built Index (NDBI)__________________________________________________________________________________________________________________________
+
+NDBI2014 <- (cropcod_2014$cod_2014_B6 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B6 + cropcod_2014$cod_2014_B5)
+NDBI2020 <- (cropcod_2020$cod_2020_B6 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B6 + cropcod_2020$cod_2020_B5)
+
+NDBIdiff <- NDBI2020-NDBI2014
+
+plot(NDBIdiff, col=changer)
+
 # __________Normalized Suspended Material Index (NSMI)________________________________________________________________________________________________________________________
 # CHANGE THIS
 NSMI2014 <- ((ρ*cropcod_2014$cod_2014_B4) + (ρ*cropcod_2014$cod_2014_B3) - (ρ*cropcod_2014$cod_2014_B2))/((ρ*cropcod_2014$cod_2014_B4) + (ρ*cropcod_2014$cod_2014_B3) + (ρ*cropcod_2014$cod_2014_B2))
