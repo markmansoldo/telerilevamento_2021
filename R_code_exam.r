@@ -274,8 +274,8 @@ freq(class2014_4$map)
 
 #      value  count (2014)
 # [1,]     1   9786 (submerged sand)
-# [2,]     2  15727 (urban/vegetation)
-# [3,]     3   4631 (sandy beaches)
+# [2,]     2  15727 (mainland)
+# [3,]     3   4631 (coastal habitat)
 # [4,]     4 107948 (water)
 
 # Using the frequencies function to count the pixels for 4 classes in 2020:
@@ -283,18 +283,22 @@ freq(class2020_4$map)
 
 #      value  count (2020)
 # [1,]     1  16079 (submerged sand)
-# [2,]     2  15507 (urban/vegetation)
-# [3,]     3   3929 (sandy beaches)
+# [2,]     2  15507 (mainland)
+# [3,]     3   3929 (coastal habitat)
 # [4,]     4 102577 (water)
 
 # ___________________________________________________________________________
 
-# 8 classes:
+# 8 classes for all four years:
 class2014_8 <- unsuperClass(cropcod_2014, nClasses=8)
+class2016_8 <- unsuperClass(cropcod_2016, nClasses=8)
+class2018_8 <- unsuperClass(cropcod_2018, nClasses=8)
 class2020_8 <- unsuperClass(cropcod_2020, nClasses=8)
 
-par(mfrow=c(1,2))
+par(mfrow=c(1,4))
 plot(class2014_8$map, col=tropical)
+plot(class2016_8$map, col=tropical)
+plot(class2018_8$map, col=tropical)
 plot(class2020_8$map, col=tropical)
 
 # Using the frequencies function to count the pixels for 6 classes in 2014:
@@ -309,6 +313,16 @@ freq(class2014_8$map)
 # [6,]     6 79272 (water)
 # [7,]     7  3122 (sandy beach)
 # [8,]     8  3647 (sand dunes)
+
+# Using the frequencies function to count the pixels for 6 classes in 2014:
+freq(class2016_8$map)
+
+
+
+# Using the frequencies function to count the pixels for 6 classes in 2014:
+freq(class2018_8$map)
+
+
 
 # Using the frequencies function to count the pixels for 6 classes in 2020:
 freq(class2020_8$map)
