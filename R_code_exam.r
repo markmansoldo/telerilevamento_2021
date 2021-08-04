@@ -223,6 +223,8 @@ plot(class2020_4$map)
 
 # NDWI = (Green-NIR)/(Green+NIR)
 
+# Good indication of exposed land above water level and sediment in shallow water, urbanized areas and vegetation shown at one extremity and water at the other extremity.
+
 NDWI2014 <- (cropcod_2014$cod_2014_B3 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B3 + cropcod_2014$cod_2014_B5)
 NDWI2020 <- (cropcod_2020$cod_2020_B3 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B3 + cropcod_2020$cod_2020_B5)
 
@@ -237,6 +239,8 @@ plot(NDWIdiff, col=changer)
 # __________Normalized Difference Water Index (NDWI)__________(Wolf, 2012; WorldView 2 equation adapted for Landsat 8)________________________________________________________
 
 # NDWI = (Coastal-NIR)/(Coastal+NIR)
+
+# Very similar to the other NDWI but shows only exposed sand, with greater contrast between land and water.
 
 NDWIa2014 <- (cropcod_2014$cod_2014_B1 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B1 + cropcod_2014$cod_2014_B5)
 NDWIa2020 <- (cropcod_2020$cod_2020_B1 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B1 + cropcod_2020$cod_2020_B5)
@@ -253,6 +257,8 @@ plot(NDWIadiff, col=changer)
 
 # NDWI = (NIR-SWIR1)/(NIR+SWIR1)
 
+# Very clear distinction between land and water in some areas, but sand in shallow waters appears blurry.
+
 NDWIb2014 <- (cropcod_2014$cod_2014_B5 - cropcod_2014$cod_2014_B6)/(cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B6)
 NDWIb2020 <- (cropcod_2020$cod_2020_B5 - cropcod_2020$cod_2020_B6)/(cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B6)
 
@@ -267,6 +273,8 @@ plot(NDWIbdiff, col=changer)
 # __________Urban Index (UI)___________________________________________________________________________________________________________________________________________________
 
 # UI = (SWIR2-NIR)/(SWIR2+NIR)
+
+# Urbanized areas occupy one extremity of the scale, exposed sand and water at the other extreme with vegetated areas having an intermediate value.
 
 UI2014 <- (cropcod_2014$cod_2014_B7 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B7 + cropcod_2014$cod_2014_B5)
 UI2020 <- (cropcod_2020$cod_2020_B7 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B7 + cropcod_2020$cod_2020_B5)
@@ -283,7 +291,7 @@ plot(UIdiff, col=changer)
 
 # BUI = (Red*SWIR1)/(NIR)
 
-# This index considers newly emerged sands and sediment with values very similar to those of urbanized areas
+# Very useful in showing exposed and submerged sand formations but urban areas and vegetated areas have very similar values.
 
 BUI2014 <- (cropcod_2014$cod_2014_B4 * cropcod_2014$cod_2014_B6)/(cropcod_2014$cod_2014_B5)
 BUI2020 <- (cropcod_2020$cod_2020_B4 * cropcod_2020$cod_2020_B6)/(cropcod_2020$cod_2020_B5)
@@ -300,7 +308,8 @@ plot(BUIdiff, col=changer)
 
 # NDVI = (NIR-RED)/(NIR+RED)
 
-# The negative value is useful indicating underwater sand and sediment
+# The negative value is extremely useful for illustrating underwater sand and sediment.
+# The positive value shows all exposed land very clearly.
 
 NDVI2014 <- (cropcod_2014$cod_2014_B5 - cropcod_2014$cod_2014_B4)/(cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B4)
 NDVI2020 <- (cropcod_2020$cod_2020_B5 - cropcod_2020$cod_2020_B4)/(cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B4)
@@ -316,6 +325,9 @@ plot(NDVIdiff, col=changer)
 # __________Bare Soil Index (BSI)_____________________________________________________________________________________________________________________________________________
 
 # BSI = (SWIR1+Red)-(NIR+Blue)/(SWIR1+Red)+(NIR+Blue)
+
+# Bare sandy beaches without any vegetation are shown at one extremity and urbanized areas are at the other extremity.
+# Urban areas have a slightly more extreme value compared to vegetation.
 
 BSI2014 <- ((cropcod_2014$cod_2014_B6 + cropcod_2014$cod_2014_B4) - (cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B2))/((cropcod_2014$cod_2014_B6 + cropcod_2014$cod_2014_B4) + (cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B2))
 BSI2020 <- ((cropcod_2020$cod_2020_B6 + cropcod_2020$cod_2020_B4) - (cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B2))/((cropcod_2020$cod_2020_B6 + cropcod_2020$cod_2020_B4) + (cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B2))
