@@ -192,7 +192,7 @@ levelplot(codchangeB7, col.regions=changer)
 
 # __________Unsupervised classification_______________________________________________________________________________________________________________________________________
 
-# To classify the brick into 2 classes:
+# 2 classes:
 class2014_2 <- unsuperClass(cropcod_2014, nClasses=2)
 class2020_2 <- unsuperClass(cropcod_2020, nClasses=2)
 
@@ -201,7 +201,7 @@ par(mfrow=c(1,2))
 plot(class2014_2$map)
 plot(class2020_2$map)
 
-# To classify the brick into 3 classes:
+# 3 classes:
 class2014_3 <- unsuperClass(cropcod_2014, nClasses=3)
 class2020_3 <- unsuperClass(cropcod_2020, nClasses=3)
 
@@ -209,6 +209,15 @@ class2020_3 <- unsuperClass(cropcod_2020, nClasses=3)
 par(mfrow=c(1,2))
 plot(class2014_3$map)
 plot(class2020_3$map)
+
+# 4 classes:
+class2014_4 <- unsuperClass(cropcod_2014, nClasses=4)
+class2020_4 <- unsuperClass(cropcod_2020, nClasses=4)
+
+# 4 classes identified are water, land, sand and urban areas:
+par(mfrow=c(1,2))
+plot(class2014_4$map)
+plot(class2020_4$map)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
@@ -237,14 +246,14 @@ NDWIbdiff <- NDWIb2020-NDWIb2014
 
 plot(NDWIbdiff, col=changer)
 
-# __________Normalized Difference Built Index (NDBI)__________________________________________________________________________________________________________________________
+# __________Urban Index (UI)__________________________________________________________________________________________________________________________
 
-NDBI2014 <- (cropcod_2014$cod_2014_B6 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B6 + cropcod_2014$cod_2014_B5)
-NDBI2020 <- (cropcod_2020$cod_2020_B6 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B6 + cropcod_2020$cod_2020_B5)
+NDBI2014 <- (cropcod_2014$cod_2014_B7 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B7 + cropcod_2014$cod_2014_B5)
+NDBI2020 <- (cropcod_2020$cod_2020_B7 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B7 + cropcod_2020$cod_2020_B5)
 
 par(mfrow=c(1,2))
-plot(NDBI2014)
-plot(NDBI2020)
+plot(NDBI2014, col=mono)
+plot(NDBI2020, col=mono)
 
 NDBIdiff <- NDBI2020-NDBI2014
 
@@ -258,7 +267,6 @@ NSMI2020 <- ((ρ*cropcod_2020$cod_2020_B4) + (ρ*cropcod_2020$cod_2020_B3) - (ρ
 NSMIdiff <- NSMI2020-NSMI2014
 
 plot(NSMIdiff, col=changer)
-
 
 # ____________________________________________________________________________________________________________________________________________________________________________
 
