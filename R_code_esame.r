@@ -138,15 +138,33 @@ plotRGB(cropcod_2018, 5, 6, 1, stretch="Lin")
 plotRGB(cropcod_2016, 5, 6, 1, stretch="Lin")
 plotRGB(cropcod_2020, 5, 6, 1, stretch="Lin")
 
+# Histogram stretch is too blurry and hinders visualization of geomorphology:
+par(mfrow=c(2,2))
+plotRGB(cropcod_2014, 5, 6, 1, stretch="hist")
+plotRGB(cropcod_2018, 5, 6, 1, stretch="hist")
+plotRGB(cropcod_2016, 5, 6, 1, stretch="hist")
+plotRGB(cropcod_2020, 5, 6, 1, stretch="hist")
+
 # __________Experimenting with different bands within the bricks to visualize geomorphology___________________________________________________________________________________
 
-# Coastal geomorphology with first band (Coastal/Ultra-blue) of first and last year:
-par(mfrow=c(1,2))
-plot(cropcod_2014$cod_2014_B1, col=mono)
-plot(cropcod_2020$cod_2020_B1, col=mono)
-# Highlights sand bar breaks
+# Coastal geomorphology with first band (Coastal/Ultra-blue) of first and last year
 
-# __________Calculating the degree of change in geomorphology between 1993 and 2018___________________________________________________________________________________________
+# Band 1 (Coastal/ultra-blue) Highlights sediment movement:
+par(mfrow=c(1,2))
+plot(cropcod_2014$cod_2014_B1, col=changer)
+plot(cropcod_2020$cod_2020_B1, col=changer)
+
+# Band 5 (Near Infra Red) Clearly shows all exposed land:
+par(mfrow=c(1,2))
+plot(cropcod_2014$cod_2014_B5, col=changer)
+plot(cropcod_2020$cod_2020_B5, col=changer)
+
+# Band 6 (SWIR-1) Illustrates ocean-facing sandbar change:
+par(mfrow=c(1,2))
+plot(cropcod_2014$cod_2014_B6, col=changer)
+plot(cropcod_2020$cod_2020_B6, col=changer)
+
+# __________Calculating the degree of change in geomorphology between 2014 and 2020___________________________________________________________________________________________
 
 # Subtracting the first year from the last year to find the difference:
 codchange <- cropcod_2020 - cropcod_2014
@@ -169,11 +187,22 @@ levelplot(codchangeB7, col.regions=changer)
 # __________Unsupervised classification_______________________________________________________________________________________________________________________________________
 
 # To classify the brick into 2 classes:
-class2014 <- unsuperClass(cropcod_2014, nClasses=2)
-plot(class2014$map)
+class2014_2 <- unsuperClass(cropcod_2014, nClasses=2)
+class2020_2 <- unsuperClass(cropcod_2020, nClasses=2)
 
-class2020 <- unsuperClass(cropcod_2020, nClasses=2)
-plot(class2020$map)
+# 2 classes identified are water and land:
+par(mfrow=c(1,2))
+plot(class2014_2$map)
+plot(class2020_2$map)
+
+# To classify the brick into 3 classes:
+class2014_3 <- unsuperClass(cropcod_2014, nClasses=3)
+class2020_3 <- unsuperClass(cropcod_2020, nClasses=3)
+
+# 3 classes identified are water, land and sand:
+par(mfrow=c(1,2))
+plot(class2014_3$map)
+plot(class2020_3$map)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
@@ -184,4 +213,14 @@ NDWIdiff <- NDWI2020-NDWI2014
 
 plot(NDWIdiff, col=changer)
 
+# __________Normalized Suspended Material Index (NSMI)________________________________________________________________________________________________________________________
+
+NSMI2014 <- ((ρ*cropcod_2014$cod_2014_B4) + (ρ*cropcod_2014$cod_2014_B3) - (ρ*cropcod_2014$cod_2014_B2))/((ρ*cropcod_2014$cod_2014_B4) + (ρ*cropcod_2014$cod_2014_B3) + (ρ*cropcod_2014$cod_2014_B2))
+NSMI2020 <- ((ρ*cropcod_2020$cod_2020_B4) + (ρ*cropcod_2020$cod_2020_B3) - (ρ*cropcod_2020$cod_2020_B2))/((ρ*cropcod_2020$cod_2020_B4) + (ρ*cropcod_2020$cod_2020_B3) + (ρ*cropcod_2020$cod_2020_B2))
+
+NSMIdiff <- NSMI2020-NSMI2014
+
+plot(NSMIdiff, col=changer)
+
 # ____________________________________________________________________________________________________________________________________________________________________________
+
