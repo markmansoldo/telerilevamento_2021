@@ -215,7 +215,6 @@ levelplot(codchangeB7, col.regions=changer)
 class2014_2 <- unsuperClass(cropcod_2014, nClasses=2)
 class2020_2 <- unsuperClass(cropcod_2020, nClasses=2)
 
-# 2 classes identified are water and land:
 par(mfrow=c(1,2))
 plot(class2014_2$map)
 plot(class2020_2$map)
@@ -240,7 +239,6 @@ freq(class2020_2$map)
 class2014_3 <- unsuperClass(cropcod_2014, nClasses=3)
 class2020_3 <- unsuperClass(cropcod_2020, nClasses=3)
 
-# 3 classes identified are water, land and sand:
 par(mfrow=c(1,2))
 plot(class2014_3$map)
 plot(class2020_3$map)
@@ -267,7 +265,6 @@ freq(class2020_3$map)
 class2014_4 <- unsuperClass(cropcod_2014, nClasses=4)
 class2020_4 <- unsuperClass(cropcod_2020, nClasses=4)
 
-# 4 classes identified are water, submerged sand, sandy beaches and urban/vegetation areas:
 par(mfrow=c(1,2))
 plot(class2014_4$map)
 plot(class2020_4$map)
@@ -292,36 +289,39 @@ freq(class2020_4$map)
 
 # ___________________________________________________________________________
 
-# 6 classes:
-class2014_6 <- unsuperClass(cropcod_2014, nClasses=6)
-class2020_6 <- unsuperClass(cropcod_2020, nClasses=6)
+# 8 classes:
+class2014_8 <- unsuperClass(cropcod_2014, nClasses=8)
+class2020_8 <- unsuperClass(cropcod_2020, nClasses=8)
 
-# 6 classes identified are water, submerged sand, sandy beaches and urban/vegetation areas:
 par(mfrow=c(1,2))
-plot(class2014_6$map, col=changer)
-plot(class2020_6$map, col=changer)
+plot(class2014_8$map, col=tropical)
+plot(class2020_8$map, col=tropical)
 
 # Using the frequencies function to count the pixels for 6 classes in 2014:
-freq(class2014_6$map)
+freq(class2014_8$map)
 
 #      value count (2014)
-# [1,]     1 12356 (dense vegetation)
-# [2,]     2 93660 (water)
-# [3,]     3  8923 (salt marsh/low vegetation)
-# [4,]     4  3245 (sandy beaches)
-# [5,]     5 15397 (submerged sand)
-# [6,]     6  4511 (sand dunes)
+# [1,]     1  9751 (shallow sand)
+# [2,]     2  6881 (dense vegetation)
+# [3,]     3  8090 (salt marsh)
+# [4,]     4  7364 (built-up areas)
+# [5,]     5 19965 (deep sand)
+# [6,]     6 79272 (water)
+# [7,]     7  3122 (sandy beach)
+# [8,]     8  3647 (sand dunes)
 
 # Using the frequencies function to count the pixels for 6 classes in 2020:
-freq(class2020_6$map)
+freq(class2020_8$map)
 
-#      value  count (2020)
-# [1,]     1   4316 (salt marsh/low vegetation)
-# [2,]     2  15069 (submerged sand)
-# [3,]     3   8855 (dense vegetation)
-# [4,]     4   4737 (sand dunes)
-# [5,]     5   3063 (sandy beaches)
-# [6,]     6 102052 (water)
+#      value count (2020)
+# [1,]     1 98958 (water)
+# [2,]     2  3954 (dense vegetation)
+# [3,]     3   537 (shallow sand)
+# [4,]     4 17493 (deep sand)
+# [5,]     5  7143 (built-up areas)
+# [6,]     6  2529 (salt marsh)
+# [7,]     7  3003 (sandy beach)
+# [8,]     8  4475 (sand dunes)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
