@@ -313,5 +313,20 @@ NDVIdiff <- NDVI2020-NDVI2014
 
 plot(NDVIdiff, col=changer)
 
+# __________Bare Soil Index (BSI)_____________________________________________________________________________________________________________________________________________
+
+# BSI = (SWIR1+Red)-(NIR+Blue)/(SWIR1+Red)+(NIR+Blue)
+
+BSI2014 <- ((cropcod_2014$cod_2014_B6 + cropcod_2014$cod_2014_B4) - (cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B2))/((cropcod_2014$cod_2014_B6 + cropcod_2014$cod_2014_B4) + (cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B2))
+BSI2020 <- ((cropcod_2020$cod_2020_B6 + cropcod_2020$cod_2020_B4) - (cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B2))/((cropcod_2020$cod_2020_B6 + cropcod_2020$cod_2020_B4) + (cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B2))
+
+par(mfrow=c(1,2))
+plot(BSI2014, col=mono)
+plot(BSI2020, col=mono)
+
+BSIdiff <- BSI2020-BSI2014
+
+plot(BSIdiff, col=changer)
+
 # ____________________________________________________________________________________________________________________________________________________________________________
 
