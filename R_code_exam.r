@@ -289,16 +289,12 @@ freq(class2020_4$map)
 
 # ___________________________________________________________________________
 
-# 8 classes for all four years:
+# 8 classes:
 class2014_8 <- unsuperClass(cropcod_2014, nClasses=8)
-class2016_8 <- unsuperClass(cropcod_2016, nClasses=8)
-class2018_8 <- unsuperClass(cropcod_2018, nClasses=8)
 class2020_8 <- unsuperClass(cropcod_2020, nClasses=8)
 
 par(mfrow=c(1,4))
 plot(class2014_8$map, col=tropical)
-plot(class2016_8$map, col=tropical)
-plot(class2018_8$map, col=tropical)
 plot(class2020_8$map, col=tropical)
 
 # Using the frequencies function to count the pixels for 6 classes in 2014:
@@ -313,16 +309,6 @@ freq(class2014_8$map)
 # [6,]     6 79272 (water)
 # [7,]     7  3122 (sandy beach)
 # [8,]     8  3647 (sand dunes)
-
-# Using the frequencies function to count the pixels for 6 classes in 2014:
-freq(class2016_8$map)
-
-
-
-# Using the frequencies function to count the pixels for 6 classes in 2014:
-freq(class2018_8$map)
-
-
 
 # Using the frequencies function to count the pixels for 6 classes in 2020:
 freq(class2020_8$map)
