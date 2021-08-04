@@ -261,10 +261,28 @@ freq(class2020_3$map)
 class2014_4 <- unsuperClass(cropcod_2014, nClasses=4)
 class2020_4 <- unsuperClass(cropcod_2020, nClasses=4)
 
-# 4 classes identified are water, land, sand and urban areas:
+# 4 classes identified are water, submerged sand, sandy beaches and urban/vegetation areas:
 par(mfrow=c(1,2))
 plot(class2014_4$map)
 plot(class2020_4$map)
+
+# Using the frequencies function to count the pixels for 4 classes in 2014:
+freq(class2014_4$map)
+
+#      value  count (2014)
+# [1,]     1   9786 (submerged sand)
+# [2,]     2  15727 (urban/vegetation)
+# [3,]     3   4631 (sandy beaches)
+# [4,]     4 107948 (water)
+
+# Using the frequencies function to count the pixels for 4 classes in 2020:
+freq(class2020_4$map)
+
+#      value  count (2020)
+# [1,]     1  16079 (submerged sand)
+# [2,]     2  15507 (urban/vegetation)
+# [3,]     3   3929 (sandy beaches)
+# [4,]     4 102577 (water)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
