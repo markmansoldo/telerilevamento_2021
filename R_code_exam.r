@@ -114,21 +114,21 @@ fire <- colorRampPalette(c("white","orange3","purple"))(100)
 # Band 9 = Cirrus
 
 # To plot all of them together:
-par(mfrow=c(2,2))
+par(mfrow=c(1,4))
 plotRGB(cropcod_2014, 4, 3, 2, stretch="Lin")
 plotRGB(cropcod_2016, 4, 3, 2, stretch="Lin")
 plotRGB(cropcod_2018, 4, 3, 2, stretch="Lin")
 plotRGB(cropcod_2020, 4, 3, 2, stretch="Lin")
 
 # Emphasises coastal sands with bright white sand:
-par(mfrow=c(2,2))
+par(mfrow=c(1,4))
 plotRGB(cropcod_2014, 1, 2, 3, stretch="Lin")
 plotRGB(cropcod_2016, 1, 2, 3, stretch="Lin")
 plotRGB(cropcod_2018, 1, 2, 3, stretch="Lin")
 plotRGB(cropcod_2020, 1, 2, 3, stretch="Lin")
 
 # Emphasises vegetation and terrain:
-par(mfrow=c(2,2))
+par(mfrow=c(1,4))
 plotRGB(cropcod_2014, 5, 6, 7, stretch="Lin")
 plotRGB(cropcod_2016, 5, 6, 7, stretch="Lin")
 plotRGB(cropcod_2018, 5, 6, 7, stretch="Lin")
@@ -142,7 +142,7 @@ plotRGB(cropcod_2018, 5, 6, 1, stretch="Lin")
 plotRGB(cropcod_2020, 5, 6, 1, stretch="Lin")
 
 # Histogram stretch is too blurry and hinders visualization of geomorphology:
-par(mfrow=c(2,2))
+par(mfrow=c(1,4))
 plotRGB(cropcod_2014, 5, 6, 1, stretch="hist")
 plotRGB(cropcod_2016, 5, 6, 1, stretch="hist")
 plotRGB(cropcod_2018, 5, 6, 1, stretch="hist")
