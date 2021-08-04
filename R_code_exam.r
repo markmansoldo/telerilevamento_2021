@@ -214,6 +214,22 @@ par(mfrow=c(1,2))
 plot(class2014_2$map)
 plot(class2020_2$map)
 
+# Using the frequencies function to count the pixels for 2 classes in 2014:
+freq(class2014_2$map)
+
+#      value  count (2014)
+# [1,]     1 116482 (water)
+# [2,]     2  21610 (land)
+
+# Using the frequencies function to count the pixels for 2 classes in 2020:
+freq(class2020_2$map)
+
+#      value  count (2020)
+# [1,]     1 118286 (water)
+# [2,]     2  19806 (land)
+
+# __________________________________________________________________________
+
 # 3 classes:
 class2014_3 <- unsuperClass(cropcod_2014, nClasses=3)
 class2020_3 <- unsuperClass(cropcod_2020, nClasses=3)
@@ -222,6 +238,24 @@ class2020_3 <- unsuperClass(cropcod_2020, nClasses=3)
 par(mfrow=c(1,2))
 plot(class2014_3$map)
 plot(class2020_3$map)
+
+# Using the frequencies function to count the pixels for 3 classes in 2014:
+freq(class2014_3$map)
+
+#      value  count (2014)
+# [1,]     1  19116 (land)
+# [2,]     2 114193 (water)
+# [3,]     3   4783 (sand)
+
+# Using the frequencies function to count the pixels for 3 classes in 2020:
+freq(class2020_3$map)
+
+#      value  count (2020)
+# [1,]     1  16437 (land)
+# [2,]     2 117867 (water)
+# [3,]     3   3788 (sand)
+
+# ___________________________________________________________________________
 
 # 4 classes:
 class2014_4 <- unsuperClass(cropcod_2014, nClasses=4)
