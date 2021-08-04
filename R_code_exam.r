@@ -221,6 +221,8 @@ plot(class2020_4$map)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
+# NDWI = (Green-NIR)/(Green+NIR)
+
 NDWI2014 <- (cropcod_2014$cod_2014_B3 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B3 + cropcod_2014$cod_2014_B5)
 NDWI2020 <- (cropcod_2020$cod_2020_B3 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B3 + cropcod_2020$cod_2020_B5)
 
@@ -228,7 +230,9 @@ NDWIdiff <- NDWI2020-NDWI2014
 
 plot(NDWIdiff, col=changer)
 
-# __________Normalized Difference Water Index (NDWI)__________(Wolf, 2012)_____________________________________________________________________________________________________
+# __________Normalized Difference Water Index (NDWI)__________(Wolf, 2012; WorldView 2 equation adapted for Landsat 8)________________________________________________________
+
+# NDWI = (Coastal-NIR)/(Coastal+NIR)
 
 NDWIa2014 <- (cropcod_2014$cod_2014_B1 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B1 + cropcod_2014$cod_2014_B5)
 NDWIa2020 <- (cropcod_2020$cod_2020_B1 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B1 + cropcod_2020$cod_2020_B5)
@@ -237,10 +241,16 @@ NDWIadiff <- NDWIa2020-NDWIa2014
 
 plot(NDWIadiff, col=changer)
 
-# __________Normalized Difference Water Index (NDWI)__________(??????)_________________________________________________________________________________________________________
+# __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
+
+# NDWI = (NIR-SWIR1)/(NIR+SWIR1)
 
 NDWIb2014 <- (cropcod_2014$cod_2014_B5 - cropcod_2014$cod_2014_B6)/(cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B6)
 NDWIb2020 <- (cropcod_2020$cod_2020_B5 - cropcod_2020$cod_2020_B6)/(cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B6)
+
+par(mfrow=c(1,2))
+plot(NDWIb2014, col=mono)
+plot(NDWIb2020, col=mono)
 
 NDWIbdiff <- NDWIb2020-NDWIb2014
 
@@ -248,18 +258,22 @@ plot(NDWIbdiff, col=changer)
 
 # __________Urban Index (UI)___________________________________________________________________________________________________________________________________________________
 
-NDBI2014 <- (cropcod_2014$cod_2014_B7 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B7 + cropcod_2014$cod_2014_B5)
-NDBI2020 <- (cropcod_2020$cod_2020_B7 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B7 + cropcod_2020$cod_2020_B5)
+# UI = (SWIR2-NIR)/(SWIR2+NIR)
+
+UI2014 <- (cropcod_2014$cod_2014_B7 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B7 + cropcod_2014$cod_2014_B5)
+UI2020 <- (cropcod_2020$cod_2020_B7 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B7 + cropcod_2020$cod_2020_B5)
 
 par(mfrow=c(1,2))
-plot(NDBI2014, col=mono)
-plot(NDBI2020, col=mono)
+plot(UI2014, col=mono)
+plot(UI2020, col=mono)
 
-NDBIdiff <- NDBI2020-NDBI2014
+UIdiff <- UI2020-UI2014
 
-plot(NDBIdiff, col=changer)
+plot(UIdiff, col=changer)
 
 # __________New Built-Up Index (BUI)__________(Kaimaris & Patias, 2016)_______________________________________________________________________________________________________
+
+# BUI = (Red*SWIR1)/(NIR)
 
 # This index considers newly emerged sands and sediment with values very similar to those of urbanized areas
 
@@ -274,14 +288,22 @@ BUIdiff <- BUI2020-BUI2014
 
 plot(BUIdiff, col=changer)
 
-# __________Normalized Suspended Material Index (NSMI)________________________________________________________________________________________________________________________
-# CHANGE THIS
-NSMI2014 <- ((ρ*cropcod_2014$cod_2014_B4) + (ρ*cropcod_2014$cod_2014_B3) - (ρ*cropcod_2014$cod_2014_B2))/((ρ*cropcod_2014$cod_2014_B4) + (ρ*cropcod_2014$cod_2014_B3) + (ρ*cropcod_2014$cod_2014_B2))
-NSMI2020 <- ((ρ*cropcod_2020$cod_2020_B4) + (ρ*cropcod_2020$cod_2020_B3) - (ρ*cropcod_2020$cod_2020_B2))/((ρ*cropcod_2020$cod_2020_B4) + (ρ*cropcod_2020$cod_2020_B3) + (ρ*cropcod_2020$cod_2020_B2))
+# __________Normalized Difference Vegetation Index (NDVI) to explore areas of bare sand_______________________________________________________________________________________
 
-NSMIdiff <- NSMI2020-NSMI2014
+# NDVI = (NIR-RED)/(NIR+RED)
 
-plot(NSMIdiff, col=changer)
+# The negative value is useful indicating underwater sand and sediment
+
+NDVI2014 <- (cropcod_2014$cod_2014_B5 - cropcod_2014$cod_2014_B4)/(cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B4)
+NDVI2020 <- (cropcod_2020$cod_2020_B5 - cropcod_2020$cod_2020_B4)/(cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B4)
+
+par(mfrow=c(1,2))
+plot(NDVI2014, col=mono)
+plot(NDVI2020, col=mono)
+
+NDVIdiff <- NDVI2020-NDVI2014
+
+plot(NDVIdiff, col=changer)
 
 # ____________________________________________________________________________________________________________________________________________________________________________
 
