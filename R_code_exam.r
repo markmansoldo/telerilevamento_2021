@@ -242,6 +242,10 @@ plot(NDWIbdiff, col=changer)
 NDBI2014 <- (cropcod_2014$cod_2014_B6 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B6 + cropcod_2014$cod_2014_B5)
 NDBI2020 <- (cropcod_2020$cod_2020_B6 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B6 + cropcod_2020$cod_2020_B5)
 
+par(mfrow=c(1,2))
+plot(NDBI2014)
+plot(NDBI2020)
+
 NDBIdiff <- NDBI2020-NDBI2014
 
 plot(NDBIdiff, col=changer)
