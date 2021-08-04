@@ -96,6 +96,8 @@ mono <- colorRampPalette(c("black","light grey","white"))(100)
 greek <- colorRampPalette(c("dark blue","blue","white"))(100)
 blbl <- colorRampPalette(c("black","blue","white"))(100)
 changer <- colorRampPalette(c("steelblue3","black","yellow"))(100)
+tropical <- colorRampPalette(c("aquamarine","navy","yellow"))(100)
+candy <- colorRampPalette(c("blueviolet","pink","white"))(100)
 fire <- colorRampPalette(c("white","orange3","purple"))(100)
 
 # __________Experimenting with RGB plots______________________________________________________________________________________________________________________________________
@@ -171,10 +173,14 @@ codchange <- cropcod_2020 - cropcod_2014
 plot(codchange, col=changer)
 # Bands 4-7 show very high contrast and illustrate well the degree of change
 
-# Investigating the degree of change shown by band 7 of each year, as it shows good contrast in active sediment zones:
+# Band 5 (Near Infra Red) often used to distinguish land from water:
+codchange5 <- cropcod_2020$cod_2020_B5 - cropcod_2014$cod_2014_B5
+
+levelplot(codchangeB7, col.regions=tropical)
+
+# Band 7 (SWIR-2) shows good contrast in active sediment zones:
 codchangeB7 <- cropcod_2020$cod_2020_B7 - cropcod_2014$cod_2014_B7
 
-# Levelplot, using previously created colour palette, to analyse the degree of change in band 7 (SWIR-2):
 levelplot(codchangeB7, col.regions=changer)
 
 # __________Principal Components Analysis (PCA)_______________________________________________________________________________________________________________________________
@@ -214,7 +220,7 @@ NDWIdiff <- NDWI2020-NDWI2014
 plot(NDWIdiff, col=changer)
 
 # __________Normalized Suspended Material Index (NSMI)________________________________________________________________________________________________________________________
-
+# CHANGE THIS
 NSMI2014 <- ((ρ*cropcod_2014$cod_2014_B4) + (ρ*cropcod_2014$cod_2014_B3) - (ρ*cropcod_2014$cod_2014_B2))/((ρ*cropcod_2014$cod_2014_B4) + (ρ*cropcod_2014$cod_2014_B3) + (ρ*cropcod_2014$cod_2014_B2))
 NSMI2020 <- ((ρ*cropcod_2020$cod_2020_B4) + (ρ*cropcod_2020$cod_2020_B3) - (ρ*cropcod_2020$cod_2020_B2))/((ρ*cropcod_2020$cod_2020_B4) + (ρ*cropcod_2020$cod_2020_B3) + (ρ*cropcod_2020$cod_2020_B2))
 
