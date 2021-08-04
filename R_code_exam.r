@@ -226,6 +226,10 @@ plot(class2020_4$map)
 NDWI2014 <- (cropcod_2014$cod_2014_B3 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B3 + cropcod_2014$cod_2014_B5)
 NDWI2020 <- (cropcod_2020$cod_2020_B3 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B3 + cropcod_2020$cod_2020_B5)
 
+par(mfrow=c(1,2))
+plot(NDWI2014, col=mono)
+plot(NDWI2020, col=mono)
+
 NDWIdiff <- NDWI2020-NDWI2014
 
 plot(NDWIdiff, col=changer)
@@ -236,6 +240,10 @@ plot(NDWIdiff, col=changer)
 
 NDWIa2014 <- (cropcod_2014$cod_2014_B1 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B1 + cropcod_2014$cod_2014_B5)
 NDWIa2020 <- (cropcod_2020$cod_2020_B1 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B1 + cropcod_2020$cod_2020_B5)
+
+par(mfrow=c(1,2))
+plot(NDWIa2014, col=mono)
+plot(NDWIa2020, col=mono)
 
 NDWIadiff <- NDWIa2020-NDWIa2014
 
