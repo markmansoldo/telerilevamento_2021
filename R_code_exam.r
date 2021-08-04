@@ -305,25 +305,23 @@ plot(class2020_6$map, col=changer)
 freq(class2014_6$map)
 
 #      value count (2014)
-# [1,]     1 12356 (mainland vegetation)
+# [1,]     1 12356 (mainland)
 # [2,]     2 93660 (water)
-# [3,]     3  8923 (shallow sands)
+# [3,]     3  8923 (salt marsh/mudflats)
 # [4,]     4  3245 (sandy beaches)
-# [5,]     5 15397 (deep sands)
+# [5,]     5 15397 (submerged sand)
 # [6,]     6  4511 (sand dunes)
-
-
 
 # Using the frequencies function to count the pixels for 6 classes in 2020:
 freq(class2020_6$map)
 
 #      value  count (2020)
-# [1,]     1  16542 (sand dunes)
-# [2,]     2   3693 (shallow sands)
-# [3,]     3   2993 (water)
-# [4,]     4 100329 (deep sands)
-# [5,]     5  10124 (mainland vegetation)
-# [6,]     6   4411 (sandy beaches)
+# [1,]     1   4316 (salt marsh/mudflats)
+# [2,]     2  15069 (submerged sand)
+# [3,]     3   8855 (mainland)
+# [4,]     4   4737 (sand dunes)
+# [5,]     5   3063 (sandy beaches)
+# [6,]     6 102052 (water)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
