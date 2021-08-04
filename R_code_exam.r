@@ -203,6 +203,12 @@ levelplot(codchangeB7, col.regions=changer)
 
 # To conduct a PCA:
 
+# __________Click function will be useful for the image analyses that follow__________________________________________________________________________________________________
+
+# Click on the image and you will see the information for that particular pixel:
+#                            id(identity), xy(spatial data), cell(pixel), type(point)
+# click(name of file goes here, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
+
 # __________Unsupervised classification_______________________________________________________________________________________________________________________________________
 
 # 2 classes:
@@ -283,6 +289,39 @@ freq(class2020_4$map)
 # [2,]     2  15507 (urban/vegetation)
 # [3,]     3   3929 (sandy beaches)
 # [4,]     4 102577 (water)
+
+# ___________________________________________________________________________
+
+# 6 classes:
+class2014_6 <- unsuperClass(cropcod_2014, nClasses=6)
+class2020_6 <- unsuperClass(cropcod_2020, nClasses=6)
+
+# 6 classes identified are water, submerged sand, sandy beaches and urban/vegetation areas:
+par(mfrow=c(1,2))
+plot(class2014_6$map, col=changer)
+plot(class2020_6$map, col=changer)
+
+# Using the frequencies function to count the pixels for 6 classes in 2014:
+freq(class2014_6$map)
+
+#      value count (2014)
+# [1,]     1  4278 ()
+# [2,]     2  8945 ()
+# [3,]     3 93388 ()
+# [4,]     4 15609 ()
+# [5,]     5 12708 ()
+# [6,]     6  3164 ()
+
+# Using the frequencies function to count the pixels for 6 classes in 2020:
+freq(class2020_6$map)
+
+#      value  count (2020)
+# [1,]     1  16542 ()
+# [2,]     2   3693 ()
+# [3,]     3   2993 ()
+# [4,]     4 100329 ()
+# [5,]     5  10124 ()
+# [6,]     6   4411 ()
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
