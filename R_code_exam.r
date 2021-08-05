@@ -345,6 +345,15 @@ total
 prop2014 <- freq(class2014_8$map)/total
 prop2014
 
+# count
+# 0.070612345 (shallow sand)
+# 0.049829099
+# 0.
+# 0.
+# 0.
+# 0.
+# 0.
+# 0.
 
 # Proportions of each class for 2020:
 prop2020 <- freq(class2020_8$map)/total
