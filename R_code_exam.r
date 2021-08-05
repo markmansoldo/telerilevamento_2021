@@ -196,13 +196,6 @@ codchangeB7 <- cropcod_2020$cod_2020_B7 - cropcod_2014$cod_2014_B7
 
 levelplot(codchangeB7, col.regions=changer)
 
-# __________Principal Components Analysis (PCA)_______________________________________________________________________________________________________________________________
-
-# Aggregate the raster cells and look at the dimensions to see how many pixels there are per band:
-# Resampling by a factor of 10:
-
-# To conduct a PCA:
-
 # __________Click function will be useful for the image analyses that follow__________________________________________________________________________________________________
 
 # Click on the image and you will see the information for that particular pixel:
@@ -340,6 +333,17 @@ freq(class2020_8$map)
 # [6,]     6  7421 (sparse vegetation/urban)
 # [7,]     7  3946 (sand dunes)
 # [8,]     8  2647 (salt marsh)
+
+# __________Creating bar charts of the various terrain types__________________________________________________________________________________________________________________
+
+
+
+# __________Principal Components Analysis (PCA)_______________________________________________________________________________________________________________________________
+
+# Aggregate the raster cells and look at the dimensions to see how many pixels there are per band:
+# Resampling by a factor of 10:
+
+# To conduct a PCA:
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
