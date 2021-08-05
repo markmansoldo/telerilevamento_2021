@@ -371,13 +371,21 @@ prop2020
 
 # __________Building a dataframe with relative terrain types__________________________________________________________________________________________________________________
 
-cover <- c("water","deep sand","shallow sand","salt marsh","sandy beach","sand dunes","mature vegetation and urban")
+# Creation of the data frame with headings and values for 2014 and 2020
+cover <- c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban")
 percent_2014 <- c(57.41, 14.46, 7.06, 5.86, 2.26, 2.64, 10.31)
 percent_2020 <- c(71.91, 12.55, 0.31, 1.92, 2.11, 2.86, 8.35)
 
+# To assign the name to the dataframe:
+percentagecover <- data.frame(cover, percent_2014, percent_2020)
+percentagecover
+
 # __________Creating bar charts of the various terrain types__________________________________________________________________________________________________________________
 
+cover2014 <- ggplot(percentagecover, aes(x=cover, y=percent_2014, color=cover)) + geom_bar(stat="identity", fill="white")
+cover2020 <- ggplot(percentagecover, aes(x=cover, y=percent_2020, color=cover)) + geom_bar(stat="identity", fill="white")
 
+grid.arrange(cover2014, cover2020, nrow=1)
 
 # __________Principal Components Analysis (PCA)_______________________________________________________________________________________________________________________________
 
