@@ -384,9 +384,11 @@ percentagecover
 # __________Creating bar charts of the various terrain types__________________________________________________________________________________________________________________
 
 cover2014 <- ggplot(percentagecover, aes(x=cover, y=percent_2014, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
-scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban"))
+scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban")) + theme_bw() +
+coord_cartesian(ylim=c(0,75))
 cover2020 <- ggplot(percentagecover, aes(x=cover, y=percent_2020, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
-scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban"))
+scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban")) + theme_bw() +
+coord_cartesian(ylim=c(0,75))
 
 grid.arrange(cover2014, cover2020, nrow=1)
 
