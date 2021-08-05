@@ -188,9 +188,9 @@ plot(codchange, col=changer)
 # Bands 4-7 show very high contrast and illustrate well the degree of change
 
 # Band 5 (Near Infra Red) often used to distinguish land from water:
-codchange5 <- cropcod_2020$cod_2020_B5 - cropcod_2014$cod_2014_B5
+codchangeB5 <- cropcod_2020$cod_2020_B5 - cropcod_2014$cod_2014_B5
 
-levelplot(codchangeB7, col.regions=tropical)
+levelplot(codchangeB5, col.regions=tropical)
 
 # Band 7 (SWIR-2) shows good contrast in active sediment zones:
 codchangeB7 <- cropcod_2020$cod_2020_B7 - cropcod_2014$cod_2014_B7
