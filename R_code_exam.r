@@ -121,6 +121,13 @@ plotRGB(cropcod_2016, 4, 3, 2, stretch="Lin")
 plotRGB(cropcod_2018, 4, 3, 2, stretch="Lin")
 plotRGB(cropcod_2020, 4, 3, 2, stretch="Lin")
 
+# Very useful for bathymetric studies:
+par(mfrow=c(1,4))
+plotRGB(cropcod_2014, 4, 3, 1, stretch="Lin")
+plotRGB(cropcod_2016, 4, 3, 1, stretch="Lin")
+plotRGB(cropcod_2018, 4, 3, 1, stretch="Lin")
+plotRGB(cropcod_2020, 4, 3, 1, stretch="Lin")
+
 # Emphasises coastal sands with bright white sand:
 par(mfrow=c(1,4))
 plotRGB(cropcod_2014, 1, 2, 3, stretch="Lin")
