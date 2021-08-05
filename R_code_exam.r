@@ -336,6 +336,19 @@ freq(class2020_8$map)
 
 # __________Calculating proportions of terrain types__________________________________________________________________________________________________________________________
 
+# Total number of pixels:
+total <- 9751+6881+8090+7364+19965+79272+3122+3647
+total
+# [1] 138092
+
+# Proportions of each class for 2014:
+prop2014 <- freq(class2014_8$map)/total
+prop2014
+
+
+# Proportions of each class for 2020:
+prop2020 <- freq(class2020_8$map)/total
+prop2020
 
 
 # __________Building a dataframe with relative terrain types__________________________________________________________________________________________________________________
