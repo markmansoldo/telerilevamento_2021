@@ -344,8 +344,8 @@ freq(class2020_8$map)
 # ____________________________________________________________________________________________________________________________________________________________________________
 
 # 12 classes:
-class2014_12 <- unsuperClass(cropcod_2014, nClasses=12)
-class2020_12 <- unsuperClass(cropcod_2020, nClasses=12)
+class2014_12 <- unsuperClass(cropcod_2014, nClasses=10)
+class2020_12 <- unsuperClass(cropcod_2020, nClasses=10)
 
 par(mfrow=c(1,2))
 plot(class2014_12$map, col=tropical)
