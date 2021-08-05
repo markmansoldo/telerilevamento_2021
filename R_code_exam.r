@@ -401,10 +401,12 @@ grid.arrange(cover2014, cover2020, nrow=1)
 # To conduct a PCA for 2014:
 pca_2014 <- rasterPCA(cropcod_2014)
 plot(pca_2014$map)
+summary(pca_2014$model)
 
 # To conduct a PCA for 2020:
 pca_2020 <- rasterPCA(cropcod_2020)
 plot(pca_2020$map)
+summary(pca_2020$model)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
