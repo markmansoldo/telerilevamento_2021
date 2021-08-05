@@ -341,22 +341,6 @@ freq(class2020_8$map)
 # [7,]     7  3946 (sand dunes)
 # [8,]     8  2647 (salt marsh)
 
-# ____________________________________________________________________________________________________________________________________________________________________________
-
-# 12 classes:
-class2014_12 <- unsuperClass(cropcod_2014, nClasses=10)
-class2020_12 <- unsuperClass(cropcod_2020, nClasses=10)
-
-par(mfrow=c(1,2))
-plot(class2014_12$map, col=tropical)
-plot(class2020_12$map, col=tropical)
-
-# Using the frequencies function to count the pixels for 10 classes in 2014:
-freq(class2014_10$map)
-
-# Using the frequencies function to count the pixels for 10 classes in 2020:
-freq(class2020_10$map)
-
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
 # NDWI = (Green-NIR)/(Green+NIR)
