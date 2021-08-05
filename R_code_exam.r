@@ -371,7 +371,9 @@ prop2020
 
 # __________Building a dataframe with relative terrain types__________________________________________________________________________________________________________________
 
-
+cover <- c("water","deep sand","shallow sand","salt marsh","sandy beach","sand dunes","mature vegetation and urban")
+percent_2014 <- c(57.41, 14.46, 7.06, 5.86, 2.26, 2.64, 10.31)
+percent_2020 <- c(71.91, 12.55, 0.31, 1.92, 2.11, 2.86, 8.35)
 
 # __________Creating bar charts of the various terrain types__________________________________________________________________________________________________________________
 
