@@ -322,55 +322,40 @@ freq(class2014_8$map)
 # [1,]     1  9751 (shallow sand)
 # [2,]     2  6881 (dense vegetation)
 # [3,]     3  8090 (salt marsh)
-# [4,]     4  7364 (built-up areas)
+# [4,]     4  7364 (sparse vegetation/urban)
 # [5,]     5 19965 (deep sand)
 # [6,]     6 79272 (water)
 # [7,]     7  3122 (sandy beach)
 # [8,]     8  3647 (sand dunes)
 
-# [1,]     1  7913 (shallow sand)
-# [2,]     2 18437 (deep sand)
-# [3,]     3  2659 (sand dunes)
-# [4,]     4  8428 (salt marsh)
-# [5,]     5  4518 (urban)
-# [6,]     6 10484 (dense vegetation)
-# [7,]     7 82837 (water)
-# [8,]     8  2816 (sandy beach)
-
 # Using the frequencies function to count the pixels for 8 classes in 2020:
 freq(class2020_8$map)
 
 #      value count (2020)
-# [1,]     1 98958 (water)
-# [2,]     2  3954 (dense vegetation)
-# [3,]     3   537 (shallow sand)
-# [4,]     4 17493 (deep sand)
-# [5,]     5  7143 (urban)
-# [6,]     6  2529 (salt marsh)
-# [7,]     7  3003 (sandy beach)
-# [8,]     8  4475 (sand dunes)
-
 # [1,]     1  4114 (dense vegetation)
 # [2,]     2 17326 (deep sand)
 # [3,]     3 99297 (water)
 # [4,]     4   432 (shallow sand)
 # [5,]     5  2909 (sandy beach)
-# [6,]     6  7421 (urban)
+# [6,]     6  7421 (sparse vegetation/urban)
 # [7,]     7  3946 (sand dunes)
 # [8,]     8  2647 (salt marsh)
 
 # ____________________________________________________________________________________________________________________________________________________________________________
 
-# 10 classes:
-class2014_10 <- unsuperClass(cropcod_2014, nClasses=10)
-class2020_10 <- unsuperClass(cropcod_2020, nClasses=10)
+# 12 classes:
+class2014_12 <- unsuperClass(cropcod_2014, nClasses=12)
+class2020_12 <- unsuperClass(cropcod_2020, nClasses=12)
 
 par(mfrow=c(1,2))
-plot(class2014_10$map, col=tropical)
-plot(class2020_10$map, col=tropical)
+plot(class2014_12$map, col=tropical)
+plot(class2020_12$map, col=tropical)
 
-# Using the frequencies function to count the pixels for 8 classes in 2014:
-freq(class2014_8$map)
+# Using the frequencies function to count the pixels for 10 classes in 2014:
+freq(class2014_10$map)
+
+# Using the frequencies function to count the pixels for 10 classes in 2020:
+freq(class2020_10$map)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
