@@ -7,6 +7,7 @@ library(raster)
 library(rasterdiv)
 library(rasterVis)
 library(ggplot2)
+library(RColorBrewer)
 library(gridExtra)
 library(viridis)
 library(imagefx)
@@ -382,8 +383,10 @@ percentagecover
 
 # __________Creating bar charts of the various terrain types__________________________________________________________________________________________________________________
 
-cover2014 <- ggplot(percentagecover, aes(x=cover, y=percent_2014, color=cover)) + geom_bar(stat="identity", fill="white")
-cover2020 <- ggplot(percentagecover, aes(x=cover, y=percent_2020, color=cover)) + geom_bar(stat="identity", fill="white")
+cover2014 <- ggplot(percentagecover, aes(x=cover, y=percent_2014, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
+scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban"))
+cover2020 <- ggplot(percentagecover, aes(x=cover, y=percent_2020, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
+scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban"))
 
 grid.arrange(cover2014, cover2020, nrow=1)
 
