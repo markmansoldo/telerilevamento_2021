@@ -398,10 +398,13 @@ grid.arrange(cover2014, cover2020, nrow=1)
 
 # __________Principal Components Analysis (PCA)_______________________________________________________________________________________________________________________________
 
-# Aggregate the raster cells and look at the dimensions to see how many pixels there are per band:
-# Resampling by a factor of 10:
+# To conduct a PCA for 2014:
+pca_2014 <- rasterPCA(cropcod_2014)
+plot(pca_2014$map)
 
-# To conduct a PCA:
+# To conduct a PCA for 2020:
+pca_2020 <- rasterPCA(cropcod_2020)
+plot(pca_2020$map)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
