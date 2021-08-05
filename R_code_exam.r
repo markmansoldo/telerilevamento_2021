@@ -385,11 +385,13 @@ percentagecover
 
 cover2014 <- ggplot(percentagecover, aes(x=cover, y=percent_2014, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
 scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban")) + theme_bw() +
-labs(y= "Percentage cover", x = "Terrain type") + ggtitle("Percentage land cover and terrain types in 2014") + theme(legend.position = "none") +
+labs(y= "Percentage cover", x = "Terrain type") + ggtitle("Percentage land cover and terrain types in 2014") +
+theme(plot.title = element_text(hjust = 0.5)) + theme(legend.position = "none") +
 coord_flip(ylim = c(0, 75))
 cover2020 <- ggplot(percentagecover, aes(x=cover, y=percent_2020, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
 scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban")) + theme_bw() +
-labs(y= "Percentage cover", x = "Terrain type")  + ggtitle("Percentage land cover and terrain types in 2020") + theme(legend.position = "none") +
+labs(y= "Percentage cover", x = "Terrain type")  + ggtitle("Percentage land cover and terrain types in 2020") +
+theme(plot.title = element_text(hjust = 0.5)) + theme(legend.position = "none") +
 coord_flip(ylim = c(0, 75))
 
 grid.arrange(cover2014, cover2020, nrow=1)
