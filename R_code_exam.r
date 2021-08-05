@@ -385,10 +385,10 @@ percentagecover
 
 cover2014 <- ggplot(percentagecover, aes(x=cover, y=percent_2014, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
 scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban")) + theme_bw() +
-coord_cartesian(ylim=c(0,75))
+coord_cartesian(ylim=c(0,75)) + labs(y= "Percentage cover", x = "Terrain type") + ggtitle("Percentage land cover and terrain types in 2014") + theme(legend.position = "none")
 cover2020 <- ggplot(percentagecover, aes(x=cover, y=percent_2020, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
 scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban")) + theme_bw() +
-coord_cartesian(ylim=c(0,75))
+coord_cartesian(ylim=c(0,75)) + labs(y= "Percentage cover", x = "Terrain type")  + ggtitle("Percentage land cover and terrain types in 2020") + theme(legend.position = "none")
 
 grid.arrange(cover2014, cover2020, nrow=1)
 
