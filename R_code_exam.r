@@ -334,7 +334,7 @@ freq(class2020_8$map)
 # [7,]     7  3946 (sand dunes)
 # [8,]     8  2647 (salt marsh)
 
-# __________Calculating proportions of terrain types__________________________________________________________________________________________________________________________
+# __________Calculating proportions of terrain types for the 8 classes in 2014 and 2020_______________________________________________________________________________________
 
 # Total number of pixels:
 total <- 9751+6881+8090+7364+19965+79272+3122+3647
@@ -345,20 +345,29 @@ total
 prop2014 <- freq(class2014_8$map)/total
 prop2014
 
-# count
+#       count (2014)
 # 0.070612345 (shallow sand)
-# 0.049829099
-# 0.
-# 0.
-# 0.
-# 0.
-# 0.
-# 0.
+# 0.049829099 (dense vegetation)
+# 0.058584132 (salt marsh)
+# 0.053326768 (sparse vegetation/urban)
+# 0.144577528 (deep sand)
+# 0.574052081 (water)
+# 0.022608116 (sandy beach)
+# 0.026409930 (sand dunes)
 
 # Proportions of each class for 2020:
 prop2020 <- freq(class2020_8$map)/total
 prop2020
 
+#       count (2020)
+# 0.029791733 (dense vegetation)
+# 0.125467080 (deep sand)
+# 0.719064102 (water)
+# 0.003128349 (shallow sand)
+# 0.021065666 (sandy beach)
+# 0.053739536 (sparse vegetation/urban)
+# 0.028575153 (sand dunes)
+# 0.019168380 (salt marsh)
 
 # __________Building a dataframe with relative terrain types__________________________________________________________________________________________________________________
 
