@@ -291,7 +291,7 @@ plot(class2020_4$map)
 freq(class2014_4$map)
 
 #      value  count (2014)
-# [1,]     1   9786 (submerged sand)
+# [1,]     1   9786 (submerged sand and salt marsh)
 # [2,]     2  15727 (mainland)
 # [3,]     3   4631 (coastal habitat)
 # [4,]     4 107948 (water)
@@ -300,10 +300,10 @@ freq(class2014_4$map)
 freq(class2020_4$map)
 
 #      value  count (2020)
-# [1,]     1  16079 (submerged sand)
-# [2,]     2  15507 (mainland)
-# [3,]     3   3929 (coastal habitat)
-# [4,]     4 102577 (water)
+# [1,]     1   4327 (submerged sand and salt marsh)
+# [2,]     2  13050 (mainland)
+# [3,]     3 116914 (water)
+# [4,]     4   3801 (coastal habitat)
 
 # ___________________________________________________________________________
 
