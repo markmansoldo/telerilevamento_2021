@@ -636,11 +636,11 @@ plot(NDWIa_monomoy_2020land, col=mono)
 # __________Unsupervised classification of Monomoy Nature Reserve_____________________________________________________________________________________________________________
 
 # 4 classes:
-# Tidal sand bars, Bare sand, Dune vegetation, Salt marsh
-classmonomoy_2014_4 <- unsuperClass(NDWIa_monomoy_2014land, nClasses=4)
-classmonomoy_2016_4 <- unsuperClass(NDWIa_monomoy_2016land, nClasses=4)
-classmonomoy_2018_4 <- unsuperClass(NDWIa_monomoy_2018land, nClasses=4)
-classmonomoy_2020_4 <- unsuperClass(NDWIa_monomoy_2020land, nClasses=4)
+# Tidal sand bars, Bare sand, Dune vegetation, Salt marsh #############################################################################CHECK
+classmonomoy_2014_4 <- unsuperClass(NDWIa_monomoy_2014land, nClasses=3)
+classmonomoy_2016_4 <- unsuperClass(NDWIa_monomoy_2016land, nClasses=3)
+classmonomoy_2018_4 <- unsuperClass(NDWIa_monomoy_2018land, nClasses=3)
+classmonomoy_2020_4 <- unsuperClass(NDWIa_monomoy_2020land, nClasses=3)
 
 par(mfrow=c(1,4))
 plot(classmonomoy_2014_4$map, col=changer)
