@@ -10,6 +10,7 @@ library(ggplot2)
 library(RColorBrewer)
 library(gridExtra)
 library(viridis)
+library(Rmisc)
 library(imagefx)
 library(rgdal)
 library(Rcpp)
@@ -395,6 +396,7 @@ scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy
 labs(y= "Percentage cover", x = "Terrain type") + ggtitle("Percentage land cover and terrain types in 2014") +
 theme(plot.title = element_text(hjust = 0.5)) + theme(legend.position = "none") +
 coord_flip(ylim = c(0, 75))
+
 cover2020 <- ggplot(percentagecover, aes(x=cover, y=percent_2020, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
 scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban")) + theme_bw() +
 labs(y= "Percentage cover", x = "Terrain type")  + ggtitle("Percentage land cover and terrain types in 2020") +
@@ -718,42 +720,76 @@ monomoy_area_2020 <- c(348, 323, 134)
 monomoy_areacover <- data.frame(monomoycover, monomoy_area_2014, monomoy_area_2016, monomoy_area_2018, monomoy_area_2020)
 monomoy_areacover
 
+# __________Plotting Monomoy ecosystem data______________________________________________________________________________________________________________________________________
+
+
+
 # __________Monomoy data frame for bare sand and plover_______________________________________________________________________________________________________________________
 
-monomoy_sandarea <- c("Bare sand","Plover pairs")
-monomoy_sandarea_2014 <- c(339, 44)
-monomoy_sandarea_2016 <- c(432, 52)
-monomoy_sandarea_2018 <- c(341, 36)
-monomoy_sandarea_2020 <- c(348, 29)
+sand_year <- c(2014, 2016, 2018, 2020)
+sand_area <- c(339, 432, 341, 348)
+sand_pairs <- c(44, 52, 36, 29)
 
 # To assign the name to the dataframe:
-monomoy_sand_plover <- data.frame(monomoy_sandarea, monomoy_sandarea_2014, monomoy_sandarea_2016, monomoy_sandarea_2018, monomoy_sandarea_2020)
+monomoy_sand_plover <- data.frame(sand_year, sand_area, sand_pairs)
 monomoy_sand_plover
+
+plover_graph_sand <- ggplot(monomoy_sand_plover, aes(x =factor(sand_year))) + theme_bw() +
+labs(x = "Year") + ggtitle("Number of breeding pairs of plovers and area of bare sand in the Monomoy National Wildlife Refuge")  +
+theme(plot.title = element_text(hjust = 0.5)) +
+  geom_col(aes(y = sand_area), size = 1, color = "darkblue", fill = "white") + 
+  geom_line(aes(y = 6*sand_pairs), size = 1.5, color="red", group = 1) +
+  scale_y_continuous(name = "Area (ha)", limits = c(0,450), breaks = seq(0,500, by = 100), sec.axis = sec_axis(~./6, name = "Mating plover pairs")) 
+
+
+grid.arrange(plover_graph_sand, nrow=1)
 
 # __________Monomoy data frame for dune vegetation and plover_________________________________________________________________________________________________________________
 
-monomoy_dunearea <- c("Dune vegetation","Plover pairs")
-monomoy_dunearea_2014 <- c(448, 44)
-monomoy_dunearea_2016 <- c(447, 52)
-monomoy_dunearea_2018 <- c(423, 36)
-monomoy_dunearea_2020 <- c(323, 29)
+dune_year <- c(2014, 2016, 2018, 2020)
+dune_area <- c(448, 447, 423, 323)
+dune_pairs <- c(44, 52, 36, 29)
 
 # To assign the name to the dataframe:
-monomoy_dune_plover <- data.frame(monomoy_dunearea, monomoy_dunearea_2014, monomoy_dunearea_2016, monomoy_dunearea_2018, monomoy_dunearea_2020)
+monomoy_dune_plover <- data.frame(dune_year, dune_area, dune_pairs)
 monomoy_dune_plover
+
+plover_graph_dune <- ggplot(monomoy_dune_plover, aes(x =factor(dune_year))) + theme_bw() +
+labs(x = "Year") + ggtitle("Number of breeding pairs of plovers and area of dune vegetation in the Monomoy National Wildlife Refuge")  +
+theme(plot.title = element_text(hjust = 0.5)) +
+  geom_col(aes(y = dune_area), size = 1, color = "darkblue", fill = "white") + 
+  geom_line(aes(y = 6*dune_pairs), size = 1.5, color="red", group = 1) +
+  scale_y_continuous(name = "Area (ha)", limits = c(0,450), breaks = seq(0,500, by = 100), sec.axis = sec_axis(~./6, name = "Mating plover pairs")) 
+
+
+grid.arrange(plover_graph_dune, nrow=1)
 
 # __________Monomoy data frame for salt marsh and plover______________________________________________________________________________________________________________________
 
-monomoy_marsharea <- c("Salt marsh","Plover pairs")
-monomoy_marsharea_2014 <- c(175, 44)
-monomoy_marsharea_2016 <- c(157, 52)
-monomoy_marsharea_2018 <- c(190, 36)
-monomoy_marsharea_2020 <- c(134, 29)
+marsh_year <- c(2014, 2016, 2018, 2020)
+marsh_area <- c(175, 157, 190, 134)
+marsh_pairs <- c(44, 52, 36, 29)
 
 # To assign the name to the dataframe:
-monomoy_marsh_plover <- data.frame(monomoy_marsharea, monomoy_marsharea_2014, monomoy_marsharea_2016, monomoy_marsharea_2018, monomoy_marsharea_2020)
+monomoy_marsh_plover <- data.frame(marsh_year, marsh_area, marsh_pairs)
 monomoy_marsh_plover
 
+plover_graph_marsh <- ggplot(monomoy_marsh_plover, aes(x =factor(marsh_year))) + theme_bw() +
+labs(x = "Year") + ggtitle("Number of breeding pairs of plovers and area of sand marsh in the Monomoy National Wildlife Refuge")  +
+theme(plot.title = element_text(hjust = 0.5)) +
+  geom_col(aes(y = marsh_area), size = 1, color = "darkblue", fill = "white") + 
+  geom_line(aes(y = 6*marsh_pairs), size = 1.5, color="red", group = 1) +
+  scale_y_continuous(name = "Area (ha)", limits = c(0,450), breaks = seq(0,500, by = 100), sec.axis = sec_axis(~./6, name = "Mating plover pairs"))
+
+
+grid.arrange(plover_graph_marsh, nrow=1)
+
+# __________To plot them together____________________________________________________________________________________________________________________________________________
+
+grid.arrange(plover_graph_sand, plover_graph_dune, plover_graph_marsh, nrow=1)
 
 # ____________________________________________________________________________________________________________________________________________________________________________
+
+
+
 
