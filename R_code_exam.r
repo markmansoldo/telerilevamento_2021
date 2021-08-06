@@ -381,7 +381,7 @@ prop2020
 # __________Building a dataframe with relative terrain types__________________________________________________________________________________________________________________
 
 # Creation of the data frame with headings and values for 2014 and 2020
-cover <- c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban")
+cover <- c("Acqua","Sabbie sommerse profonde","Barriere sabbiose sommerse","Paludi salmastre","Spiaggia sabbiosa","Dune","Vegetazione densa e zone urbane")
 percent_2014 <- c(57.41, 14.46, 7.06, 5.86, 2.26, 2.64, 10.31)
 percent_2020 <- c(71.91, 12.55, 0.31, 1.92, 2.11, 2.86, 8.35)
 
@@ -392,14 +392,14 @@ percentagecover
 # __________Creating bar charts of the various terrain types__________________________________________________________________________________________________________________
 
 cover2014 <- ggplot(percentagecover, aes(x=cover, y=percent_2014, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
-scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban")) + theme_bw() +
-labs(y= "Percentage cover", x = "Terrain type") + ggtitle("Percentage land cover and terrain types in 2014") +
+scale_x_discrete(limits=c("Acqua","Sabbie sommerse profonde","Barriere sabbiose sommerse","Paludi salmastre","Spiaggia sabbiosa","Dune","Vegetazione densa e zone urbane")) + theme_bw() +
+labs(y= "Copertura (%)", x = "Tipologia di terreno") + ggtitle("Tipologie di terreni e percentuale di copertura nel 2014") +
 theme(plot.title = element_text(hjust = 0.5)) + theme(legend.position = "none") +
 coord_flip(ylim = c(0, 75))
 
 cover2020 <- ggplot(percentagecover, aes(x=cover, y=percent_2020, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
-scale_x_discrete(limits=c("Water","Deep sand","Shallow sand","Salt marsh","Sandy beach","Sand dunes","Mature vegetation and urban")) + theme_bw() +
-labs(y= "Percentage cover", x = "Terrain type")  + ggtitle("Percentage land cover and terrain types in 2020") +
+scale_x_discrete(limits=c("Acqua","Sabbie sommerse profonde","Barriere sabbiose sommerse","Paludi salmastre","Spiaggia sabbiosa","Dune","Vegetazione densa e zone urbane")) + theme_bw() +
+labs(y= "Copertura (%)", x = "Tipologia di terreno")  + ggtitle("Tipologie di terreni e percentuale di copertura nel 2020") +
 theme(plot.title = element_text(hjust = 0.5)) + theme(legend.position = "none") +
 coord_flip(ylim = c(0, 75))
 
@@ -775,11 +775,11 @@ monomoy_marsh_plover <- data.frame(marsh_year, marsh_area, marsh_pairs)
 monomoy_marsh_plover
 
 plover_graph_marsh <- ggplot(monomoy_marsh_plover, aes(x =factor(marsh_year))) + theme_bw() +
-labs(x = "Year") + ggtitle("Number of breeding pairs of plovers and area of sand marsh in the Monomoy National Wildlife Refuge")  +
+labs(x = "Anno") + ggtitle("Numero di coppie nidificanti del corriere canoro e l'estensione delle paludi salmastre all'interno della Riserva Statale di Monomoy")  +
 theme(plot.title = element_text(hjust = 0.5)) +
   geom_col(aes(y = marsh_area), size = 1, color = "darkblue", fill = "white") + 
   geom_line(aes(y = 6*marsh_pairs), size = 1.5, color="red", group = 1) +
-  scale_y_continuous(name = "Area (ha)", limits = c(0,450), breaks = seq(0,500, by = 100), sec.axis = sec_axis(~./6, name = "Mating plover pairs"))
+  scale_y_continuous(name = "Area (ha)", limits = c(0,450), breaks = seq(0,500, by = 100), sec.axis = sec_axis(~./6, name = "Numero di coppie nidificanti del corriere canoro"))
 
 
 grid.arrange(plover_graph_marsh, nrow=1)
