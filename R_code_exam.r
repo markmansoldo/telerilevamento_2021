@@ -619,10 +619,10 @@ plot(NDWIa_monomoy_2018, col=mono)
 plot(NDWIa_monomoy_2020, col=mono)
 
 # Remove all values between -0.1 and 1  to remove water and any tidal sands:
-NDWIa_monomoy_2014land <- reclassify(NDWIa_monomoy_2014, cbind(-0.03, 1, NA))
-NDWIa_monomoy_2016land <- reclassify(NDWIa_monomoy_2016, cbind(-0.03, 1, NA))
-NDWIa_monomoy_2018land <- reclassify(NDWIa_monomoy_2018, cbind(-0.03, 1, NA))
-NDWIa_monomoy_2020land <- reclassify(NDWIa_monomoy_2020, cbind(-0.03, 1, NA))
+NDWIa_monomoy_2014land <- reclassify(NDWIa_monomoy_2014, cbind(-0.1, 1, NA))
+NDWIa_monomoy_2016land <- reclassify(NDWIa_monomoy_2016, cbind(-0.1, 1, NA))
+NDWIa_monomoy_2018land <- reclassify(NDWIa_monomoy_2018, cbind(-0.1, 1, NA))
+NDWIa_monomoy_2020land <- reclassify(NDWIa_monomoy_2020, cbind(-0.1, 1, NA))
 
 # Showing only exposed land:
 # Brightest colour indicates bare sand
@@ -648,13 +648,16 @@ plot(classmonomoy_2016_3$map, col=changer)
 plot(classmonomoy_2018_3$map, col=changer)
 plot(classmonomoy_2020_3$map, col=changer)
 
-total_monomoy <- 
+total_monomoy <- 1946+3764+4977+120893
 total_monomoy
 # [1] 131580
 
 freq(classmonomoy_2014_3$map)
-#      value  count
-
+#  count (2014)
+#   1946 (salt marsh)
+#   3764 (bare sand)
+#   4977 (dune vegetation)
+# 120893 (water)
 
 prop_monomoy_2014 <- freq(classmonomoy_2014_3$map)/total_monomoy
 prop_monomoy_2014
@@ -662,8 +665,11 @@ prop_monomoy_2014
 
 
 freq(classmonomoy_2016_3$map)
-#      value  count
-
+#  count (2016)
+#   1749 (salt marsh)
+#   4799 (bare sand)
+#   4972 (dune vegetation)
+# 120060 (water) 
 
 prop_monomoy_2016 <- freq(classmonomoy_2016_3$map)/total_monomoy
 prop_monomoy_2016
@@ -671,8 +677,11 @@ prop_monomoy_2016
 
 
 freq(classmonomoy_2018_3$map)
-#      value  count
-
+#  count (2018)
+#   2107 (salt marsh)
+#   4704 (dune vegetation)
+#   3790 (bare sand)
+# 120979 (water)
 
 
 prop_monomoy_2018 <- freq(classmonomoy_2018_3$map)/total_monomoy
@@ -681,8 +690,11 @@ prop_monomoy_2018
 
 
 freq(classmonomoy_2020_3$map)
-#      value  count
-
+#  count (2020)
+#   1484 (salt marsh)
+#   3588 (dune vegetation)
+#   3862 (bare sand)
+# 122646 (water)
 
 prop_monomoy_2020 <- freq(classmonomoy_2020_3$map)/total_monomoy
 prop_monomoy_2020
