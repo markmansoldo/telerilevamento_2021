@@ -705,18 +705,20 @@ area_monomoy_2020
 #   322.92 (dune vegetation)
 #   347.58 (bare sand)
 
-# __________Monomoy data frame________________________________________________________________________________________________________________________________________________
+# __________Monomoy data frame for ecosystem cover____________________________________________________________________________________________________________________________
 
 # Creation of the data frame with headings and values for 2014 and 2020
 monomoycover <- c("Bare sand","Dune vegetation","Salt marsh")
-monomoypercent_2014 <- c(2.86, 3.78, 1,48)
-monomoypercent_2016 <- c()
-monomoypercent_2018 <- c()
-monomoypercent_2020 <- c()
+monomoy_area_2014 <- c(339, 448, 175)
+monomoy_area_2016 <- c(432, 447, 157)
+monomoy_area_2018 <- c(341, 423, 190)
+monomoy_area_2020 <- c(348, 323, 134)
 
 # To assign the name to the dataframe:
-monomoy_percentagecover <- data.frame(monomoycover, monomoypercent_2014, monomoypercent_2016, monomoypercent_2018, monomoypercent_2020)
-monomoy_percentagecover
+monomoy_areacover <- data.frame(monomoycover, monomoy_area_2014, monomoy_area_2016, monomoy_area_2018, monomoy_area_2020)
+monomoy_areacover
+
+# __________Monomoy 
 
 # ____________________________________________________________________________________________________________________________________________________________________________
 
