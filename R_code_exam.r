@@ -9,8 +9,7 @@ library(rasterVis)
 library(ggplot2)
 library(RColorBrewer)
 library(gridExtra)
-library(viridis)
-library(Rmisc)
+library(reshape2)
 library(imagefx)
 library(rgdal)
 library(Rcpp)
@@ -707,22 +706,18 @@ area_monomoy_2020
 #   322.92 (dune vegetation)
 #   347.58 (bare sand)
 
-# __________Monomoy data frame for ecosystem cover____________________________________________________________________________________________________________________________
+# __________Monomoy data frame and graph for ecosystem cover__________________________________________________________________________________________________________________
 
-# Creation of the data frame with headings and values for 2014, 2016, 2018 and 2020
-monomoycover <- c("Bare sand","Dune vegetation","Salt marsh")
-monomoy_area_2014 <- c(339, 448, 175)
-monomoy_area_2016 <- c(432, 447, 157)
-monomoy_area_2018 <- c(341, 423, 190)
-monomoy_area_2020 <- c(348, 323, 134)
+# To create the data frame:
+monomoy_groundcover <- data.frame(monomoycover=c('Sabbia nuda','Dune','Paludi salmastre'), monomoy2014=c(339,448,175), monomoy2016=c(432,447,157), monomoy2018=c(341,423,190), monomoy2020=c(348,323,134))
+years <- c('monomoy2014'="2014", 'monomoy2016'="2016", 'monomoy2018'="2018", 'monomoy2020'="2020")
+melt_groundcover <- melt(monomoy_groundcover, id.vars='monomoycover')
 
-# To assign the name to the dataframe:
-monomoy_areacover <- data.frame(monomoycover, monomoy_area_2014, monomoy_area_2016, monomoy_area_2018, monomoy_area_2020)
-monomoy_areacover
-
-# __________Plotting Monomoy ecosystem data______________________________________________________________________________________________________________________________________
-
-
+# To create the graph:
+ggplot(melt_groundcover, aes(x=monomoycover, y=value, fill=monomoycover)) + scale_fill_brewer(palette="Blues") + geom_bar(stat='identity') +
+facet_grid(.~ variable, labeller = as_labeller(years)) + labs(y= "Area (Ha)", x = "Tipologia di habitat")  + ggtitle("Tipologie di habitat e rispettive estensioni all'interno della Riserva Statale di Monomoy") +
+theme(plot.title = element_text(hjust = 0.5)) + theme(legend.position = "none")  + theme_bw() + theme(legend.position = "none") + theme(plot.title = element_text(hjust = 0.5)) +
+scale_x_discrete(limits=c("Sabbia nuda","Dune","Paludi salmastre"))
 
 # __________Monomoy data frame for bare sand and plover_______________________________________________________________________________________________________________________
 
