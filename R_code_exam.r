@@ -554,5 +554,39 @@ BSIdiff <- BSI2020-BSI2014
 
 plot(BSIdiff, col=changer)
 
+# __________Secondary crop for Monomoy National Wildlife Refuge______________________________________________________________________________________________________________
+
+# Upload one image to understand the dimensions to be cropped:
+cropbackgroundmonomoy <- raster("cod_2020_B5.tif")
+plot(cropbackgroundmonomoy)
+
+# Use the drawExtent function to select the area to crop on the image:
+monomoy_drawextent <- drawExtent(show=TRUE, col="red")
+
+# New crop template acquired:
+monomoy_template <- crop(x = cropbackgroundmonomoy, y = monomoy_drawextent)
+
+# Plot the template to check that the dimensions are correct:
+plot(monomoy_template)
+
+# To set the x and y values for the cropped area to be used with any of the rasters:
+monomoy_extent <- extent(414635, 422385, 4596525, 4611825)
+class(monomoy_extent)
+
+# To crop all bricks to this extent:
+monomoy_2020 <- crop(x = cod_2020, y = monomoy_extent)
+plot(monomoy_2020)
+
+monomoy_2018 <- crop(x = cod_2018, y = monomoy_extent)
+plot(monomoy_2018)
+
+monomoy_2016 <- crop(x = cod_2016, y = monomoy_extent)
+plot(monomoy_2016)
+
+monomoy_2014 <- crop(x = cod_2014, y = monomoy_extent)
+plot(monomoy_2014)
+
+
+
 # ____________________________________________________________________________________________________________________________________________________________________________
 
