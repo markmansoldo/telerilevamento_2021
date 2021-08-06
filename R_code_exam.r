@@ -404,17 +404,6 @@ coord_flip(ylim = c(0, 75))
 
 grid.arrange(cover2014, cover2020, nrow=1)
 
-# __________Principal Components Analysis (PCA)_______________________________________________________________________________________________________________________________
-
-# To conduct a PCA for 2014:
-pca_2014 <- rasterPCA(cropcod_2014)
-plot(pca_2014$map)
-summary(pca_2014$model)
-
-# To conduct a PCA for 2020:
-pca_2020 <- rasterPCA(cropcod_2020)
-plot(pca_2020$map)
-summary(pca_2020$model)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
@@ -558,6 +547,40 @@ plot(BSIdiff, col=changer)
 #____________________________________________________________________________________________________________________________________________________________________________
 # __________Secondary crop for Monomoy National Wildlife Refuge______________________________________________________________________________________________________________
 
+# __________2019______________________________________________________________________________________________________________________________________________________________
+list2019 <- list.files(pattern="cod_2019")
+list2019
+import2019 <- lapply(list2019,brick)
+import2019
+cod_2019 <- stack(import2019)
+cod_2019
+
+# __________2017______________________________________________________________________________________________________________________________________________________________
+list2017 <- list.files(pattern="cod_2017")
+list2017
+import2017 <- lapply(list2017,brick)
+import2017
+cod_2017 <- stack(import2017)
+cod_2017
+
+# __________2015______________________________________________________________________________________________________________________________________________________________
+list2015 <- list.files(pattern="cod_2015")
+list2015
+import2015 <- lapply(list2015,brick)
+import2015
+cod_2015 <- stack(import2015)
+cod_2015
+
+# __________2013______________________________________________________________________________________________________________________________________________________________
+list2013 <- list.files(pattern="cod_2013")
+list2013
+import2013 <- lapply(list2013,brick)
+import2013
+cod_2013 <- stack(import2013)
+cod_2013
+
+# ____________________________________________________________________________________________________________________________________________________________________________
+
 # Upload one image to understand the dimensions to be cropped:
 cropbackgroundmonomoy <- raster("cod_2020_B5.tif")
 plot(cropbackgroundmonomoy)
@@ -579,74 +602,118 @@ class(monomoy_extent)
 monomoy_2020 <- crop(x = cod_2020, y = monomoy_extent)
 plot(monomoy_2020)
 
+monomoy_2019 <- crop(x = cod_2019, y = monomoy_extent)
+plot(monomoy_2019)
+
 monomoy_2018 <- crop(x = cod_2018, y = monomoy_extent)
 plot(monomoy_2018)
+
+monomoy_2017 <- crop(x = cod_2017, y = monomoy_extent)
+plot(monomoy_2017)
 
 monomoy_2016 <- crop(x = cod_2016, y = monomoy_extent)
 plot(monomoy_2016)
 
+monomoy_2015 <- crop(x = cod_2015, y = monomoy_extent)
+plot(monomoy_2015)
+
 monomoy_2014 <- crop(x = cod_2014, y = monomoy_extent)
 plot(monomoy_2014)
+
+monomoy_2013 <- crop(x = cod_2013, y = monomoy_extent)
+plot(monomoy_2013)
 
 # __________Analyze distribution of sandy beaches within the nature reserve___________________________________________________________________________________________________
 
 # Emphasises coastal sands with bright white sand:
-par(mfrow=c(1,4))
+par(mfrow=c(2,4))
+plotRGB(monomoy_2013, 1, 2, 3, stretch="Lin")
 plotRGB(monomoy_2014, 1, 2, 3, stretch="Lin")
+plotRGB(monomoy_2015, 1, 2, 3, stretch="Lin")
 plotRGB(monomoy_2016, 1, 2, 3, stretch="Lin")
+plotRGB(monomoy_2017, 1, 2, 3, stretch="Lin")
 plotRGB(monomoy_2018, 1, 2, 3, stretch="Lin")
+plotRGB(monomoy_2019, 1, 2, 3, stretch="Lin")
 plotRGB(monomoy_2020, 1, 2, 3, stretch="Lin")
 
 # Band 6 (Short Wave Infra Red 1) Clearly shows all exposed land and also includes sands very close to the surface, but with values close to those of the water:
-par(mfrow=c(1,4))
+par(mfrow=c(2,4))
+plot(monomoy_2013$cod_2013_B6, col=mono)
 plot(monomoy_2014$cod_2014_B6, col=mono)
+plot(monomoy_2015$cod_2015_B6, col=mono)
 plot(monomoy_2016$cod_2016_B6, col=mono)
+plot(monomoy_2017$cod_2017_B6, col=mono)
 plot(monomoy_2018$cod_2018_B6, col=mono)
+plot(monomoy_2019$cod_2019_B6, col=mono)
 plot(monomoy_2020$cod_2020_B6, col=mono)
 
-# NDWI = (Coastal-NIR)/(Coastal+NIR)
+# __________NDWI = (Coastal-NIR)/(Coastal+NIR)________________________________________________________________________________________________________________________________
 
 # Very similar to the other NDWI but shows only exposed sand, with greater contrast between land and water:
 
+NDWIa_monomoy_2013 <- (monomoy_2013$cod_2013_B1 - monomoy_2013$cod_2013_B5)/(monomoy_2013$cod_2013_B1 + monomoy_2013$cod_2013_B5)
 NDWIa_monomoy_2014 <- (monomoy_2014$cod_2014_B1 - monomoy_2014$cod_2014_B5)/(monomoy_2014$cod_2014_B1 + monomoy_2014$cod_2014_B5)
+NDWIa_monomoy_2015 <- (monomoy_2015$cod_2015_B1 - monomoy_2015$cod_2015_B5)/(monomoy_2015$cod_2015_B1 + monomoy_2015$cod_2015_B5)
 NDWIa_monomoy_2016 <- (monomoy_2016$cod_2016_B1 - monomoy_2016$cod_2016_B5)/(monomoy_2016$cod_2016_B1 + monomoy_2016$cod_2016_B5)
+NDWIa_monomoy_2017 <- (monomoy_2017$cod_2017_B1 - monomoy_2017$cod_2017_B5)/(monomoy_2017$cod_2017_B1 + monomoy_2017$cod_2017_B5)
 NDWIa_monomoy_2018 <- (monomoy_2018$cod_2018_B1 - monomoy_2018$cod_2018_B5)/(monomoy_2018$cod_2018_B1 + monomoy_2018$cod_2018_B5)
+NDWIa_monomoy_2019 <- (monomoy_2019$cod_2019_B1 - monomoy_2019$cod_2019_B5)/(monomoy_2019$cod_2019_B1 + monomoy_2019$cod_2019_B5)
 NDWIa_monomoy_2020 <- (monomoy_2020$cod_2020_B1 - monomoy_2020$cod_2020_B5)/(monomoy_2020$cod_2020_B1 + monomoy_2020$cod_2020_B5)
 
-par(mfrow=c(1,4))
+par(mfrow=c(2,4))
+plot(NDWIa_monomoy_2013, col=mono)
 plot(NDWIa_monomoy_2014, col=mono)
+plot(NDWIa_monomoy_2015, col=mono)
 plot(NDWIa_monomoy_2016, col=mono)
+plot(NDWIa_monomoy_2017, col=mono)
 plot(NDWIa_monomoy_2018, col=mono)
+plot(NDWIa_monomoy_2019, col=mono)
 plot(NDWIa_monomoy_2020, col=mono)
 
 # Remove all values between -0.1 and 1  to remove water and any tidal sands:
+NDWIa_monomoy_2013land <- reclassify(NDWIa_monomoy_2013, cbind(-0.1, 1, NA))
 NDWIa_monomoy_2014land <- reclassify(NDWIa_monomoy_2014, cbind(-0.1, 1, NA))
+NDWIa_monomoy_2015land <- reclassify(NDWIa_monomoy_2015, cbind(-0.1, 1, NA))
 NDWIa_monomoy_2016land <- reclassify(NDWIa_monomoy_2016, cbind(-0.1, 1, NA))
+NDWIa_monomoy_2017land <- reclassify(NDWIa_monomoy_2017, cbind(-0.1, 1, NA))
 NDWIa_monomoy_2018land <- reclassify(NDWIa_monomoy_2018, cbind(-0.1, 1, NA))
+NDWIa_monomoy_2019land <- reclassify(NDWIa_monomoy_2019, cbind(-0.1, 1, NA))
 NDWIa_monomoy_2020land <- reclassify(NDWIa_monomoy_2020, cbind(-0.1, 1, NA))
 
 # Showing only exposed land:
 # Brightest colour indicates bare sand
 # Darkest colour indicates relatively dense vegetation
-par(mfrow=c(1,4))
+par(mfrow=c(2,4))
+plot(NDWIa_monomoy_2013land, col=mono)
 plot(NDWIa_monomoy_2014land, col=mono)
+plot(NDWIa_monomoy_2015land, col=mono)
 plot(NDWIa_monomoy_2016land, col=mono)
+plot(NDWIa_monomoy_2017land, col=mono)
 plot(NDWIa_monomoy_2018land, col=mono)
+plot(NDWIa_monomoy_2019land, col=mono)
 plot(NDWIa_monomoy_2020land, col=mono)
 
 # __________Unsupervised classification of Monomoy Nature Reserve_____________________________________________________________________________________________________________
 
 # 3 classes:
 # Bare sand, Dune vegetation, Salt marsh
+classmonomoy_2013_3 <- unsuperClass(NDWIa_monomoy_2013land, nClasses=3)
 classmonomoy_2014_3 <- unsuperClass(NDWIa_monomoy_2014land, nClasses=3)
+classmonomoy_2015_3 <- unsuperClass(NDWIa_monomoy_2015land, nClasses=3)
 classmonomoy_2016_3 <- unsuperClass(NDWIa_monomoy_2016land, nClasses=3)
+classmonomoy_2017_3 <- unsuperClass(NDWIa_monomoy_2017land, nClasses=3)
 classmonomoy_2018_3 <- unsuperClass(NDWIa_monomoy_2018land, nClasses=3)
+classmonomoy_2019_3 <- unsuperClass(NDWIa_monomoy_2019land, nClasses=3)
 classmonomoy_2020_3 <- unsuperClass(NDWIa_monomoy_2020land, nClasses=3)
 
-par(mfrow=c(1,4))
+par(mfrow=c(2,4))
+plot(classmonomoy_2013_3$map, col=changer)
 plot(classmonomoy_2014_3$map, col=changer)
+plot(classmonomoy_2015_3$map, col=changer)
 plot(classmonomoy_2016_3$map, col=changer)
+plot(classmonomoy_2017_3$map, col=changer)
 plot(classmonomoy_2018_3$map, col=changer)
+plot(classmonomoy_2019_3$map, col=changer)
 plot(classmonomoy_2020_3$map, col=changer)
 
 total_monomoy <- 1946+3764+4977+120893
@@ -660,25 +727,12 @@ freq(classmonomoy_2014_3$map)
 #   4977 (dune vegetation)
 # 120893 (water)
 
-# To calculate the area in hectares, considering that each pixel is 30 x 30 metres:
-area_monomoy_2014 <- (freq(classmonomoy_2014_3$map)*30*30)/10000
-area_monomoy_2014
-#   175.14 (salt marsh)
-#   338.76 (bare sand)
-#   447.93 (dune vegetation)
-
 freq(classmonomoy_2016_3$map)
 #  count (2016)
 #   1749 (salt marsh)
 #   4799 (bare sand)
 #   4972 (dune vegetation)
 # 120060 (water) 
-
-area_monomoy_2016 <- (freq(classmonomoy_2016_3$map)*30*30)/10000
-area_monomoy_2016
-#   157.41 (salt marsh)
-#   431.91 (bare sand)
-#   447.48 (dune vegetation)
 
 freq(classmonomoy_2018_3$map)
 #  count (2018)
@@ -687,18 +741,33 @@ freq(classmonomoy_2018_3$map)
 #   3790 (bare sand)
 # 120979 (water)
 
-area_monomoy_2018 <- (freq(classmonomoy_2018_3$map)*30*30)/10000
-area_monomoy_2018
-#   189.63 (salt marsh)
-#   423.36 (dune vegetation)
-#   341.10 (bare sand)
-
 freq(classmonomoy_2020_3$map)
 #  count (2020)
 #   1484 (salt marsh)
 #   3588 (dune vegetation)
 #   3862 (bare sand)
 # 122646 (water)
+
+# __________Calculating land area in hectares using frequencies_______________________________________________________________________________________________________________
+
+# To calculate the area in hectares, considering that each pixel is 30 x 30 metres:
+area_monomoy_2014 <- (freq(classmonomoy_2014_3$map)*30*30)/10000
+area_monomoy_2014
+#   175.14 (salt marsh)
+#   338.76 (bare sand)
+#   447.93 (dune vegetation)
+
+area_monomoy_2016 <- (freq(classmonomoy_2016_3$map)*30*30)/10000
+area_monomoy_2016
+#   157.41 (salt marsh)
+#   431.91 (bare sand)
+#   447.48 (dune vegetation)
+
+area_monomoy_2018 <- (freq(classmonomoy_2018_3$map)*30*30)/10000
+area_monomoy_2018
+#   189.63 (salt marsh)
+#   423.36 (dune vegetation)
+#   341.10 (bare sand)
 
 area_monomoy_2020 <- (freq(classmonomoy_2020_3$map)*30*30)/10000
 area_monomoy_2020
