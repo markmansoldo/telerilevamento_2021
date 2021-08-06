@@ -659,13 +659,12 @@ freq(classmonomoy_2014_3$map)
 #   4977 (dune vegetation)
 # 120893 (water)
 
-prop_monomoy_2014 <- freq(classmonomoy_2014_3$map)/total_monomoy
-prop_monomoy_2014
-#      count (2014)
-# 0.01478948 (salt marsh)
-# 0.02860617 (bare sand)
-# 0.03782490 (dune vegetation)
-# 0.91877945 (water)
+# To calculate the area in hectares, considering that each pixel is 30 x 30 metres:
+area_monomoy_2014 <- (freq(classmonomoy_2014_3$map)*30*30)/10000
+area_monomoy_2014
+#   175.14 (salt marsh)
+#   338.76 (bare sand)
+#   447.93 (dune vegetation)
 
 freq(classmonomoy_2016_3$map)
 #  count (2016)
@@ -674,13 +673,11 @@ freq(classmonomoy_2016_3$map)
 #   4972 (dune vegetation)
 # 120060 (water) 
 
-prop_monomoy_2016 <- freq(classmonomoy_2016_3$map)/total_monomoy
-prop_monomoy_2016
-#      count (2016)
-# 0.01329229 (salt marsh)
-# 0.03647211 (bare sand)
-# 0.03778690 (dune vegetation)
-# 0.91244870 (water)
+area_monomoy_2016 <- (freq(classmonomoy_2016_3$map)*30*30)/10000
+area_monomoy_2016
+#   157.41 (salt marsh)
+#   431.91 (bare sand)
+#   447.48 (dune vegetation)
 
 freq(classmonomoy_2018_3$map)
 #  count (2018)
@@ -689,13 +686,11 @@ freq(classmonomoy_2018_3$map)
 #   3790 (bare sand)
 # 120979 (water)
 
-prop_monomoy_2018 <- freq(classmonomoy_2018_3$map)/total_monomoy
-prop_monomoy_2018
-#      count (2018)
-# 0.01601307 (salt marsh)
-# 0.03575011 (dune vegetation)
-# 0.02880377 (bare sand)
-# 0.91943304 (water)
+area_monomoy_2018 <- (freq(classmonomoy_2018_3$map)*30*30)/10000
+area_monomoy_2018
+#   189.63 (salt marsh)
+#   423.36 (dune vegetation)
+#   341.10 (bare sand)
 
 freq(classmonomoy_2020_3$map)
 #  count (2020)
@@ -704,19 +699,17 @@ freq(classmonomoy_2020_3$map)
 #   3862 (bare sand)
 # 122646 (water)
 
-prop_monomoy_2020 <- freq(classmonomoy_2020_3$map)/total_monomoy
-prop_monomoy_2020
-#      count (2020)
-# 0.01127831 (salt marsh)
-# 0.02726858 (dune vegetation)
-# 0.02935097 (bare sand)
-# 0.93210214 (water)
+area_monomoy_2020 <- (freq(classmonomoy_2020_3$map)*30*30)/10000
+area_monomoy_2020
+#   133.56 (salt marsh)
+#   322.92 (dune vegetation)
+#   347.58 (bare sand)
 
 # __________Monomoy data frame________________________________________________________________________________________________________________________________________________
 
 # Creation of the data frame with headings and values for 2014 and 2020
-monomoycover <- c("Tidal sand bars","Bare sand","Dune vegetation","Salt marsh")
-monomoypercent_2014 <- c()
+monomoycover <- c("Bare sand","Dune vegetation","Salt marsh")
+monomoypercent_2014 <- c(2.86, 3.78, 1,48)
 monomoypercent_2016 <- c()
 monomoypercent_2018 <- c()
 monomoypercent_2020 <- c()
