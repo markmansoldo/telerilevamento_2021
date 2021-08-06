@@ -619,10 +619,10 @@ plot(NDWIa_monomoy_2018, col=mono)
 plot(NDWIa_monomoy_2020, col=mono)
 
 # Remove all values between -0.1 and 1  to remove water and any tidal sands:
-NDWIa_monomoy_2014land <- reclassify(NDWIa_monomoy_2014, cbind(-0.1, 1, NA))
-NDWIa_monomoy_2016land <- reclassify(NDWIa_monomoy_2016, cbind(-0.1, 1, NA))
-NDWIa_monomoy_2018land <- reclassify(NDWIa_monomoy_2018, cbind(-0.1, 1, NA))
-NDWIa_monomoy_2020land <- reclassify(NDWIa_monomoy_2020, cbind(-0.1, 1, NA))
+NDWIa_monomoy_2014land <- reclassify(NDWIa_monomoy_2014, cbind(-0.03, 1, NA))
+NDWIa_monomoy_2016land <- reclassify(NDWIa_monomoy_2016, cbind(-0.03, 1, NA))
+NDWIa_monomoy_2018land <- reclassify(NDWIa_monomoy_2018, cbind(-0.03, 1, NA))
+NDWIa_monomoy_2020land <- reclassify(NDWIa_monomoy_2020, cbind(-0.03, 1, NA))
 
 # Showing only exposed land:
 # Brightest colour indicates bare sand
