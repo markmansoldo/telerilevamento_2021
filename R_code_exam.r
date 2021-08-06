@@ -554,6 +554,7 @@ BSIdiff <- BSI2020-BSI2014
 
 plot(BSIdiff, col=changer)
 
+#____________________________________________________________________________________________________________________________________________________________________________
 # __________Secondary crop for Monomoy National Wildlife Refuge______________________________________________________________________________________________________________
 
 # Upload one image to understand the dimensions to be cropped:
@@ -586,7 +587,24 @@ plot(monomoy_2016)
 monomoy_2014 <- crop(x = cod_2014, y = monomoy_extent)
 plot(monomoy_2014)
 
+# __________Analyze distribution of sandy beaches within the nature reserve___________________________________________________________________________________________________
 
+# Emphasises coastal sands with bright white sand:
+par(mfrow=c(1,4))
+plotRGB(monomoy_2014, 1, 2, 3, stretch="Lin")
+plotRGB(monomoy_2016, 1, 2, 3, stretch="Lin")
+plotRGB(monomoy_2018, 1, 2, 3, stretch="Lin")
+plotRGB(monomoy_2020, 1, 2, 3, stretch="Lin")
+
+# __________Unsupervised classification of Monomoy Nature Reserve_____________________________________________________________________________________________________________
+
+# 4 classes:
+classmonomoy_2014_4 <- unsuperClass(monomoy_2014, nClasses=4)
+classmonomoy_2020_4 <- unsuperClass(monomoy_2020, nClasses=4)
+
+par(mfrow=c(1,2))
+plot(classmonomoy_2014_4$map)
+plot(classmonomoy_2020_4$map)
 
 # ____________________________________________________________________________________________________________________________________________________________________________
 
