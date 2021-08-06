@@ -514,8 +514,16 @@ par(mfrow=c(1,2))
 plot(NDVI2014, col=mono)
 plot(NDVI2020, col=mono)
 
-NDVIdiff <- NDVI2020-NDVI2014
+# Remove all values lower than 0 (remove water):
+NDVI2014land <- reclassify(NDVI2014, cbind(-Inf, 0, NA), right=FALSE)
+NDVI2020land <- reclassify(NDVI2020, cbind(-Inf, 0, NA), right=FALSE)
 
+par(mfrow=c(1,2))
+plot(NDVI2014land, col=mono)
+plot(NDVI2020land, col=mono)
+
+# Difference with water and underwater sediment still present:
+NDVIdiff <- NDVI2020-NDVI2014
 plot(NDVIdiff, col=changer)
 
 # __________Bare Soil Index (BSI)_____________________________________________________________________________________________________________________________________________
