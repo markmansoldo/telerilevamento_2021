@@ -518,9 +518,19 @@ plot(NDVI2020, col=mono)
 NDVI2014land <- reclassify(NDVI2014, cbind(-Inf, 0, NA), right=FALSE)
 NDVI2020land <- reclassify(NDVI2020, cbind(-Inf, 0, NA), right=FALSE)
 
+# ____________________________________________________________________________________________________
 par(mfrow=c(1,2))
 plot(NDVI2014land, col=mono)
 plot(NDVI2020land, col=mono)
+
+class2014land_4 <- unsuperClass(NDVI2014land, nClasses=4)
+class2020land_4 <- unsuperClass(NDVI2020land, nClasses=4)
+
+par(mfrow=c(1,2))
+plot(class2014land_4$map, col=tropical)
+plot(class2020land_4$map, col=tropical)
+
+# ____________________________________________________________________________________________________
 
 # Difference with water and underwater sediment still present:
 NDVIdiff <- NDVI2020-NDVI2014
