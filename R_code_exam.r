@@ -648,6 +648,10 @@ plot(classmonomoy_2016_4$map, col=changer)
 plot(classmonomoy_2018_4$map, col=changer)
 plot(classmonomoy_2020_4$map, col=changer)
 
+total_monomoy <- 3676+2012+4924+5045+115923
+total_monomoy
+# [1] 131580
+
 freq(classmonomoy_2014_4$map)
 #      value  count
 # [1,]     1   3676 (dune vegetation)
@@ -655,6 +659,15 @@ freq(classmonomoy_2014_4$map)
 # [3,]     3   4924 (tidal sand bars)
 # [4,]     4   5045 (bare sand)
 # [5,]    NA 115923 (water)
+
+prop_monomoy_2014 <- freq(classmonomoy_2014_4$map)/total_monomoy
+prop_monomoy_2014
+#      count (2014)
+# 0.02793738 (dune vegetation)
+# 0.01529108 (salt marsh)
+# 0.03742210 (tidal sand bars)
+# 0.03834169 (bare sand)
+# 0.88100775 (water)
 
 freq(classmonomoy_2016_4$map)
 #      value  count
@@ -664,6 +677,15 @@ freq(classmonomoy_2016_4$map)
 # [4,]     4   3975 (bare sand)
 # [5,]    NA 113329 (water)
 
+prop_monomoy_2016 <- freq(classmonomoy_2016_4$map)/total_monomoy
+prop_monomoy_2016
+#      count (2016)
+# 0.01651467 (salt marsh)
+# 0.04457364 (tidal sand bars)
+# 0.04740842 (dune vegetation)
+# 0.03020976 (bare sand)
+# 0.86129351 (water)
+
 freq(classmonomoy_2018_4$map)
 #      value  count
 # [1,]     1   2605 (salt marsh)
@@ -672,6 +694,15 @@ freq(classmonomoy_2018_4$map)
 # [4,]     4   5570 (bare sand)
 # [5,]    NA 117194 (water)
 
+prop_monomoy_2018 <- freq(classmonomoy_2018_4$map)/total_monomoy
+prop_monomoy_2018
+#      count (2018)
+# 0.01979784 (salt marsh)
+# 0.02355981 (dune vegetation)
+# 0.02364341 (tidal sand bars)
+# 0.04233166 (bare sand)
+# 0.89066727 (water)
+
 freq(classmonomoy_2020_4$map)
 #      value  count
 # [1,]     1   1389 (salt marsh)
@@ -679,6 +710,15 @@ freq(classmonomoy_2020_4$map)
 # [3,]     3   1207 (tidal sand bars)
 # [4,]     4   3313 (dune vegetation)
 # [5,]    NA 121647 (water)
+
+prop_monomoy_2020 <- freq(classmonomoy_2020_4$map)/total_monomoy
+prop_monomoy_2020
+#      count (2020)
+# 0.010556316 (salt marsh)
+# 0.030582155 (bare sand)
+# 0.009173127 (tidal sand bars)
+# 0.025178599 (dune vegetation)
+# 0.924509804 (water)
 
 # ____________________________________________________________________________________________________________________________________________________________________________
 
