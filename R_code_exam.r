@@ -707,7 +707,7 @@ area_monomoy_2020
 
 # __________Monomoy data frame for ecosystem cover____________________________________________________________________________________________________________________________
 
-# Creation of the data frame with headings and values for 2014 and 2020
+# Creation of the data frame with headings and values for 2014, 2016, 2018 and 2020
 monomoycover <- c("Bare sand","Dune vegetation","Salt marsh")
 monomoy_area_2014 <- c(339, 448, 175)
 monomoy_area_2016 <- c(432, 447, 157)
@@ -718,7 +718,42 @@ monomoy_area_2020 <- c(348, 323, 134)
 monomoy_areacover <- data.frame(monomoycover, monomoy_area_2014, monomoy_area_2016, monomoy_area_2018, monomoy_area_2020)
 monomoy_areacover
 
-# __________Monomoy 
+# __________Monomoy data frame for bare sand and plover_______________________________________________________________________________________________________________________
+
+monomoy_sandarea <- c("Bare sand","Plover pairs")
+monomoy_sandarea_2014 <- c(339, 44)
+monomoy_sandarea_2016 <- c(432, 52)
+monomoy_sandarea_2018 <- c(341, 36)
+monomoy_sandarea_2020 <- c(348, 29)
+
+# To assign the name to the dataframe:
+monomoy_sand_plover <- data.frame(monomoy_sandarea, monomoy_sandarea_2014, monomoy_sandarea_2016, monomoy_sandarea_2018, monomoy_sandarea_2020)
+monomoy_sand_plover
+
+# __________Monomoy data frame for dune vegetation and plover_________________________________________________________________________________________________________________
+
+monomoy_dunearea <- c("Dune vegetation","Plover pairs")
+monomoy_dunearea_2014 <- c(448, 44)
+monomoy_dunearea_2016 <- c(447, 52)
+monomoy_dunearea_2018 <- c(423, 36)
+monomoy_dunearea_2020 <- c(323, 29)
+
+# To assign the name to the dataframe:
+monomoy_dune_plover <- data.frame(monomoy_dunearea, monomoy_dunearea_2014, monomoy_dunearea_2016, monomoy_dunearea_2018, monomoy_dunearea_2020)
+monomoy_dune_plover
+
+# __________Monomoy data frame for salt marsh and plover______________________________________________________________________________________________________________________
+
+monomoy_marsharea <- c("Salt marsh","Plover pairs")
+monomoy_marsharea_2014 <- c(175, 44)
+monomoy_marsharea_2016 <- c(157, 52)
+monomoy_marsharea_2018 <- c(190, 36)
+monomoy_marsharea_2020 <- c(134, 29)
+
+# To assign the name to the dataframe:
+monomoy_marsh_plover <- data.frame(monomoy_marsharea, monomoy_marsharea_2014, monomoy_marsharea_2016, monomoy_marsharea_2018, monomoy_marsharea_2020)
+monomoy_marsh_plover
+
 
 # ____________________________________________________________________________________________________________________________________________________________________________
 
