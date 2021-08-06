@@ -720,5 +720,18 @@ prop_monomoy_2020
 # 0.025178599 (dune vegetation)
 # 0.924509804 (water)
 
+# __________Monomoy data frame________________________________________________________________________________________________________________________________________________
+
+# Creation of the data frame with headings and values for 2014 and 2020
+monomoycover <- c("Tidal sand bars","Bare sand","Dune vegetation","Salt marsh")
+monomoypercent_2014 <- c()
+monomoypercent_2016 <- c()
+monomoypercent_2018 <- c()
+monomoypercent_2020 <- c()
+
+# To assign the name to the dataframe:
+monomoy_percentagecover <- data.frame(monomoycover, monomoypercent_2014, monomoypercent_2016, monomoypercent_2018, monomoypercent_2020)
+monomoy_percentagecover
+
 # ____________________________________________________________________________________________________________________________________________________________________________
 
