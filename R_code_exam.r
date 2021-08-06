@@ -662,7 +662,10 @@ freq(classmonomoy_2014_3$map)
 prop_monomoy_2014 <- freq(classmonomoy_2014_3$map)/total_monomoy
 prop_monomoy_2014
 #      count (2014)
-
+# 0.01478948 (salt marsh)
+# 0.02860617 (bare sand)
+# 0.03782490 (dune vegetation)
+# 0.91877945 (water)
 
 freq(classmonomoy_2016_3$map)
 #  count (2016)
@@ -674,7 +677,10 @@ freq(classmonomoy_2016_3$map)
 prop_monomoy_2016 <- freq(classmonomoy_2016_3$map)/total_monomoy
 prop_monomoy_2016
 #      count (2016)
-
+# 0.01329229 (salt marsh)
+# 0.03647211 (bare sand)
+# 0.03778690 (dune vegetation)
+# 0.91244870 (water)
 
 freq(classmonomoy_2018_3$map)
 #  count (2018)
@@ -683,11 +689,13 @@ freq(classmonomoy_2018_3$map)
 #   3790 (bare sand)
 # 120979 (water)
 
-
 prop_monomoy_2018 <- freq(classmonomoy_2018_3$map)/total_monomoy
 prop_monomoy_2018
 #      count (2018)
-
+# 0.01601307 (salt marsh)
+# 0.03575011 (dune vegetation)
+# 0.02880377 (bare sand)
+# 0.91943304 (water)
 
 freq(classmonomoy_2020_3$map)
 #  count (2020)
@@ -699,7 +707,10 @@ freq(classmonomoy_2020_3$map)
 prop_monomoy_2020 <- freq(classmonomoy_2020_3$map)/total_monomoy
 prop_monomoy_2020
 #      count (2020)
-
+# 0.01127831 (salt marsh)
+# 0.02726858 (dune vegetation)
+# 0.02935097 (bare sand)
+# 0.93210214 (water)
 
 # __________Monomoy data frame________________________________________________________________________________________________________________________________________________
 
