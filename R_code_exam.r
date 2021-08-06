@@ -596,15 +596,89 @@ plotRGB(monomoy_2016, 1, 2, 3, stretch="Lin")
 plotRGB(monomoy_2018, 1, 2, 3, stretch="Lin")
 plotRGB(monomoy_2020, 1, 2, 3, stretch="Lin")
 
+# Band 6 (Short Wave Infra Red 1) Clearly shows all exposed land and also includes sands very close to the surface, but with values close to those of the water:
+par(mfrow=c(1,4))
+plot(monomoy_2014$cod_2014_B6, col=mono)
+plot(monomoy_2016$cod_2016_B6, col=mono)
+plot(monomoy_2018$cod_2018_B6, col=mono)
+plot(monomoy_2020$cod_2020_B6, col=mono)
+
+# NDWI = (Coastal-NIR)/(Coastal+NIR)
+
+# Very similar to the other NDWI but shows only exposed sand, with greater contrast between land and water:
+
+NDWIa_monomoy_2014 <- (monomoy_2014$cod_2014_B1 - monomoy_2014$cod_2014_B5)/(monomoy_2014$cod_2014_B1 + monomoy_2014$cod_2014_B5)
+NDWIa_monomoy_2016 <- (monomoy_2016$cod_2016_B1 - monomoy_2016$cod_2016_B5)/(monomoy_2016$cod_2016_B1 + monomoy_2016$cod_2016_B5)
+NDWIa_monomoy_2018 <- (monomoy_2018$cod_2018_B1 - monomoy_2018$cod_2018_B5)/(monomoy_2018$cod_2018_B1 + monomoy_2018$cod_2018_B5)
+NDWIa_monomoy_2020 <- (monomoy_2020$cod_2020_B1 - monomoy_2020$cod_2020_B5)/(monomoy_2020$cod_2020_B1 + monomoy_2020$cod_2020_B5)
+
+par(mfrow=c(1,4))
+plot(NDWIa_monomoy_2014, col=mono)
+plot(NDWIa_monomoy_2016, col=mono)
+plot(NDWIa_monomoy_2018, col=mono)
+plot(NDWIa_monomoy_2020, col=mono)
+
+# Remove all values greater than 0 (remove water):
+NDWIa_monomoy_2014land <- reclassify(NDWIa_monomoy_2014, cbind(0, 1, NA))
+NDWIa_monomoy_2016land <- reclassify(NDWIa_monomoy_2016, cbind(0, 1, NA))
+NDWIa_monomoy_2018land <- reclassify(NDWIa_monomoy_2018, cbind(0, 1, NA))
+NDWIa_monomoy_2020land <- reclassify(NDWIa_monomoy_2020, cbind(0, 1, NA))
+
+# Showing only exposed land:
+# Brightest colour indicates tidal bars
+# Darkest colour indicates relatively dense vegetation
+par(mfrow=c(1,4))
+plot(NDWIa_monomoy_2014land, col=mono)
+plot(NDWIa_monomoy_2016land, col=mono)
+plot(NDWIa_monomoy_2018land, col=mono)
+plot(NDWIa_monomoy_2020land, col=mono)
+
 # __________Unsupervised classification of Monomoy Nature Reserve_____________________________________________________________________________________________________________
 
 # 4 classes:
-classmonomoy_2014_4 <- unsuperClass(monomoy_2014, nClasses=4)
-classmonomoy_2020_4 <- unsuperClass(monomoy_2020, nClasses=4)
+# Tidal sand bars, Bare sand, Dune vegetation, Salt marsh
+classmonomoy_2014_4 <- unsuperClass(NDWIa_monomoy_2014land, nClasses=4)
+classmonomoy_2016_4 <- unsuperClass(NDWIa_monomoy_2016land, nClasses=4)
+classmonomoy_2018_4 <- unsuperClass(NDWIa_monomoy_2018land, nClasses=4)
+classmonomoy_2020_4 <- unsuperClass(NDWIa_monomoy_2020land, nClasses=4)
 
-par(mfrow=c(1,2))
-plot(classmonomoy_2014_4$map)
-plot(classmonomoy_2020_4$map)
+par(mfrow=c(1,4))
+plot(classmonomoy_2014_4$map, col=changer)
+plot(classmonomoy_2016_4$map, col=changer)
+plot(classmonomoy_2018_4$map, col=changer)
+plot(classmonomoy_2020_4$map, col=changer)
+
+freq(classmonomoy_2014_4$map)
+#      value  count
+# [1,]     1   3676 (dune vegetation)
+# [2,]     2   2012 (salt marsh)
+# [3,]     3   4924 (tidal sand bars)
+# [4,]     4   5045 (bare sand)
+# [5,]    NA 115923 (water)
+
+freq(classmonomoy_2016_4$map)
+#      value  count
+# [1,]     1   2173 (salt marsh)
+# [2,]     2   5865 (tidal sand bars)
+# [3,]     3   6238 (dune vegetation)
+# [4,]     4   3975 (bare sand)
+# [5,]    NA 113329 (water)
+
+freq(classmonomoy_2018_4$map)
+#      value  count
+# [1,]     1   2605 (salt marsh)
+# [2,]     2   3100 (dune vegetation)
+# [3,]     3   3111 (tidal sand bars)
+# [4,]     4   5570 (bare sand)
+# [5,]    NA 117194 (water)
+
+freq(classmonomoy_2020_4$map)
+#      value  count
+# [1,]     1   1389 (salt marsh)
+# [2,]     2   4024 (bare sand)
+# [3,]     3   1207 (tidal sand bars)
+# [4,]     4   3313 (dune vegetation)
+# [5,]    NA 121647 (water)
 
 # ____________________________________________________________________________________________________________________________________________________________________________
 
