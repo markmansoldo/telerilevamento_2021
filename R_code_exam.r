@@ -13,6 +13,8 @@ library(reshape2)
 library(imagefx)
 library(rgdal)
 library(Rcpp)
+library(stats)
+library(ggpubr)
 setwd("C:/exam/")
 
 # __________Importing images__________________________________________________________________________________________________________________________________________________
@@ -860,12 +862,53 @@ grid.arrange(plover_graph_veg, nrow=1)
 
 grid.arrange(plover_graph_sand, plover_graph_veg, nrow=1)
 
-# __________Calculating the correlation coefficient__________________________________________________________________________________________________________________________
+# __________Calculating Pearson's correlation coefficient____________________________________________________________________________________________________________________
+# __________For bare sand and plover pairs___________________________________________________________________________________________________________________________________
 
+# To check if the data are normally distributed:
+dist_sand_plover_area <- shapiro.test(monomoy_sand_plover$sand_area) 
+dist_sand_plover_area
+# p = 0.08485 (above significance threshold of 0.05, so considered normally distributed)
 
+dist_sand_plover_pairs <- shapiro.test(monomoy_sand_plover$sand_pairs)
+dist_sand_plover_pairs
+# p = 0.2752 (above significance threshold of 0.05, so considered normally distributed)
+
+# To calculate the correlation coefficient for bare sand and breeding pairs:
+cor_sand_plover <- cor.test(sand_area, sand_pairs, method = c("pearson"))
+cor_sand_plover
+# R = 0.8614462
+
+# To create the scatter plot with line of best fit:
+scatter_sand_plover <- ggscatter(monomoy_sand_plover, x = "sand_area", y = "sand_pairs", add = "reg.line", conf.int = TRUE, cor.coef = TRUE, cor.method = "pearson", xlab = "Area of bare sand (ha)", ylab = "Number of breeding pairs")
+scatter_sand_plover
+
+# __________For vegetation and plover pairs___________________________________________________________________________________________________________________________________
+
+# To check if the data are normally distributed:
+dist_veg_plover_area <- shapiro.test(monomoy_veg_plover$veg_area) 
+dist_veg_plover_area
+# p = 0.1622 (above significance threshold of 0.05, so considered normally distributed)
+
+dist_veg_plover_pairs <- shapiro.test(monomoy_veg_plover$veg_pairs)
+dist_veg_plover_pairs
+# p = 0.2752 (above significance threshold of 0.05, so considered normally distributed)
+
+# To calculate the correlation coefficient for vegetation and breeding pairs:
+cor_veg_plover <- cor.test(veg_area, veg_pairs, method = c("pearson"))
+cor_veg_plover
+# R = 0.5905803 
+
+# To create the scatter plot with line of best fit:
+scatter_veg_plover <- ggscatter(monomoy_veg_plover, x = "veg_area", y = "veg_pairs", add = "reg.line", conf.int = TRUE, cor.coef = TRUE, cor.method = "pearson", xlab = "Area of vegetation (ha)", ylab = "Number of breeding pairs")
+scatter_veg_plover
 
 # ____________________________________________________________________________________________________________________________________________________________________________
 
+# To plot both scatter plots together:
+both_scatters <- grid.arrange(scatter_sand_plover, scatter_veg_plover, nrow=1, top= "Correlation between the number of breeding pairs of piping plovers compared to the area of bare sand and dune vegetation in the Riserva Statale di Monomoy")
+both_scatters
 
+# ____________________________________________________________________________________________________________________________________________________________________________
 
 
