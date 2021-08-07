@@ -695,104 +695,132 @@ plot(NDWIa_monomoy_2020land, col=mono)
 
 # __________Unsupervised classification of Monomoy Nature Reserve_____________________________________________________________________________________________________________
 
-# 3 classes:
-# Bare sand, Dune vegetation, Salt marsh
-classmonomoy_2013_3 <- unsuperClass(NDWIa_monomoy_2013land, nClasses=3)
-classmonomoy_2014_3 <- unsuperClass(NDWIa_monomoy_2014land, nClasses=3)
-classmonomoy_2015_3 <- unsuperClass(NDWIa_monomoy_2015land, nClasses=3)
-classmonomoy_2016_3 <- unsuperClass(NDWIa_monomoy_2016land, nClasses=3)
-classmonomoy_2017_3 <- unsuperClass(NDWIa_monomoy_2017land, nClasses=3)
-classmonomoy_2018_3 <- unsuperClass(NDWIa_monomoy_2018land, nClasses=3)
-classmonomoy_2019_3 <- unsuperClass(NDWIa_monomoy_2019land, nClasses=3)
-classmonomoy_2020_3 <- unsuperClass(NDWIa_monomoy_2020land, nClasses=3)
+# 2 classes:
+# Bare sand and vegetation (dunes and salt marsh)
+classmonomoy_2013_2 <- unsuperClass(NDWIa_monomoy_2013land, nClasses=2)
+classmonomoy_2014_2 <- unsuperClass(NDWIa_monomoy_2014land, nClasses=2)
+classmonomoy_2015_2 <- unsuperClass(NDWIa_monomoy_2015land, nClasses=2)
+classmonomoy_2016_2 <- unsuperClass(NDWIa_monomoy_2016land, nClasses=2)
+classmonomoy_2017_2 <- unsuperClass(NDWIa_monomoy_2017land, nClasses=2)
+classmonomoy_2018_2 <- unsuperClass(NDWIa_monomoy_2018land, nClasses=2)
+classmonomoy_2019_2 <- unsuperClass(NDWIa_monomoy_2019land, nClasses=2)
+classmonomoy_2020_2 <- unsuperClass(NDWIa_monomoy_2020land, nClasses=2)
 
 par(mfrow=c(2,4))
-plot(classmonomoy_2013_3$map, col=changer)
-plot(classmonomoy_2014_3$map, col=changer)
-plot(classmonomoy_2015_3$map, col=changer)
-plot(classmonomoy_2016_3$map, col=changer)
-plot(classmonomoy_2017_3$map, col=changer)
-plot(classmonomoy_2018_3$map, col=changer)
-plot(classmonomoy_2019_3$map, col=changer)
-plot(classmonomoy_2020_3$map, col=changer)
+plot(classmonomoy_2013_2$map, col=changer)
+plot(classmonomoy_2014_2$map, col=changer)
+plot(classmonomoy_2015_2$map, col=changer)
+plot(classmonomoy_2016_2$map, col=changer)
+plot(classmonomoy_2017_2$map, col=changer)
+plot(classmonomoy_2018_2$map, col=changer)
+plot(classmonomoy_2019_2$map, col=changer)
+plot(classmonomoy_2020_2$map, col=changer)
 
 total_monomoy <- 1946+3764+4977+120893
 total_monomoy
 # [1] 131580
 
-freq(classmonomoy_2014_3$map)
+freq(classmonomoy_2013_2$map)
+#  count (2013)
+#   7859 (bare sand)
+#   3656 (vegetation)
+
+freq(classmonomoy_2014_2$map)
 #  count (2014)
-#   1946 (salt marsh)
-#   3764 (bare sand)
-#   4977 (dune vegetation)
-# 120893 (water)
+#   3765 (vegetation)
+#   6922 (bare sand)
 
-freq(classmonomoy_2016_3$map)
+freq(classmonomoy_2015_2$map)
+#  count (2015)
+#   7081 (bare sand)
+#   3575 (vegetation)
+
+freq(classmonomoy_2016_2$map)
 #  count (2016)
-#   1749 (salt marsh)
-#   4799 (bare sand)
-#   4972 (dune vegetation)
-# 120060 (water) 
+#   3692 (vegetation)
+#   7828 (bare sand)
 
-freq(classmonomoy_2018_3$map)
+freq(classmonomoy_2017_2$map)
+#  count (2017)
+#   3636 (vegetation)
+#   6675 (bare sand)
+
+freq(classmonomoy_2018_2$map)
 #  count (2018)
-#   2107 (salt marsh)
-#   4704 (dune vegetation)
-#   3790 (bare sand)
-# 120979 (water)
+#   4118 (vegetation)
+#   6483 (bare sand)
 
-freq(classmonomoy_2020_3$map)
+freq(classmonomoy_2019_2$map)
+#  count (2019)
+#   6385 (bare sand))
+#   3115 (vegetation)
+
+freq(classmonomoy_2020_2$map)
 #  count (2020)
-#   1484 (salt marsh)
-#   3588 (dune vegetation)
-#   3862 (bare sand)
-# 122646 (water)
+#   2553 (vegetation)
+#   6381 (bare sand)
 
 # __________Calculating land area in hectares using frequencies_______________________________________________________________________________________________________________
 
 # To calculate the area in hectares, considering that each pixel is 30 x 30 metres:
-area_monomoy_2014 <- (freq(classmonomoy_2014_3$map)*30*30)/10000
+area_monomoy_2013 <- (freq(classmonomoy_2013_2$map)*30*30)/10000
+area_monomoy_2013
+# 707.31 (bare sand)
+# 329.04 (vegetation)
+
+area_monomoy_2014 <- (freq(classmonomoy_2014_2$map)*30*30)/10000
 area_monomoy_2014
-#   175.14 (salt marsh)
-#   338.76 (bare sand)
-#   447.93 (dune vegetation)
+# 338.85 (vegetation)
+# 622.98 (bare sand)
 
-area_monomoy_2016 <- (freq(classmonomoy_2016_3$map)*30*30)/10000
+area_monomoy_2015 <- (freq(classmonomoy_2015_2$map)*30*30)/10000
+area_monomoy_2015
+# 321.75 (vegetation)
+# 637.29 (bare sand)
+
+area_monomoy_2016 <- (freq(classmonomoy_2016_2$map)*30*30)/10000
 area_monomoy_2016
-#   157.41 (salt marsh)
-#   431.91 (bare sand)
-#   447.48 (dune vegetation)
+# 332.28 (vegetation)
+# 704.52 (bare sand)
 
-area_monomoy_2018 <- (freq(classmonomoy_2018_3$map)*30*30)/10000
+area_monomoy_2017 <- (freq(classmonomoy_2017_2$map)*30*30)/10000
+area_monomoy_2017
+# 327.24 (vegetation)
+# 600.75 (bare sand)
+
+area_monomoy_2018 <- (freq(classmonomoy_2018_2$map)*30*30)/10000
 area_monomoy_2018
-#   189.63 (salt marsh)
-#   423.36 (dune vegetation)
-#   341.10 (bare sand)
+# 370.62 (vegetation)
+# 583.47 (bare sand)
 
-area_monomoy_2020 <- (freq(classmonomoy_2020_3$map)*30*30)/10000
+area_monomoy_2019 <- (freq(classmonomoy_2019_2$map)*30*30)/10000
+area_monomoy_2019
+# 574.65 (bare sand)
+# 280.35 (vegetation)
+
+area_monomoy_2020 <- (freq(classmonomoy_2020_2$map)*30*30)/10000
 area_monomoy_2020
-#   133.56 (salt marsh)
-#   322.92 (dune vegetation)
-#   347.58 (bare sand)
+# 229.77 (vegetation)
+# 574.29 (bare sand)
 
 # __________Monomoy data frame and graph for ecosystem cover__________________________________________________________________________________________________________________
 
 # To create the data frame:
-monomoy_groundcover <- data.frame(monomoycover=c('Sabbia nuda','Dune','Paludi salmastre'), monomoy2014=c(339,448,175), monomoy2016=c(432,447,157), monomoy2018=c(341,423,190), monomoy2020=c(348,323,134))
-years <- c('monomoy2014'="2014", 'monomoy2016'="2016", 'monomoy2018'="2018", 'monomoy2020'="2020")
+monomoy_groundcover <- data.frame(monomoycover=c('Sabbia nuda','Vegetazione'), monomoy2013=c(707,329), monomoy2014=c(623,339), monomoy2015=c(637,322), monomoy2016=c(705,332), monomoy2017=c(601,327), monomoy2018=c(583,371), monomoy2019=c(575,280), monomoy2020=c(574,230))
+years <- c('monomoy2013'="2013",'monomoy2014'="2014",'monomoy2015'="2015",'monomoy2016'="2016",'monomoy2017'="2017",'monomoy2018'="2018",'monomoy2019'="2019",'monomoy2020'="2020")
 melt_groundcover <- melt(monomoy_groundcover, id.vars='monomoycover')
 
 # To create the graph:
 ggplot(melt_groundcover, aes(x=monomoycover, y=value, fill=monomoycover)) + scale_fill_brewer(palette="Blues") + geom_bar(stat='identity') +
-facet_grid(.~ variable, labeller = as_labeller(years)) + labs(y= "Area (Ha)", x = "Tipologia di habitat")  + ggtitle("Tipologie di habitat e rispettive estensioni all'interno della Riserva Statale di Monomoy") +
+facet_grid(.~ variable, labeller = as_labeller(years)) + labs(y= "Area (Ha)", x = "Tipologia di terreno")  + ggtitle("Tipologie di terreno e rispettive estensioni all'interno della Riserva Statale di Monomoy") +
 theme(plot.title = element_text(hjust = 0.5)) + theme(legend.position = "none")  + theme_bw() + theme(legend.position = "none") + theme(plot.title = element_text(hjust = 0.5)) +
-scale_x_discrete(limits=c("Sabbia nuda","Dune","Paludi salmastre"))
+scale_x_discrete(limits=c("Sabbia nuda","Vegetazione"))
 
 # __________Monomoy data frame for bare sand and plover_______________________________________________________________________________________________________________________
 
-sand_year <- c(2014, 2016, 2018, 2020)
-sand_area <- c(339, 432, 341, 348)
-sand_pairs <- c(44, 52, 36, 29)
+sand_year <- c(2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020)
+sand_area <- c(707, 623, 637, 705, 601, 583, 575, 574)
+sand_pairs <- c(52, 44, 45, 52, 48, 36, 31, 29)
 
 # To assign the name to the dataframe:
 monomoy_sand_plover <- data.frame(sand_year, sand_area, sand_pairs)
@@ -802,55 +830,39 @@ plover_graph_sand <- ggplot(monomoy_sand_plover, aes(x =factor(sand_year))) + th
 labs(x = "Year") + ggtitle("Number of breeding pairs of plovers and area of bare sand in the Monomoy National Wildlife Refuge")  +
 theme(plot.title = element_text(hjust = 0.5)) +
   geom_col(aes(y = sand_area), size = 1, color = "darkblue", fill = "white") + 
-  geom_line(aes(y = 6*sand_pairs), size = 1.5, color="red", group = 1) +
-  scale_y_continuous(name = "Area (ha)", limits = c(0,450), breaks = seq(0,500, by = 100), sec.axis = sec_axis(~./6, name = "Mating plover pairs")) 
+  geom_line(aes(y = 12*sand_pairs), size = 1.5, color="red", group = 1) +
+  scale_y_continuous(name = "Area (ha)", limits = c(0,750), breaks = seq(0,750, by = 100), sec.axis = sec_axis(~./12, name = "Mating plover pairs")) 
 
 
 grid.arrange(plover_graph_sand, nrow=1)
 
-# __________Monomoy data frame for dune vegetation and plover_________________________________________________________________________________________________________________
+# __________Monomoy data frame for vegetation and plover_________________________________________________________________________________________________________________
 
-dune_year <- c(2014, 2016, 2018, 2020)
-dune_area <- c(448, 447, 423, 323)
-dune_pairs <- c(44, 52, 36, 29)
-
-# To assign the name to the dataframe:
-monomoy_dune_plover <- data.frame(dune_year, dune_area, dune_pairs)
-monomoy_dune_plover
-
-plover_graph_dune <- ggplot(monomoy_dune_plover, aes(x =factor(dune_year))) + theme_bw() +
-labs(x = "Year") + ggtitle("Number of breeding pairs of plovers and area of dune vegetation in the Monomoy National Wildlife Refuge")  +
-theme(plot.title = element_text(hjust = 0.5)) +
-  geom_col(aes(y = dune_area), size = 1, color = "darkblue", fill = "white") + 
-  geom_line(aes(y = 6*dune_pairs), size = 1.5, color="red", group = 1) +
-  scale_y_continuous(name = "Area (ha)", limits = c(0,450), breaks = seq(0,500, by = 100), sec.axis = sec_axis(~./6, name = "Mating plover pairs")) 
-
-
-grid.arrange(plover_graph_dune, nrow=1)
-
-# __________Monomoy data frame for salt marsh and plover______________________________________________________________________________________________________________________
-
-marsh_year <- c(2014, 2016, 2018, 2020)
-marsh_area <- c(175, 157, 190, 134)
-marsh_pairs <- c(44, 52, 36, 29)
+veg_year <- c(2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020)
+veg_area <- c(329, 339, 322, 332, 327, 371, 280, 230)
+veg_pairs <- c(52, 44, 45, 52, 48, 36, 31, 29)
 
 # To assign the name to the dataframe:
-monomoy_marsh_plover <- data.frame(marsh_year, marsh_area, marsh_pairs)
-monomoy_marsh_plover
+monomoy_veg_plover <- data.frame(veg_year, veg_area, veg_pairs)
+monomoy_veg_plover
 
-plover_graph_marsh <- ggplot(monomoy_marsh_plover, aes(x =factor(marsh_year))) + theme_bw() +
-labs(x = "Anno") + ggtitle("Numero di coppie nidificanti del corriere canoro e l'estensione delle paludi salmastre all'interno della Riserva Statale di Monomoy")  +
+plover_graph_veg <- ggplot(monomoy_veg_plover, aes(x =factor(veg_year))) + theme_bw() +
+labs(x = "Year") + ggtitle("Number of breeding pairs of plovers and area of sand dune and salt marsh vegetation in the Monomoy National Wildlife Refuge")  +
 theme(plot.title = element_text(hjust = 0.5)) +
-  geom_col(aes(y = marsh_area), size = 1, color = "darkblue", fill = "white") + 
-  geom_line(aes(y = 6*marsh_pairs), size = 1.5, color="red", group = 1) +
-  scale_y_continuous(name = "Area (ha)", limits = c(0,450), breaks = seq(0,500, by = 100), sec.axis = sec_axis(~./6, name = "Numero di coppie nidificanti del corriere canoro"))
+  geom_col(aes(y = veg_area), size = 1, color = "darkblue", fill = "white") + 
+  geom_line(aes(y = 12*veg_pairs), size = 1.5, color="red", group = 1) +
+  scale_y_continuous(name = "Area (ha)", limits = c(0,750), breaks = seq(0,750, by = 100), sec.axis = sec_axis(~./12, name = "Mating plover pairs")) 
 
 
-grid.arrange(plover_graph_marsh, nrow=1)
+grid.arrange(plover_graph_veg, nrow=1)
 
 # __________To plot them together____________________________________________________________________________________________________________________________________________
 
-grid.arrange(plover_graph_sand, plover_graph_dune, plover_graph_marsh, nrow=1)
+grid.arrange(plover_graph_sand, plover_graph_veg, nrow=1)
+
+# __________Calculating the correlation coefficient__________________________________________________________________________________________________________________________
+
+
 
 # ____________________________________________________________________________________________________________________________________________________________________________
 
