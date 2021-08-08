@@ -600,7 +600,7 @@ coord_flip(ylim = c(0, 75))
 grid.arrange(cover2014, cover2020, nrow=1)
 
 
-# __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
+# __________Normalized Difference Water Index (NDWI)__________(McFeeters, 1996)______________________________________________________________________________________________
 
 # NDWI = (Green-NIR)/(Green+NIR)
 
@@ -617,7 +617,7 @@ NDWIdiff <- NDWI2013-NDWI2020
 
 plot(NDWIdiff, col=changer)
 
-# __________Normalized Difference Water Index (NDWI)__________(Wolf, 2012; WorldView 2 equation adapted for Landsat 8)________________________________________________________
+# __________Normalized Difference Water Index (NDWIa)__________(Wolf, 2012; WorldView 2 equation adapted for Landsat 8)______________________________________________________
 
 # NDWI = (Coastal-NIR)/(Coastal+NIR)
 
@@ -675,7 +675,7 @@ NDWIa_cod_diff <- NDWIa_cod_2013land-NDWIa_cod_2020land
 
 plot(NDWIa_cod_diff, col=mono)
 
-# __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
+# __________Normalized Difference Water Index (NDWIb)__________(Gao, 1995)___________________________________________________________________________________________________
 
 # NDWI = (NIR-SWIR1)/(NIR+SWIR1)
 
