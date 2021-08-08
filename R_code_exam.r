@@ -306,7 +306,7 @@ set.seed(1)
 class2020_2 <- unsuperClass(cropcod_2020, nClasses=2)
 
 # Plotting to see the difference between land mass and open water:
-par(mfrow=c(1,8))
+par(mfrow=c(2,4))
 plot(class2013_2$map)
 plot(class2014_2$map)
 plot(class2015_2$map)
@@ -635,14 +635,14 @@ NDWI_cod_2020land <- reclassify(NDWI2020, cbind(-Inf, -0.1, NA), right=FALSE)
 
 # To plot all eight years:
 par(mfrow=c(2,4))
-plot(NDWI_cod_2013land, col=mono)
-plot(NDWI_cod_2014land, col=mono)
-plot(NDWI_cod_2015land, col=mono)
-plot(NDWI_cod_2016land, col=mono)
-plot(NDWI_cod_2017land, col=mono)
-plot(NDWI_cod_2018land, col=mono)
-plot(NDWI_cod_2019land, col=mono)
-plot(NDWI_cod_2020land, col=mono)
+plot(NDWI_cod_2013land, col=greek)
+plot(NDWI_cod_2014land, col=greek)
+plot(NDWI_cod_2015land, col=greek)
+plot(NDWI_cod_2016land, col=greek)
+plot(NDWI_cod_2017land, col=greek)
+plot(NDWI_cod_2018land, col=greek)
+plot(NDWI_cod_2019land, col=greek)
+plot(NDWI_cod_2020land, col=greek)
 
 # __________Normalized Difference Water Index (NDWIa)__________(Wolf, 2012; WorldView 2 equation adapted for Landsat 8)______________________________________________________
 
@@ -684,14 +684,14 @@ NDWIa_cod_2020land <- reclassify(NDWIa2020_cod, cbind(-Inf, -0.1, NA), right=FAL
 
 # Show shallow water in black:
 par(mfrow=c(2,4))
-plot(NDWIa_cod_2013land, col=mono)
-plot(NDWIa_cod_2014land, col=mono)
-plot(NDWIa_cod_2015land, col=mono)
-plot(NDWIa_cod_2016land, col=mono)
-plot(NDWIa_cod_2017land, col=mono)
-plot(NDWIa_cod_2018land, col=mono)
-plot(NDWIa_cod_2019land, col=mono)
-plot(NDWIa_cod_2020land, col=mono)
+plot(NDWIa_cod_2013land, col=greek)
+plot(NDWIa_cod_2014land, col=greek)
+plot(NDWIa_cod_2015land, col=greek)
+plot(NDWIa_cod_2016land, col=greek)
+plot(NDWIa_cod_2017land, col=greek)
+plot(NDWIa_cod_2018land, col=greek)
+plot(NDWIa_cod_2019land, col=greek)
+plot(NDWIa_cod_2020land, col=greek)
 
 # To analyse the difference between the first and last year:
 par(mfrow=c(1,2))
