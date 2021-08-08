@@ -879,19 +879,19 @@ NDWIa_monomoy_2020land <- reclassify(NDWIa_monomoy_2020, cbind(-0.1, 1, NA))
 # Brightest colour indicates bare sand
 # Darkest colour indicates relatively dense vegetation
 par(mfrow=c(2,4))
-plot(NDWIa_monomoy_2013land, col=mono)
-plot(NDWIa_monomoy_2014land, col=mono)
-plot(NDWIa_monomoy_2015land, col=mono)
-plot(NDWIa_monomoy_2016land, col=mono)
-plot(NDWIa_monomoy_2017land, col=mono)
-plot(NDWIa_monomoy_2018land, col=mono)
-plot(NDWIa_monomoy_2019land, col=mono)
-plot(NDWIa_monomoy_2020land, col=mono)
+plot(NDWIa_monomoy_2013land, col="blue")
+plot(NDWIa_monomoy_2014land, col="blue")
+plot(NDWIa_monomoy_2015land, col="blue")
+plot(NDWIa_monomoy_2016land, col="blue")
+plot(NDWIa_monomoy_2017land, col="blue")
+plot(NDWIa_monomoy_2018land, col="blue")
+plot(NDWIa_monomoy_2019land, col="blue")
+plot(NDWIa_monomoy_2020land, col="blue")
 
 # __________Unsupervised classification of Monomoy Nature Reserve_____________________________________________________________________________________________________________
 
 # 2 classes:
-# Bare sand and vegetation (dunes and salt marsh)
+# Bare sand and vegetation (i.e. dunes and salt marsh)
 classmonomoy_2013_2 <- unsuperClass(NDWIa_monomoy_2013land, nClasses=2)
 classmonomoy_2014_2 <- unsuperClass(NDWIa_monomoy_2014land, nClasses=2)
 classmonomoy_2015_2 <- unsuperClass(NDWIa_monomoy_2015land, nClasses=2)
@@ -902,14 +902,14 @@ classmonomoy_2019_2 <- unsuperClass(NDWIa_monomoy_2019land, nClasses=2)
 classmonomoy_2020_2 <- unsuperClass(NDWIa_monomoy_2020land, nClasses=2)
 
 par(mfrow=c(2,4))
-plot(classmonomoy_2013_2$map, col=changer)
-plot(classmonomoy_2014_2$map, col=changer)
-plot(classmonomoy_2015_2$map, col=changer)
-plot(classmonomoy_2016_2$map, col=changer)
-plot(classmonomoy_2017_2$map, col=changer)
-plot(classmonomoy_2018_2$map, col=changer)
-plot(classmonomoy_2019_2$map, col=changer)
-plot(classmonomoy_2020_2$map, col=changer)
+plot(classmonomoy_2013_2$map, col=tropical)
+plot(classmonomoy_2014_2$map, col=tropical)
+plot(classmonomoy_2015_2$map, col=tropical)
+plot(classmonomoy_2016_2$map, col=tropical)
+plot(classmonomoy_2017_2$map, col=tropical)
+plot(classmonomoy_2018_2$map, col=tropical)
+plot(classmonomoy_2019_2$map, col=tropical)
+plot(classmonomoy_2020_2$map, col=tropical)
 
 total_monomoy <- 7859+3656
 total_monomoy
