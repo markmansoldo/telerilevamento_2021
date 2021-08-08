@@ -367,6 +367,8 @@ freq(class2020_2$map)
 # [1,]     1 118252
 # [2,]     2  19840
 
+# __________________________________________________________________________________________________________________________________
+# Then calculated the proportions of the land and water by finding the total of the pixels within the image and then the percentage:
 total_2class <- 118252+19840
 total_2class
 
@@ -418,11 +420,91 @@ prop_2class_2020
 # [1,] 7.241549e-06 0.8563277
 # [2,] 1.448310e-05 0.1436723
 
+# __________________________________________________________________________________________________________________________
+# Then calculated land loss in hectares:
+ha_cod_2013 <- (freq(class2013_2$map)*30*30)/10000
+ha_cod_2013
+#      value    count
+# [1,]  0.09 10397.16
+# [2,]  0.18  2031.12
+
+ha_cod_2014 <- (freq(class2014_2$map)*30*30)/10000
+ha_cod_2014
+#      value    count
+# [1,]  0.09 10471.41
+# [2,]  0.18  1956.87
+
+ha_cod_2015 <- (freq(class2015_2$map)*30*30)/10000
+ha_cod_2015
+#      value    count
+# [1,]  0.09 10396.62
+# [2,]  0.18  2031.66
+
+ha_cod_2016 <- (freq(class2016_2$map)*30*30)/10000
+ha_cod_2016
+#      value    count
+# [1,]  0.09 10128.24
+# [2,]  0.18  2300.04
+
+ha_cod_2017 <- (freq(class2017_2$map)*30*30)/10000
+ha_cod_2017
+#      value    count
+# [1,]  0.09 10202.67
+# [2,]  0.18  2225.61
+
+ha_cod_2018 <- (freq(class2018_2$map)*30*30)/10000
+ha_cod_2018
+#      value    count
+# [1,]  0.09 10285.02
+# [2,]  0.18  2143.26
+
+ha_cod_2019 <- (freq(class2019_2$map)*30*30)/10000
+ha_cod_2019
+#      value    count
+# [1,]  0.09 10650.78
+# [2,]  0.18  1777.50
+
+ha_cod_2020 <- (freq(class2020_2$map)*30*30)/10000
+ha_cod_2020
+#      value    count
+# [1,]  0.09 10642.68
+# [2,]  0.18  1785.60
+
+# __________Data frame and line graph of land and water percentage cover_____________________________________________________________________________________________________
+
+# To create the data frame showing the percentage cover of exposed land:
+cod_perc_year <- c("2013","2014","2015","2016","2017","2018","2019","2020")
+perc_land_change <- c(16.34, 15.75, 16.35, 18.51, 17.91, 17.25, 14.30, 14.37)
+
+# To assign the name to the dataframe:
+perc_increase <- data.frame(cod_perc_year, perc_land_change)
+perc_increase
+
+ggplot(data=perc_increase, aes(x=cod_perc_year, y=perc_land_change, group=1)) +
+  geom_line()+
+  geom_point() +  ylim(0, 20) + labs(y= "Copertura (%)", x = "Anno") + theme_bw() +
+  ggtitle("Cambiamento nella percentuale della copertura terrestre dall'anno 2013 al 2020") + theme(plot.title = element_text(hjust = 0.5))
+
+# __________Data frame and line graph of change in area (ha)_________________________________________________________________________________________________________________
+
+# To create the data frame showing the percentage cover of exposed land:
+cod_ha_year <- c("2013","2014","2015","2016","2017","2018","2019","2020")
+ha_land_change <- c(2031, 1957, 2032, 2300, 2226, 2143, 1778, 1786)
+
+# To assign the name to the dataframe:
+ha_increase <- data.frame(cod_ha_year, ha_land_change)
+ha_increase
+
+ggplot(data=ha_increase, aes(x=cod_ha_year, y=ha_land_change, group=1)) +
+  geom_line()+
+  geom_point() +  ylim(1500, 2500) + labs(y= "Area (ha)", x = "Anno") + theme_bw() +
+  ggtitle("Cambiamento nell'estensione della terra emersa intorno a Chatham, Massachusetts dall'anno 2013 al 2020") + theme(plot.title = element_text(hjust = 0.5))
+
 # ___________________________________________________________________________
 
 # 8 classes:
-class2014_8 <- unsuperClass(cropcod_2014, nClasses=4)
-class2020_8 <- unsuperClass(cropcod_2020, nClasses=4)
+class2014_8 <- unsuperClass(cropcod_2014, nClasses=8)
+class2020_8 <- unsuperClass(cropcod_2020, nClasses=8)
 
 par(mfrow=c(1,2))
 plot(class2014_8$map, col=changer)
