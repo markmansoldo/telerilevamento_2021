@@ -143,7 +143,7 @@ plot(cropcod_2013)
 mono <- colorRampPalette(c("black","light grey","white"))(100)
 greek <- colorRampPalette(c("dark blue","blue","white"))(100)
 blbl <- colorRampPalette(c("black","blue","white"))(100)
-changer <- colorRampPalette(c("aquamarine","steelblue3","black","yellow","pink","purple"))(100)
+changer <- colorRampPalette(c("aquamarine","steelblue3","black","yellow"))(100)
 tropical <- colorRampPalette(c("aquamarine","navy","yellow"))(100)
 candy <- colorRampPalette(c("blueviolet","pink","white"))(100)
 fire <- colorRampPalette(c("white","orange3","purple"))(100)
@@ -606,14 +606,14 @@ grid.arrange(cover2014, cover2020, nrow=1)
 
 # Good indication of exposed land above water level and sediment in shallow water, urbanized areas and vegetation shown at one extremity and water at the other extremity.
 
-NDWI2014 <- (cropcod_2014$cod_2014_B3 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B3 + cropcod_2014$cod_2014_B5)
+NDWI2013 <- (cropcod_2013$cod_2013_B3 - cropcod_2013$cod_2013_B5)/(cropcod_2013$cod_2013_B3 + cropcod_2013$cod_2013_B5)
 NDWI2020 <- (cropcod_2020$cod_2020_B3 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B3 + cropcod_2020$cod_2020_B5)
 
 par(mfrow=c(1,2))
-plot(NDWI2014, col=mono)
+plot(NDWI2013, col=mono)
 plot(NDWI2020, col=mono)
 
-NDWIdiff <- NDWI2020-NDWI2014
+NDWIdiff <- NDWI2013-NDWI2020
 
 plot(NDWIdiff, col=changer)
 
@@ -630,8 +630,9 @@ par(mfrow=c(1,2))
 plot(NDWIa2013, col=mono)
 plot(NDWIa2020, col=mono)
 
-NDWIadiff <- NDWIa2020-NDWIa2013
+NDWIadiff <- NDWIa2013-NDWIa2020
 
+# To plot the difference between the first and last year studied:
 plot(NDWIadiff, col=changer)
 
 # To apply the NDWI to all eight years:
@@ -655,7 +656,7 @@ NDWIa_cod_2019land <- reclassify(NDWIa2019_cod, cbind(-Inf, -0.1, NA), right=FAL
 NDWIa_cod_2020land <- reclassify(NDWIa2020_cod, cbind(-Inf, -0.1, NA), right=FALSE)
 
 # Show shallow water in black:
-par(mfrow=c(1,8))
+par(mfrow=c(2,4))
 plot(NDWIa_cod_2013land, col=mono)
 plot(NDWIa_cod_2014land, col=mono)
 plot(NDWIa_cod_2015land, col=mono)
@@ -680,14 +681,14 @@ plot(NDWIa_cod_diff, col=mono)
 
 # Very clear distinction between land and water in some areas, but sand in shallow waters appears blurry.
 
-NDWIb2014 <- (cropcod_2014$cod_2014_B5 - cropcod_2014$cod_2014_B6)/(cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B6)
+NDWIb2013 <- (cropcod_2013$cod_2013_B5 - cropcod_2013$cod_2013_B6)/(cropcod_2013$cod_2013_B5 + cropcod_2013$cod_2013_B6)
 NDWIb2020 <- (cropcod_2020$cod_2020_B5 - cropcod_2020$cod_2020_B6)/(cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B6)
 
 par(mfrow=c(1,2))
-plot(NDWIb2014, col=mono)
+plot(NDWIb2013, col=mono)
 plot(NDWIb2020, col=mono)
 
-NDWIbdiff <- NDWIb2020-NDWIb2014
+NDWIbdiff <- NDWIb2013-NDWIb2020
 
 plot(NDWIbdiff, col=changer)
 
@@ -697,14 +698,14 @@ plot(NDWIbdiff, col=changer)
 
 # Urbanized areas occupy one extremity of the scale, exposed sand and water at the other extreme with vegetated areas having an intermediate value.
 
-UI2014 <- (cropcod_2014$cod_2014_B7 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B7 + cropcod_2014$cod_2014_B5)
+UI2013 <- (cropcod_2013$cod_2013_B7 - cropcod_2013$cod_2013_B5)/(cropcod_2013$cod_2013_B7 + cropcod_2013$cod_2013_B5)
 UI2020 <- (cropcod_2020$cod_2020_B7 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B7 + cropcod_2020$cod_2020_B5)
 
 par(mfrow=c(1,2))
-plot(UI2014, col=mono)
+plot(UI2013, col=mono)
 plot(UI2020, col=mono)
 
-UIdiff <- UI2020-UI2014
+UIdiff <- UI2013-UI2020
 
 plot(UIdiff, col=changer)
 
@@ -714,14 +715,14 @@ plot(UIdiff, col=changer)
 
 # Very useful in showing exposed and submerged sand formations but urban areas and vegetated areas have very similar values.
 
-BUI2014 <- (cropcod_2014$cod_2014_B4 * cropcod_2014$cod_2014_B6)/(cropcod_2014$cod_2014_B5)
+BUI2014 <- (cropcod_2013$cod_2013_B4 * cropcod_2013$cod_2013_B6)/(cropcod_2013$cod_2013_B5)
 BUI2020 <- (cropcod_2020$cod_2020_B4 * cropcod_2020$cod_2020_B6)/(cropcod_2020$cod_2020_B5)
 
 par(mfrow=c(1,2))
-plot(BUI2014, col=mono)
+plot(BUI2013, col=mono)
 plot(BUI2020, col=mono)
 
-BUIdiff <- BUI2020-BUI2014
+BUIdiff <- BUI2013-BUI2020
 
 plot(BUIdiff, col=changer)
 
@@ -732,34 +733,26 @@ plot(BUIdiff, col=changer)
 # The negative value is extremely useful for illustrating underwater sand and sediment.
 # The positive value shows all exposed land very clearly.
 
-NDVI2014 <- (cropcod_2014$cod_2014_B5 - cropcod_2014$cod_2014_B4)/(cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B4)
+NDVI2013 <- (cropcod_2013$cod_2013_B5 - cropcod_2013$cod_2013_B4)/(cropcod_2013$cod_2013_B5 + cropcod_2013$cod_2013_B4)
 NDVI2020 <- (cropcod_2020$cod_2020_B5 - cropcod_2020$cod_2020_B4)/(cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B4)
 
 par(mfrow=c(1,2))
-plot(NDVI2014, col=mono)
+plot(NDVI2013, col=mono)
 plot(NDVI2020, col=mono)
 
 # Difference with water and underwater sediment still present:
-NDVIdiff <- NDVI2020-NDVI2014
+NDVIdiff <- NDVI2013-NDVI2020
 plot(NDVIdiff, col=changer)
 
 # __________NDVI but with all water values removed___________________________________________________
 
 # Remove all values lower than 0 (remove water):
-NDVI2014land <- reclassify(NDVI2014, cbind(-Inf, 0, NA), right=FALSE)
+NDVI2013land <- reclassify(NDVI2013, cbind(-Inf, 0, NA), right=FALSE)
 NDVI2020land <- reclassify(NDVI2020, cbind(-Inf, 0, NA), right=FALSE)
 
 par(mfrow=c(1,2))
-plot(NDVI2014land, col=mono)
+plot(NDVI2013land, col=mono)
 plot(NDVI2020land, col=mono)
-
-class2014land_4 <- unsuperClass(NDVI2014land, nClasses=4)
-class2020land_4 <- unsuperClass(NDVI2020land, nClasses=4)
-
-par(mfrow=c(1,2))
-plot(class2014land_4$map, col=tropical)
-plot(class2020land_4$map, col=tropical)
-
 
 # __________Bare Soil Index (BSI)_____________________________________________________________________________________________________________________________________________
 
@@ -768,14 +761,14 @@ plot(class2020land_4$map, col=tropical)
 # Bare sandy beaches without any vegetation are shown at one extremity and urbanized areas are at the other extremity.
 # Urban areas have a slightly more extreme value compared to vegetation.
 
-BSI2014 <- ((cropcod_2014$cod_2014_B6 + cropcod_2014$cod_2014_B4) - (cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B2))/((cropcod_2014$cod_2014_B6 + cropcod_2014$cod_2014_B4) + (cropcod_2014$cod_2014_B5 + cropcod_2014$cod_2014_B2))
+BSI2013 <- ((cropcod_2013$cod_2013_B6 + cropcod_2013$cod_2013_B4) - (cropcod_2013$cod_2013_B5 + cropcod_2013$cod_2013_B2))/((cropcod_2013$cod_2013_B6 + cropcod_2013$cod_2013_B4) + (cropcod_2013$cod_2013_B5 + cropcod_2013$cod_2013_B2))
 BSI2020 <- ((cropcod_2020$cod_2020_B6 + cropcod_2020$cod_2020_B4) - (cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B2))/((cropcod_2020$cod_2020_B6 + cropcod_2020$cod_2020_B4) + (cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B2))
 
 par(mfrow=c(1,2))
-plot(BSI2014, col=mono)
+plot(BSI2013, col=mono)
 plot(BSI2020, col=mono)
 
-BSIdiff <- BSI2020-BSI2014
+BSIdiff <- BSI2013-BSI2020
 
 plot(BSIdiff, col=changer)
 
