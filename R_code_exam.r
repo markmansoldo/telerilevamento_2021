@@ -278,24 +278,34 @@ codchangeB7 <- cropcod_2020$cod_2020_B7 - cropcod_2013$cod_2013_B7
 
 levelplot(codchangeB7, col.regions=changer)
 
-# __________Click function will be useful for the image analyses that follow__________________________________________________________________________________________________
+# __________Click function will be useful for the image analyses that follow_________________________________________________________________________________________________
 
 # Click on the image and you will see the information for that particular pixel:
 #                            id(identity), xy(spatial data), cell(pixel), type(point)
 # click(name of file goes here, id=T, xy=T, cell=T, type="p", pch=16, cex=4, col="yellow")
 
-# __________Unsupervised classification_______________________________________________________________________________________________________________________________________
+# __________Unsupervised classification to identify proportions of land and water____________________________________________________________________________________________
 
 # 2 classes with all eight years:
+# Set.seed was used to maintain the same value for all classes
+set.seed(1)
 class2013_2 <- unsuperClass(cropcod_2013, nClasses=2)
+set.seed(1)
 class2014_2 <- unsuperClass(cropcod_2014, nClasses=2)
+set.seed(1)
 class2015_2 <- unsuperClass(cropcod_2015, nClasses=2)
+set.seed(1)
 class2016_2 <- unsuperClass(cropcod_2016, nClasses=2)
+set.seed(1)
 class2017_2 <- unsuperClass(cropcod_2017, nClasses=2)
+set.seed(1)
 class2018_2 <- unsuperClass(cropcod_2018, nClasses=2)
+set.seed(1)
 class2019_2 <- unsuperClass(cropcod_2019, nClasses=2)
+set.seed(1)
 class2020_2 <- unsuperClass(cropcod_2020, nClasses=2)
 
+# Plotting to see the difference between land mass and open water:
 par(mfrow=c(1,8))
 plot(class2013_2$map)
 plot(class2014_2$map)
@@ -306,100 +316,113 @@ plot(class2018_2$map)
 plot(class2019_2$map)
 plot(class2020_2$map)
 
+# 1 = water
+# 2 = land
+
 # Using the frequencies function to count the pixels for 2 classes in 2013:
 freq(class2013_2$map)
+#      value  count
+# [1,]     1 115524
+# [2,]     2  22568
 
 # Using the frequencies function to count the pixels for 2 classes in 2014:
 freq(class2014_2$map)
-
-#      value  count (2014)
-# [1,]     1 116482 (water)
-# [2,]     2  21610 (land)
+#      value  count
+# [1,]     1 116349
+# [2,]     2  21743
 
 # Using the frequencies function to count the pixels for 2 classes in 2015:
 freq(class2015_2$map)
+#      value  count
+# [1,]     1 115518
+# [2,]     2  22574
 
 # Using the frequencies function to count the pixels for 2 classes in 2016:
 freq(class2016_2$map)
-
-#      value  count (2016)
-# [1,]     1 112807 (water)
-# [2,]     2  25285 (land)
+#      value  count
+# [1,]     1 112536
+# [2,]     2  25556
 
 # Using the frequencies function to count the pixels for 2 classes in 2017:
 freq(class2017_2$map)
+#      value  count
+# [1,]     1 113363
+# [2,]     2  24729
 
 # Using the frequencies function to count the pixels for 2 classes in 2018:
 freq(class2018_2$map)
-
-#      value  count (2018)
-# [1,]     1 114223 (water)
-# [2,]     2  23869 (land)
-
+#      value  count
+# [1,]     1 114278
+# [2,]     2  23814
 
 # Using the frequencies function to count the pixels for 2 classes in 2019:
 freq(class2019_2$map)
+#      value  count
+# [1,]     1 118342
+# [2,]     2  19750
 
 # Using the frequencies function to count the pixels for 2 classes in 2020:
 freq(class2020_2$map)
+#      value  count
+# [1,]     1 118252
+# [2,]     2  19840
 
-#      value  count (2020)
-# [1,]     1 118286 (water)
-# [2,]     2  19806 (land)
+total_2class <- 118252+19840
+total_2class
 
-# __________________________________________________________________________
+prop_2class_2013 <- freq(class2013_2$map)/total_2class
+prop_2class_2013
+#             value     count
+# [1,] 7.241549e-06 0.8365727
+# [2,] 1.448310e-05 0.1634273
 
-# 3 classes:
-class2013_3 <- unsuperClass(cropcod_2013, nClasses=3)
-class2014_3 <- unsuperClass(cropcod_2014, nClasses=3)
-class2015_3 <- unsuperClass(cropcod_2015, nClasses=3)
-class2016_3 <- unsuperClass(cropcod_2016, nClasses=3)
-class2017_3 <- unsuperClass(cropcod_2017, nClasses=3)
-class2018_3 <- unsuperClass(cropcod_2018, nClasses=3)
-class2019_3 <- unsuperClass(cropcod_2019, nClasses=3)
-class2020_3 <- unsuperClass(cropcod_2020, nClasses=3)
+prop_2class_2014 <- freq(class2014_2$map)/total_2class
+prop_2class_2014
+#             value    count
+# [1,] 7.241549e-06 0.842547
+# [2,] 1.448310e-05 0.157453
 
-par(mfrow=c(1,8))
-plot(class2013_3$map)
-plot(class2014_3$map)
-plot(class2015_3$map)
-plot(class2016_3$map)
-plot(class2017_3$map)
-plot(class2018_3$map)
-plot(class2019_3$map)
-plot(class2020_3$map)
+prop_2class_2015 <- freq(class2015_2$map)/total_2class
+prop_2class_2015
+#             value     count
+# [1,] 7.241549e-06 0.8365293
+# [2,] 1.448310e-05 0.1634707
 
-# Using the frequencies function to count the pixels for 3 classes in 2013:
-freq(class2013_3$map)
+prop_2class_2016 <- freq(class2016_2$map)/total_2class
+prop_2class_2016
+#             value    count
+# [1,] 7.241549e-06 0.814935
+# [2,] 1.448310e-05 0.185065
 
-# Using the frequencies function to count the pixels for 3 classes in 2014:
-freq(class2014_3$map)
+prop_2class_2017 <- freq(class2017_2$map)/total_2class
+prop_2class_2017
+#             value     count
+# [1,] 7.241549e-06 0.8209237
+# [2,] 1.448310e-05 0.1790763
 
-# Using the frequencies function to count the pixels for 3 classes in 2015:
-freq(class2015_3$map)
+prop_2class_2018 <- freq(class2018_2$map)/total_2class
+prop_2class_2018
+#             value     count
+# [1,] 7.241549e-06 0.8275497
+# [2,] 1.448310e-05 0.1724503
 
-# Using the frequencies function to count the pixels for 3 classes in 2016:
-freq(class2016_3$map)
+prop_2class_2019 <- freq(class2019_2$map)/total_2class
+prop_2class_2019
+#             value     count
+# [1,] 7.241549e-06 0.8569794
+# [2,] 1.448310e-05 0.1430206
 
-# Using the frequencies function to count the pixels for 3 classes in 2017:
-freq(class2017_3$map)
-
-# Using the frequencies function to count the pixels for 3 classes in 2014:
-freq(class2018_3$map)
-
-# Using the frequencies function to count the pixels for 3 classes in 2014:
-freq(class2019_3$map)
-
-# Using the frequencies function to count the pixels for 3 classes in 2020:
-freq(class2020_3$map)
-
-
+prop_2class_2020 <- freq(class2020_2$map)/total_2class
+prop_2class_2020
+#             value     count
+# [1,] 7.241549e-06 0.8563277
+# [2,] 1.448310e-05 0.1436723
 
 # ___________________________________________________________________________
 
 # 8 classes:
-class2014_8 <- unsuperClass(cropcod_2014, nClasses=8)
-class2020_8 <- unsuperClass(cropcod_2020, nClasses=8)
+class2014_8 <- unsuperClass(cropcod_2014, nClasses=4)
+class2020_8 <- unsuperClass(cropcod_2020, nClasses=4)
 
 par(mfrow=c(1,2))
 plot(class2014_8$map, col=changer)
