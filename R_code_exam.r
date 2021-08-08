@@ -911,9 +911,9 @@ plot(classmonomoy_2018_2$map, col=changer)
 plot(classmonomoy_2019_2$map, col=changer)
 plot(classmonomoy_2020_2$map, col=changer)
 
-total_monomoy <- 1946+3764+4977+120893
+total_monomoy <- 7859+3656
 total_monomoy
-# [1] 131580
+# [1] 11515
 
 freq(classmonomoy_2013_2$map)
 #  count (2013)
