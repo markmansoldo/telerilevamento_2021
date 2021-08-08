@@ -607,6 +607,12 @@ grid.arrange(cover2014, cover2020, nrow=1)
 # Good indication of exposed land above water level and sediment in shallow water, urbanized areas and vegetation shown at one extremity and water at the other extremity.
 
 NDWI2013 <- (cropcod_2013$cod_2013_B3 - cropcod_2013$cod_2013_B5)/(cropcod_2013$cod_2013_B3 + cropcod_2013$cod_2013_B5)
+NDWI2014 <- (cropcod_2014$cod_2014_B3 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B3 + cropcod_2014$cod_2014_B5)
+NDWI2015 <- (cropcod_2015$cod_2015_B3 - cropcod_2015$cod_2015_B5)/(cropcod_2015$cod_2015_B3 + cropcod_2015$cod_2015_B5)
+NDWI2016 <- (cropcod_2016$cod_2016_B3 - cropcod_2016$cod_2016_B5)/(cropcod_2016$cod_2016_B3 + cropcod_2016$cod_2016_B5)
+NDWI2017 <- (cropcod_2017$cod_2017_B3 - cropcod_2017$cod_2017_B5)/(cropcod_2017$cod_2017_B3 + cropcod_2017$cod_2017_B5)
+NDWI2018 <- (cropcod_2018$cod_2018_B3 - cropcod_2018$cod_2018_B5)/(cropcod_2018$cod_2018_B3 + cropcod_2018$cod_2018_B5)
+NDWI2019 <- (cropcod_2019$cod_2019_B3 - cropcod_2019$cod_2019_B5)/(cropcod_2019$cod_2019_B3 + cropcod_2019$cod_2019_B5)
 NDWI2020 <- (cropcod_2020$cod_2020_B3 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B3 + cropcod_2020$cod_2020_B5)
 
 par(mfrow=c(1,2))
@@ -616,6 +622,27 @@ plot(NDWI2020, col=mono)
 NDWIdiff <- NDWI2013-NDWI2020
 
 plot(NDWIdiff, col=changer)
+
+# To remove all land values and mark them as NA, allowing us to see the shallow sands and bathymetry:
+NDWI_cod_2013land <- reclassify(NDWI2013, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWI_cod_2014land <- reclassify(NDWI2014, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWI_cod_2015land <- reclassify(NDWI2015, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWI_cod_2016land <- reclassify(NDWI2016, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWI_cod_2017land <- reclassify(NDWI2017, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWI_cod_2018land <- reclassify(NDWI2018, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWI_cod_2019land <- reclassify(NDWI2019, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWI_cod_2020land <- reclassify(NDWI2020, cbind(-Inf, -0.1, NA), right=FALSE)
+
+# To plot all eight years:
+par(mfrow=c(2,4))
+plot(NDWI_cod_2013land, col=mono)
+plot(NDWI_cod_2014land, col=mono)
+plot(NDWI_cod_2015land, col=mono)
+plot(NDWI_cod_2016land, col=mono)
+plot(NDWI_cod_2017land, col=mono)
+plot(NDWI_cod_2018land, col=mono)
+plot(NDWI_cod_2019land, col=mono)
+plot(NDWI_cod_2020land, col=mono)
 
 # __________Normalized Difference Water Index (NDWIa)__________(Wolf, 2012; WorldView 2 equation adapted for Landsat 8)______________________________________________________
 
@@ -842,7 +869,7 @@ plot(monomoy_2018$cod_2018_B6, col=mono)
 plot(monomoy_2019$cod_2019_B6, col=mono)
 plot(monomoy_2020$cod_2020_B6, col=mono)
 
-# __________NDWI = (Coastal-NIR)/(Coastal+NIR)________________________________________________________________________________________________________________________________
+# __________NDWIa = (Coastal-NIR)/(Coastal+NIR)________________________________________________________________________________________________________________________________
 
 # Very similar to the other NDWI but shows only exposed sand, with greater contrast between land and water:
 
