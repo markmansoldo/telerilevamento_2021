@@ -99,7 +99,7 @@ plot(cropcod_2014)
 mono <- colorRampPalette(c("black","light grey","white"))(100)
 greek <- colorRampPalette(c("dark blue","blue","white"))(100)
 blbl <- colorRampPalette(c("black","blue","white"))(100)
-changer <- colorRampPalette(c("steelblue3","black","yellow"))(100)
+changer <- colorRampPalette(c("aquamarine","steelblue3","black","yellow","pink","purple"))(100)
 tropical <- colorRampPalette(c("aquamarine","navy","yellow"))(100)
 candy <- colorRampPalette(c("blueviolet","pink","white"))(100)
 fire <- colorRampPalette(c("white","orange3","purple"))(100)
@@ -315,8 +315,9 @@ class2014_8 <- unsuperClass(cropcod_2014, nClasses=8)
 class2020_8 <- unsuperClass(cropcod_2020, nClasses=8)
 
 par(mfrow=c(1,2))
-plot(class2014_8$map, col=tropical)
-plot(class2020_8$map, col=tropical)
+plot(class2014_8$map, col=changer)
+plot(class2020_8$map, col=changer)
+
 
 # Using the frequencies function to count the pixels for 8 classes in 2014:
 freq(class2014_8$map)
