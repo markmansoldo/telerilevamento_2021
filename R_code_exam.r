@@ -382,7 +382,7 @@ prop2020
 # __________Building a dataframe with relative terrain types__________________________________________________________________________________________________________________
 
 # Creation of the data frame with headings and values for 2014 and 2020
-cover <- c("Acqua","Sabbie sommerse profonde","Barriere sabbiose sommerse","Paludi salmastre","Spiaggia sabbiosa","Dune","Vegetazione densa e zone urbane")
+cover <- c("Acqua","Sabbie sommerse profonde","Sabbie sommerse superficiali","Paludi salmastre","Spiagge sabbiose","Dune","Vegetazione densa e zone urbane")
 percent_2014 <- c(57.41, 14.46, 7.06, 5.86, 2.26, 2.64, 10.31)
 percent_2020 <- c(71.91, 12.55, 0.31, 1.92, 2.11, 2.86, 8.35)
 
@@ -393,14 +393,14 @@ percentagecover
 # __________Creating bar charts of the various terrain types__________________________________________________________________________________________________________________
 
 cover2014 <- ggplot(percentagecover, aes(x=cover, y=percent_2014, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
-scale_x_discrete(limits=c("Acqua","Sabbie sommerse profonde","Barriere sabbiose sommerse","Paludi salmastre","Spiaggia sabbiosa","Dune","Vegetazione densa e zone urbane")) + theme_bw() +
-labs(y= "Copertura (%)", x = "Tipologia di terreno") + ggtitle("Tipologie di terreni e percentuale di copertura nel 2014") +
+scale_x_discrete(limits=c("Acqua","Sabbie sommerse profonde","Sabbie sommerse superficiali","Paludi salmastre","Spiagge sabbiose","Dune","Vegetazione densa e zone urbane")) + theme_bw() +
+labs(y= "Copertura (%)", x = "Tipologia di terreno") + ggtitle("Tipologie di terreni e copertura nel 2014") +
 theme(plot.title = element_text(hjust = 0.5)) + theme(legend.position = "none") +
 coord_flip(ylim = c(0, 75))
 
 cover2020 <- ggplot(percentagecover, aes(x=cover, y=percent_2020, fill=cover)) + geom_bar(stat="identity") + scale_fill_brewer(palette="Blues") +
-scale_x_discrete(limits=c("Acqua","Sabbie sommerse profonde","Barriere sabbiose sommerse","Paludi salmastre","Spiaggia sabbiosa","Dune","Vegetazione densa e zone urbane")) + theme_bw() +
-labs(y= "Copertura (%)", x = "Tipologia di terreno")  + ggtitle("Tipologie di terreni e percentuale di copertura nel 2020") +
+scale_x_discrete(limits=c("Acqua","Sabbie sommerse profonde","Sabbie sommerse superficiali","Paludi salmastre","Spiagge sabbiose","Dune","Vegetazione densa e zone urbane")) + theme_bw() +
+labs(y= "Copertura (%)", x = "Tipologia di terreno")  + ggtitle("Tipologie di terreni e copertura nel 2020") +
 theme(plot.title = element_text(hjust = 0.5)) + theme(legend.position = "none") +
 coord_flip(ylim = c(0, 75))
 
