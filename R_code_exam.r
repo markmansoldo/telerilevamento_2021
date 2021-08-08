@@ -143,8 +143,8 @@ plot(cropcod_2013)
 mono <- colorRampPalette(c("black","light grey","white"))(100)
 greek <- colorRampPalette(c("dark blue","blue","white"))(100)
 blbl <- colorRampPalette(c("black","blue","white"))(100)
-changer <- colorRampPalette(c("aquamarine","steelblue3","black","yellow"))(100)
-tropical <- colorRampPalette(c("aquamarine","navy","yellow"))(100)
+changer <- colorRampPalette(c("steelblue3","black","yellow"))(100)
+tropical <- colorRampPalette(c("pink","navy","yellow"))(100)
 candy <- colorRampPalette(c("blueviolet","pink","white"))(100)
 fire <- colorRampPalette(c("white","orange3","purple"))(100)
 
@@ -246,10 +246,10 @@ grid.arrange(gg2013, gg2014, gg2015, gg2016, gg2017, gg2018, gg2019, gg2020, nro
 
 # Coastal geomorphology with first band (Coastal/Ultra-blue) of first and last year
 
-# Band 1 (Coastal/ultra-blue) Highlights sediment movement:
+# Band 1 (Coastal/ultra-blue) Highlights beach movement:
 par(mfrow=c(1,2))
-plot(cropcod_2013$cod_2013_B1, col=mono)
-plot(cropcod_2020$cod_2020_B1, col=mono)
+plot(cropcod_2013$cod_2013_B1, col=tropical)
+plot(cropcod_2020$cod_2020_B1, col=tropical)
 
 # Band 5 (Near Infra Red) Clearly shows all exposed land:
 par(mfrow=c(1,2))
@@ -261,20 +261,21 @@ par(mfrow=c(1,2))
 plot(cropcod_2013$cod_2013_B6, col=mono)
 plot(cropcod_2020$cod_2020_B6, col=mono)
 
+
 # __________Calculating the degree of change in geomorphology between 2013 and 2020___________________________________________________________________________________________
 
 # Subtracting the first year from the last year to find the difference:
-codchange <- cropcod_2020 - cropcod_2013
+codchange <- cropcod_2013 - cropcod_2020
 plot(codchange, col=changer)
 # Bands 4-7 show very high contrast and illustrate well the degree of change
 
 # Band 5 (Near Infra Red) often used to distinguish land from water:
-codchangeB5 <- cropcod_2020$cod_2020_B5 - cropcod_2013$cod_2013_B5
+codchangeB5 <-  cropcod_2020$cod_2020_B5 - cropcod_2013$cod_2013_B5
 
-levelplot(codchangeB5, col.regions=tropical)
+levelplot(codchangeB5, col.regions=changer, main="Differenza nella geomorfologia \n costiera dal 2013 al 2020")
 
 # Band 7 (SWIR-2) shows good contrast in active sediment zones:
-codchangeB7 <- cropcod_2020$cod_2020_B7 - cropcod_2013$cod_2013_B7
+codchangeB7 <-  cropcod_2020$cod_2020_B7 - cropcod_2013$cod_2013_B7
 
 levelplot(codchangeB7, col.regions=changer)
 
@@ -616,8 +617,8 @@ NDWI2019 <- (cropcod_2019$cod_2019_B3 - cropcod_2019$cod_2019_B5)/(cropcod_2019$
 NDWI2020 <- (cropcod_2020$cod_2020_B3 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B3 + cropcod_2020$cod_2020_B5)
 
 par(mfrow=c(1,2))
-plot(NDWI2013, col=mono)
-plot(NDWI2020, col=mono)
+plot(NDWI2013, col=tropical)
+plot(NDWI2020, col=tropical)
 
 NDWIdiff <- NDWI2013-NDWI2020
 
@@ -635,14 +636,22 @@ NDWI_cod_2020land <- reclassify(NDWI2020, cbind(-Inf, -0.1, NA), right=FALSE)
 
 # To plot all eight years:
 par(mfrow=c(2,4))
-plot(NDWI_cod_2013land, col=greek)
-plot(NDWI_cod_2014land, col=greek)
-plot(NDWI_cod_2015land, col=greek)
-plot(NDWI_cod_2016land, col=greek)
-plot(NDWI_cod_2017land, col=greek)
-plot(NDWI_cod_2018land, col=greek)
-plot(NDWI_cod_2019land, col=greek)
-plot(NDWI_cod_2020land, col=greek)
+plot(NDWI_cod_2013land, col=tropical)
+plot(NDWI_cod_2014land, col=tropical)
+plot(NDWI_cod_2015land, col=tropical)
+plot(NDWI_cod_2016land, col=tropical)
+plot(NDWI_cod_2017land, col=tropical)
+plot(NDWI_cod_2018land, col=tropical)
+plot(NDWI_cod_2019land, col=tropical)
+plot(NDWI_cod_2020land, col=tropical)
+
+par(mfrow=c(1,2))
+plot(NDWI_cod_2013land, col=tropical)
+plot(NDWI_cod_2020land, col=tropical)
+
+NDWI_cod_diffland <- NDWI_cod_2013land - NDWI_cod_2020land
+
+plot(NDWI_cod_diffland, col=changer)
 
 # __________Normalized Difference Water Index (NDWIa)__________(Wolf, 2012; WorldView 2 equation adapted for Landsat 8)______________________________________________________
 
@@ -654,8 +663,9 @@ NDWIa2013 <- (cropcod_2013$cod_2013_B1 - cropcod_2013$cod_2013_B5)/(cropcod_2013
 NDWIa2020 <- (cropcod_2020$cod_2020_B1 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B1 + cropcod_2020$cod_2020_B5)
 
 par(mfrow=c(1,2))
-plot(NDWIa2013, col=mono)
-plot(NDWIa2020, col=mono)
+plot(NDWIa2013, col=tropical)
+plot(NDWIa2020, col=tropical)
+
 
 NDWIadiff <- NDWIa2013-NDWIa2020
 
@@ -712,8 +722,8 @@ NDWIb2013 <- (cropcod_2013$cod_2013_B5 - cropcod_2013$cod_2013_B6)/(cropcod_2013
 NDWIb2020 <- (cropcod_2020$cod_2020_B5 - cropcod_2020$cod_2020_B6)/(cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B6)
 
 par(mfrow=c(1,2))
-plot(NDWIb2013, col=mono)
-plot(NDWIb2020, col=mono)
+plot(NDWIb2013, col=tropical)
+plot(NDWIb2020, col=tropical)
 
 NDWIbdiff <- NDWIb2013-NDWIb2020
 
@@ -882,15 +892,15 @@ NDWIa_monomoy_2018 <- (monomoy_2018$cod_2018_B1 - monomoy_2018$cod_2018_B5)/(mon
 NDWIa_monomoy_2019 <- (monomoy_2019$cod_2019_B1 - monomoy_2019$cod_2019_B5)/(monomoy_2019$cod_2019_B1 + monomoy_2019$cod_2019_B5)
 NDWIa_monomoy_2020 <- (monomoy_2020$cod_2020_B1 - monomoy_2020$cod_2020_B5)/(monomoy_2020$cod_2020_B1 + monomoy_2020$cod_2020_B5)
 
-par(mfrow=c(2,4))
-plot(NDWIa_monomoy_2013, col=mono)
-plot(NDWIa_monomoy_2014, col=mono)
-plot(NDWIa_monomoy_2015, col=mono)
-plot(NDWIa_monomoy_2016, col=mono)
-plot(NDWIa_monomoy_2017, col=mono)
-plot(NDWIa_monomoy_2018, col=mono)
-plot(NDWIa_monomoy_2019, col=mono)
-plot(NDWIa_monomoy_2020, col=mono)
+par(mfrow=c(1,8))
+plot(NDWIa_monomoy_2013, col=tropical)
+plot(NDWIa_monomoy_2014, col=tropical)
+plot(NDWIa_monomoy_2015, col=tropical)
+plot(NDWIa_monomoy_2016, col=tropical)
+plot(NDWIa_monomoy_2017, col=tropical)
+plot(NDWIa_monomoy_2018, col=tropical)
+plot(NDWIa_monomoy_2019, col=tropical)
+plot(NDWIa_monomoy_2020, col=tropical)
 
 # Remove all values between -0.1 and 1  to remove water and any tidal sands:
 NDWIa_monomoy_2013land <- reclassify(NDWIa_monomoy_2013, cbind(-0.1, 1, NA))
@@ -905,7 +915,7 @@ NDWIa_monomoy_2020land <- reclassify(NDWIa_monomoy_2020, cbind(-0.1, 1, NA))
 # Showing only exposed land:
 # Brightest colour indicates bare sand
 # Darkest colour indicates relatively dense vegetation
-par(mfrow=c(2,4))
+par(mfrow=c(1,8))
 plot(NDWIa_monomoy_2013land, col="blue")
 plot(NDWIa_monomoy_2014land, col="blue")
 plot(NDWIa_monomoy_2015land, col="blue")
@@ -928,7 +938,7 @@ classmonomoy_2018_2 <- unsuperClass(NDWIa_monomoy_2018land, nClasses=2)
 classmonomoy_2019_2 <- unsuperClass(NDWIa_monomoy_2019land, nClasses=2)
 classmonomoy_2020_2 <- unsuperClass(NDWIa_monomoy_2020land, nClasses=2)
 
-par(mfrow=c(2,4))
+par(mfrow=c(1,8))
 plot(classmonomoy_2013_2$map, col=tropical)
 plot(classmonomoy_2014_2$map, col=tropical)
 plot(classmonomoy_2015_2$map, col=tropical)
