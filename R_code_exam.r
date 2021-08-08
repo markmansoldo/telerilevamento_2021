@@ -31,7 +31,15 @@ import2020
 cod_2020 <- stack(import2020)
 cod_2020
 
-# This process was done for all four years to be analyzed: 2014, 2016, 2018, 2020
+# This process was done for all years to be analyzed: 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020
+
+# __________2019______________________________________________________________________________________________________________________________________________________________
+list2019 <- list.files(pattern="cod_2019")
+list2019
+import2019 <- lapply(list2019,brick)
+import2019
+cod_2019 <- stack(import2019)
+cod_2019
 
 # __________2018______________________________________________________________________________________________________________________________________________________________
 list2018 <- list.files(pattern="cod_2018")
@@ -41,6 +49,14 @@ import2018
 cod_2018 <- stack(import2018)
 cod_2018
 
+# __________2017______________________________________________________________________________________________________________________________________________________________
+list2017 <- list.files(pattern="cod_2017")
+list2017
+import2017 <- lapply(list2017,brick)
+import2017
+cod_2017 <- stack(import2017)
+cod_2017
+
 # __________2016______________________________________________________________________________________________________________________________________________________________
 list2016 <- list.files(pattern="cod_2016")
 list2016
@@ -49,6 +65,14 @@ import2016
 cod_2016 <- stack(import2016)
 cod_2016
 
+# __________2015______________________________________________________________________________________________________________________________________________________________
+list2015 <- list.files(pattern="cod_2015")
+list2015
+import2015 <- lapply(list2015,brick)
+import2015
+cod_2015 <- stack(import2015)
+cod_2015
+
 # __________2014______________________________________________________________________________________________________________________________________________________________
 list2014 <- list.files(pattern="cod_2014")
 list2014
@@ -56,6 +80,14 @@ import2014 <- lapply(list2014,brick)
 import2014
 cod_2014 <- stack(import2014)
 cod_2014
+
+# __________2013______________________________________________________________________________________________________________________________________________________________
+list2013 <- list.files(pattern="cod_2013")
+list2013
+import2013 <- lapply(list2013,brick)
+import2013
+cod_2013 <- stack(import2013)
+cod_2013
 
 # __________Selecting study area using drawExtent to crop the images__________________________________________________________________________________________________________
 
@@ -84,14 +116,26 @@ cropcod_2018 <- crop(x = cod_2018, y = new_extent)
 cropcod_2020 <- crop(x = cod_2020, y = new_extent)
 plot(cropcod_2020)
 
+cropcod_2019 <- crop(x = cod_2019, y = new_extent)
+plot(cropcod_2019)
+
 cropcod_2018 <- crop(x = cod_2018, y = new_extent)
 plot(cropcod_2018)
+
+cropcod_2017 <- crop(x = cod_2017, y = new_extent)
+plot(cropcod_2017)
 
 cropcod_2016 <- crop(x = cod_2016, y = new_extent)
 plot(cropcod_2016)
 
+cropcod_2015 <- crop(x = cod_2015, y = new_extent)
+plot(cropcod_2015)
+
 cropcod_2014 <- crop(x = cod_2014, y = new_extent)
 plot(cropcod_2014)
+
+cropcod_2013 <- crop(x = cod_2013, y = new_extent)
+plot(cropcod_2013)
 
 # __________Colour palettes___________________________________________________________________________________________________________________________________________________
 
@@ -117,57 +161,85 @@ fire <- colorRampPalette(c("white","orange3","purple"))(100)
 # Band 9 = Cirrus
 
 # To plot all of them together:
-par(mfrow=c(1,4))
+par(mfrow=c(2,4))
+plotRGB(cropcod_2013, 4, 3, 2, stretch="Lin")
 plotRGB(cropcod_2014, 4, 3, 2, stretch="Lin")
+plotRGB(cropcod_2015, 4, 3, 2, stretch="Lin")
 plotRGB(cropcod_2016, 4, 3, 2, stretch="Lin")
+plotRGB(cropcod_2017, 4, 3, 2, stretch="Lin")
 plotRGB(cropcod_2018, 4, 3, 2, stretch="Lin")
+plotRGB(cropcod_2019, 4, 3, 2, stretch="Lin")
 plotRGB(cropcod_2020, 4, 3, 2, stretch="Lin")
 
 # Very useful for bathymetric studies:
-par(mfrow=c(1,4))
+par(mfrow=c(1,8))
+plotRGB(cropcod_2013, 4, 3, 1, stretch="Lin")
 plotRGB(cropcod_2014, 4, 3, 1, stretch="Lin")
+plotRGB(cropcod_2015, 4, 3, 1, stretch="Lin")
 plotRGB(cropcod_2016, 4, 3, 1, stretch="Lin")
+plotRGB(cropcod_2017, 4, 3, 1, stretch="Lin")
 plotRGB(cropcod_2018, 4, 3, 1, stretch="Lin")
+plotRGB(cropcod_2019, 4, 3, 1, stretch="Lin")
 plotRGB(cropcod_2020, 4, 3, 1, stretch="Lin")
 
 # Emphasises coastal sands with bright white sand:
-par(mfrow=c(1,4))
+par(mfrow=c(1,8))
+plotRGB(cropcod_2013, 1, 2, 3, stretch="Lin")
 plotRGB(cropcod_2014, 1, 2, 3, stretch="Lin")
+plotRGB(cropcod_2015, 1, 2, 3, stretch="Lin")
 plotRGB(cropcod_2016, 1, 2, 3, stretch="Lin")
+plotRGB(cropcod_2017, 1, 2, 3, stretch="Lin")
 plotRGB(cropcod_2018, 1, 2, 3, stretch="Lin")
+plotRGB(cropcod_2019, 1, 2, 3, stretch="Lin")
 plotRGB(cropcod_2020, 1, 2, 3, stretch="Lin")
 
 # Emphasises vegetation and terrain:
-par(mfrow=c(1,4))
+par(mfrow=c(2,4))
+plotRGB(cropcod_2013, 5, 6, 7, stretch="Lin")
 plotRGB(cropcod_2014, 5, 6, 7, stretch="Lin")
+plotRGB(cropcod_2015, 5, 6, 7, stretch="Lin")
 plotRGB(cropcod_2016, 5, 6, 7, stretch="Lin")
+plotRGB(cropcod_2017, 5, 6, 7, stretch="Lin")
 plotRGB(cropcod_2018, 5, 6, 7, stretch="Lin")
+plotRGB(cropcod_2019, 5, 6, 7, stretch="Lin")
 plotRGB(cropcod_2020, 5, 6, 7, stretch="Lin")
 
 # Emphasises movement of submerged sediment:
-par(mfrow=c(1,4))
+par(mfrow=c(1,8))
+plotRGB(cropcod_2013, 5, 6, 1, stretch="Lin")
 plotRGB(cropcod_2014, 5, 6, 1, stretch="Lin")
+plotRGB(cropcod_2015, 5, 6, 1, stretch="Lin")
 plotRGB(cropcod_2016, 5, 6, 1, stretch="Lin")
+plotRGB(cropcod_2017, 5, 6, 1, stretch="Lin")
 plotRGB(cropcod_2018, 5, 6, 1, stretch="Lin")
+plotRGB(cropcod_2019, 5, 6, 1, stretch="Lin")
 plotRGB(cropcod_2020, 5, 6, 1, stretch="Lin")
 
 # Histogram stretch is too blurry and hinders visualization of geomorphology:
-par(mfrow=c(1,4))
+par(mfrow=c(1,8))
+plotRGB(cropcod_2013, 5, 6, 1, stretch="hist")
 plotRGB(cropcod_2014, 5, 6, 1, stretch="hist")
+plotRGB(cropcod_2015, 5, 6, 1, stretch="hist")
 plotRGB(cropcod_2016, 5, 6, 1, stretch="hist")
+plotRGB(cropcod_2017, 5, 6, 1, stretch="hist")
 plotRGB(cropcod_2018, 5, 6, 1, stretch="hist")
+plotRGB(cropcod_2019, 5, 6, 1, stretch="hist")
 plotRGB(cropcod_2020, 5, 6, 1, stretch="hist")
 
 # __________ggRGB function to apply grid base_________________________________________________________________________________________________________________________________
 
 # Emphasises movement of submerged sediment:
-gg2014 <- ggRGB(cropcod_2014, 5, 6, 1, stretch="lin")
-gg2016 <- ggRGB(cropcod_2016, 5, 6, 1, stretch="lin")
+gg2013 <- ggRGB(cropcod_2013, 5, 6, 1, stretch="Lin")
+gg2014 <- ggRGB(cropcod_2014, 5, 6, 1, stretch="Lin")
+gg2015 <- ggRGB(cropcod_2015, 5, 6, 1, stretch="Lin")
+gg2016 <- ggRGB(cropcod_2016, 5, 6, 1, stretch="Lin")
+gg2017 <- ggRGB(cropcod_2017, 5, 6, 1, stretch="Lin")
 gg2018 <- ggRGB(cropcod_2018, 5, 6, 1, stretch="Lin")
+gg2019 <- ggRGB(cropcod_2019, 5, 6, 1, stretch="Lin")
 gg2020 <- ggRGB(cropcod_2020, 5, 6, 1, stretch="Lin")
 
 # To plot the ggRGB objects:
-grid.arrange(gg2014, gg2016, gg2018, gg2020, nrow = 1)
+grid.arrange(gg2013, gg2014, gg2015, gg2016, gg2017, gg2018, gg2019, gg2020, nrow = 1)
 
 
 # __________Experimenting with different bands within the bricks to visualize geomorphology___________________________________________________________________________________
@@ -176,33 +248,33 @@ grid.arrange(gg2014, gg2016, gg2018, gg2020, nrow = 1)
 
 # Band 1 (Coastal/ultra-blue) Highlights sediment movement:
 par(mfrow=c(1,2))
-plot(cropcod_2014$cod_2014_B1, col=changer)
-plot(cropcod_2020$cod_2020_B1, col=changer)
+plot(cropcod_2013$cod_2013_B1, col=mono)
+plot(cropcod_2020$cod_2020_B1, col=mono)
 
 # Band 5 (Near Infra Red) Clearly shows all exposed land:
 par(mfrow=c(1,2))
-plot(cropcod_2014$cod_2014_B5, col=changer)
-plot(cropcod_2020$cod_2020_B5, col=changer)
+plot(cropcod_2013$cod_2013_B5, col=mono)
+plot(cropcod_2020$cod_2020_B5, col=mono)
 
 # Band 6 (SWIR-1) Illustrates ocean-facing sandbar change:
 par(mfrow=c(1,2))
-plot(cropcod_2014$cod_2014_B6, col=changer)
-plot(cropcod_2020$cod_2020_B6, col=changer)
+plot(cropcod_2013$cod_2013_B6, col=mono)
+plot(cropcod_2020$cod_2020_B6, col=mono)
 
-# __________Calculating the degree of change in geomorphology between 2014 and 2020___________________________________________________________________________________________
+# __________Calculating the degree of change in geomorphology between 2013 and 2020___________________________________________________________________________________________
 
 # Subtracting the first year from the last year to find the difference:
-codchange <- cropcod_2020 - cropcod_2014
+codchange <- cropcod_2020 - cropcod_2013
 plot(codchange, col=changer)
 # Bands 4-7 show very high contrast and illustrate well the degree of change
 
 # Band 5 (Near Infra Red) often used to distinguish land from water:
-codchangeB5 <- cropcod_2020$cod_2020_B5 - cropcod_2014$cod_2014_B5
+codchangeB5 <- cropcod_2020$cod_2020_B5 - cropcod_2013$cod_2013_B5
 
 levelplot(codchangeB5, col.regions=tropical)
 
 # Band 7 (SWIR-2) shows good contrast in active sediment zones:
-codchangeB7 <- cropcod_2020$cod_2020_B7 - cropcod_2014$cod_2014_B7
+codchangeB7 <- cropcod_2020$cod_2020_B7 - cropcod_2013$cod_2013_B7
 
 levelplot(codchangeB7, col.regions=changer)
 
@@ -214,17 +286,28 @@ levelplot(codchangeB7, col.regions=changer)
 
 # __________Unsupervised classification_______________________________________________________________________________________________________________________________________
 
-# 2 classes with all four years:
+# 2 classes with all eight years:
+class2013_2 <- unsuperClass(cropcod_2013, nClasses=2)
 class2014_2 <- unsuperClass(cropcod_2014, nClasses=2)
+class2015_2 <- unsuperClass(cropcod_2015, nClasses=2)
 class2016_2 <- unsuperClass(cropcod_2016, nClasses=2)
+class2017_2 <- unsuperClass(cropcod_2017, nClasses=2)
 class2018_2 <- unsuperClass(cropcod_2018, nClasses=2)
+class2019_2 <- unsuperClass(cropcod_2019, nClasses=2)
 class2020_2 <- unsuperClass(cropcod_2020, nClasses=2)
 
-par(mfrow=c(1,4))
+par(mfrow=c(1,8))
+plot(class2013_2$map)
 plot(class2014_2$map)
+plot(class2015_2$map)
 plot(class2016_2$map)
+plot(class2017_2$map)
 plot(class2018_2$map)
+plot(class2019_2$map)
 plot(class2020_2$map)
+
+# Using the frequencies function to count the pixels for 2 classes in 2013:
+freq(class2013_2$map)
 
 # Using the frequencies function to count the pixels for 2 classes in 2014:
 freq(class2014_2$map)
@@ -233,6 +316,9 @@ freq(class2014_2$map)
 # [1,]     1 116482 (water)
 # [2,]     2  21610 (land)
 
+# Using the frequencies function to count the pixels for 2 classes in 2015:
+freq(class2015_2$map)
+
 # Using the frequencies function to count the pixels for 2 classes in 2016:
 freq(class2016_2$map)
 
@@ -240,12 +326,19 @@ freq(class2016_2$map)
 # [1,]     1 112807 (water)
 # [2,]     2  25285 (land)
 
+# Using the frequencies function to count the pixels for 2 classes in 2017:
+freq(class2017_2$map)
+
 # Using the frequencies function to count the pixels for 2 classes in 2018:
 freq(class2018_2$map)
 
 #      value  count (2018)
 # [1,]     1 114223 (water)
 # [2,]     2  23869 (land)
+
+
+# Using the frequencies function to count the pixels for 2 classes in 2019:
+freq(class2019_2$map)
 
 # Using the frequencies function to count the pixels for 2 classes in 2020:
 freq(class2020_2$map)
@@ -257,12 +350,27 @@ freq(class2020_2$map)
 # __________________________________________________________________________
 
 # 3 classes:
+class2013_3 <- unsuperClass(cropcod_2013, nClasses=3)
 class2014_3 <- unsuperClass(cropcod_2014, nClasses=3)
+class2015_3 <- unsuperClass(cropcod_2015, nClasses=3)
+class2016_3 <- unsuperClass(cropcod_2016, nClasses=3)
+class2017_3 <- unsuperClass(cropcod_2017, nClasses=3)
+class2018_3 <- unsuperClass(cropcod_2018, nClasses=3)
+class2019_3 <- unsuperClass(cropcod_2019, nClasses=3)
 class2020_3 <- unsuperClass(cropcod_2020, nClasses=3)
 
-par(mfrow=c(1,2))
+par(mfrow=c(1,8))
+plot(class2013_3$map)
 plot(class2014_3$map)
+plot(class2015_3$map)
+plot(class2016_3$map)
+plot(class2017_3$map)
+plot(class2018_3$map)
+plot(class2019_3$map)
 plot(class2020_3$map)
+
+# Using the frequencies function to count the pixels for 3 classes in 2013:
+freq(class2013_3$map)
 
 # Using the frequencies function to count the pixels for 3 classes in 2014:
 freq(class2014_3$map)
@@ -272,6 +380,21 @@ freq(class2014_3$map)
 # [2,]     2 114193 (water)
 # [3,]     3   4783 (sand)
 
+# Using the frequencies function to count the pixels for 3 classes in 2015:
+freq(class2015_3$map)
+
+# Using the frequencies function to count the pixels for 3 classes in 2016:
+freq(class2016_3$map)
+
+# Using the frequencies function to count the pixels for 3 classes in 2017:
+freq(class2017_3$map)
+
+# Using the frequencies function to count the pixels for 3 classes in 2014:
+freq(class2018_3$map)
+
+# Using the frequencies function to count the pixels for 3 classes in 2014:
+freq(class2019_3$map)
+
 # Using the frequencies function to count the pixels for 3 classes in 2020:
 freq(class2020_3$map)
 
@@ -279,34 +402,6 @@ freq(class2020_3$map)
 # [1,]     1  16437 (land)
 # [2,]     2 117867 (water)
 # [3,]     3   3788 (sand)
-
-# ___________________________________________________________________________
-
-# 4 classes:
-class2014_4 <- unsuperClass(cropcod_2014, nClasses=4)
-class2020_4 <- unsuperClass(cropcod_2020, nClasses=4)
-
-par(mfrow=c(1,2))
-plot(class2014_4$map)
-plot(class2020_4$map)
-
-# Using the frequencies function to count the pixels for 4 classes in 2014:
-freq(class2014_4$map)
-
-#      value  count (2014)
-# [1,]     1   9786 (submerged sand and salt marsh)
-# [2,]     2  15727 (mainland)
-# [3,]     3   4631 (coastal habitat)
-# [4,]     4 107948 (water)
-
-# Using the frequencies function to count the pixels for 4 classes in 2020:
-freq(class2020_4$map)
-
-#      value  count (2020)
-# [1,]     1   4327 (submerged sand and salt marsh)
-# [2,]     2  13050 (mainland)
-# [3,]     3 116914 (water)
-# [4,]     4   3801 (coastal habitat)
 
 # ___________________________________________________________________________
 
@@ -431,16 +526,47 @@ plot(NDWIdiff, col=changer)
 
 # Very similar to the other NDWI but shows only exposed sand, with greater contrast between land and water.
 
-NDWIa2014 <- (cropcod_2014$cod_2014_B1 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B1 + cropcod_2014$cod_2014_B5)
+NDWIa2013 <- (cropcod_2013$cod_2013_B1 - cropcod_2013$cod_2013_B5)/(cropcod_2013$cod_2013_B1 + cropcod_2013$cod_2013_B5)
 NDWIa2020 <- (cropcod_2020$cod_2020_B1 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B1 + cropcod_2020$cod_2020_B5)
 
 par(mfrow=c(1,2))
 plot(NDWIa2014, col=mono)
 plot(NDWIa2020, col=mono)
 
-NDWIadiff <- NDWIa2020-NDWIa2014
+NDWIadiff <- NDWIa2020-NDWIa2013
 
 plot(NDWIadiff, col=changer)
+
+# To apply the NDWI to all eight years:
+NDWIa2013_cod <- (cropcod_2013$cod_2013_B1 - cropcod_2013$cod_2013_B5)/(cropcod_2013$cod_2013_B1 + cropcod_2013$cod_2013_B5)
+NDWIa2014_cod <- (cropcod_2014$cod_2014_B1 - cropcod_2014$cod_2014_B5)/(cropcod_2014$cod_2014_B1 + cropcod_2014$cod_2014_B5)
+NDWIa2015_cod <- (cropcod_2015$cod_2015_B1 - cropcod_2015$cod_2015_B5)/(cropcod_2015$cod_2015_B1 + cropcod_2015$cod_2015_B5)
+NDWIa2016_cod <- (cropcod_2016$cod_2016_B1 - cropcod_2016$cod_2016_B5)/(cropcod_2016$cod_2016_B1 + cropcod_2016$cod_2016_B5)
+NDWIa2017_cod <- (cropcod_2017$cod_2017_B1 - cropcod_2017$cod_2017_B5)/(cropcod_2017$cod_2017_B1 + cropcod_2017$cod_2017_B5)
+NDWIa2018_cod <- (cropcod_2018$cod_2018_B1 - cropcod_2018$cod_2018_B5)/(cropcod_2018$cod_2018_B1 + cropcod_2018$cod_2018_B5)
+NDWIa2019_cod <- (cropcod_2019$cod_2019_B1 - cropcod_2019$cod_2019_B5)/(cropcod_2019$cod_2019_B1 + cropcod_2019$cod_2019_B5)
+NDWIa2020_cod <- (cropcod_2020$cod_2020_B1 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B1 + cropcod_2020$cod_2020_B5)
+
+# To highlight all shallow water values, setting terrain values to NA:
+NDWIa_cod_2013land <- reclassify(NDWIa2013_cod, cbind(-1, -0.1, NA))
+NDWIa_cod_2014land <- reclassify(NDWIa2014_cod, cbind(-1, -0.1, NA))
+NDWIa_cod_2015land <- reclassify(NDWIa2015_cod, cbind(-1, -0.1, NA))
+NDWIa_cod_2016land <- reclassify(NDWIa2016_cod, cbind(-1, -0.1, NA))
+NDWIa_cod_2017land <- reclassify(NDWIa2017_cod, cbind(-1, -0.1, NA))
+NDWIa_cod_2018land <- reclassify(NDWIa2018_cod, cbind(-1, -0.1, NA))
+NDWIa_cod_2019land <- reclassify(NDWIa2019_cod, cbind(-1, -0.1, NA))
+NDWIa_cod_2020land <- reclassify(NDWIa2020_cod, cbind(-1, -0.1, NA))
+
+# Show water
+par(mfrow=c(1,8))
+plot(NDWIa_cod_2013land, col=mono)
+plot(NDWIa_cod_2014land, col=mono)
+plot(NDWIa_cod_2015land, col=mono)
+plot(NDWIa_cod_2016land, col=mono)
+plot(NDWIa_cod_2017land, col=mono)
+plot(NDWIa_cod_2018land, col=mono)
+plot(NDWIa_cod_2019land, col=mono)
+plot(NDWIa_cod_2020land, col=mono)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
@@ -548,40 +674,7 @@ BSIdiff <- BSI2020-BSI2014
 plot(BSIdiff, col=changer)
 
 #____________________________________________________________________________________________________________________________________________________________________________
-# __________Secondary crop for Monomoy National Wildlife Refuge______________________________________________________________________________________________________________
-
-# __________2019______________________________________________________________________________________________________________________________________________________________
-list2019 <- list.files(pattern="cod_2019")
-list2019
-import2019 <- lapply(list2019,brick)
-import2019
-cod_2019 <- stack(import2019)
-cod_2019
-
-# __________2017______________________________________________________________________________________________________________________________________________________________
-list2017 <- list.files(pattern="cod_2017")
-list2017
-import2017 <- lapply(list2017,brick)
-import2017
-cod_2017 <- stack(import2017)
-cod_2017
-
-# __________2015______________________________________________________________________________________________________________________________________________________________
-list2015 <- list.files(pattern="cod_2015")
-list2015
-import2015 <- lapply(list2015,brick)
-import2015
-cod_2015 <- stack(import2015)
-cod_2015
-
-# __________2013______________________________________________________________________________________________________________________________________________________________
-list2013 <- list.files(pattern="cod_2013")
-list2013
-import2013 <- lapply(list2013,brick)
-import2013
-cod_2013 <- stack(import2013)
-cod_2013
-
+# __________Monomoy National Wildlife Refuge______________________________________________________________________________________________________________
 # ____________________________________________________________________________________________________________________________________________________________________________
 
 # Upload one image to understand the dimensions to be cropped:
