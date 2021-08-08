@@ -375,11 +375,6 @@ freq(class2013_3$map)
 # Using the frequencies function to count the pixels for 3 classes in 2014:
 freq(class2014_3$map)
 
-#      value  count (2014)
-# [1,]     1  19116 (land)
-# [2,]     2 114193 (water)
-# [3,]     3   4783 (sand)
-
 # Using the frequencies function to count the pixels for 3 classes in 2015:
 freq(class2015_3$map)
 
@@ -398,10 +393,7 @@ freq(class2019_3$map)
 # Using the frequencies function to count the pixels for 3 classes in 2020:
 freq(class2020_3$map)
 
-#      value  count (2020)
-# [1,]     1  16437 (land)
-# [2,]     2 117867 (water)
-# [3,]     3   3788 (sand)
+
 
 # ___________________________________________________________________________
 
@@ -530,7 +522,7 @@ NDWIa2013 <- (cropcod_2013$cod_2013_B1 - cropcod_2013$cod_2013_B5)/(cropcod_2013
 NDWIa2020 <- (cropcod_2020$cod_2020_B1 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B1 + cropcod_2020$cod_2020_B5)
 
 par(mfrow=c(1,2))
-plot(NDWIa2014, col=mono)
+plot(NDWIa2013, col=mono)
 plot(NDWIa2020, col=mono)
 
 NDWIadiff <- NDWIa2020-NDWIa2013
@@ -547,17 +539,17 @@ NDWIa2018_cod <- (cropcod_2018$cod_2018_B1 - cropcod_2018$cod_2018_B5)/(cropcod_
 NDWIa2019_cod <- (cropcod_2019$cod_2019_B1 - cropcod_2019$cod_2019_B5)/(cropcod_2019$cod_2019_B1 + cropcod_2019$cod_2019_B5)
 NDWIa2020_cod <- (cropcod_2020$cod_2020_B1 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B1 + cropcod_2020$cod_2020_B5)
 
-# To highlight all shallow water values, setting terrain values to NA:
-NDWIa_cod_2013land <- reclassify(NDWIa2013_cod, cbind(-1, -0.1, NA))
-NDWIa_cod_2014land <- reclassify(NDWIa2014_cod, cbind(-1, -0.1, NA))
-NDWIa_cod_2015land <- reclassify(NDWIa2015_cod, cbind(-1, -0.1, NA))
-NDWIa_cod_2016land <- reclassify(NDWIa2016_cod, cbind(-1, -0.1, NA))
-NDWIa_cod_2017land <- reclassify(NDWIa2017_cod, cbind(-1, -0.1, NA))
-NDWIa_cod_2018land <- reclassify(NDWIa2018_cod, cbind(-1, -0.1, NA))
-NDWIa_cod_2019land <- reclassify(NDWIa2019_cod, cbind(-1, -0.1, NA))
-NDWIa_cod_2020land <- reclassify(NDWIa2020_cod, cbind(-1, -0.1, NA))
+# To highlight all shallow water values, setting terrain values to NA so that shallow sand will be darker:
+NDWIa_cod_2013land <- reclassify(NDWIa2013_cod, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWIa_cod_2014land <- reclassify(NDWIa2014_cod, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWIa_cod_2015land <- reclassify(NDWIa2015_cod, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWIa_cod_2016land <- reclassify(NDWIa2016_cod, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWIa_cod_2017land <- reclassify(NDWIa2017_cod, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWIa_cod_2018land <- reclassify(NDWIa2018_cod, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWIa_cod_2019land <- reclassify(NDWIa2019_cod, cbind(-Inf, -0.1, NA), right=FALSE)
+NDWIa_cod_2020land <- reclassify(NDWIa2020_cod, cbind(-Inf, -0.1, NA), right=FALSE)
 
-# Show water
+# Show shallow water in black:
 par(mfrow=c(1,8))
 plot(NDWIa_cod_2013land, col=mono)
 plot(NDWIa_cod_2014land, col=mono)
@@ -567,6 +559,15 @@ plot(NDWIa_cod_2017land, col=mono)
 plot(NDWIa_cod_2018land, col=mono)
 plot(NDWIa_cod_2019land, col=mono)
 plot(NDWIa_cod_2020land, col=mono)
+
+# To analyse the difference between the first and last year:
+par(mfrow=c(1,2))
+plot(NDWIa_cod_2013land, col=mono)
+plot(NDWIa_cod_2020land, col=mono)
+
+NDWIa_cod_diff <- NDWIa_cod_2013land-NDWIa_cod_2020land
+
+plot(NDWIa_cod_diff, col=mono)
 
 # __________Normalized Difference Water Index (NDWI)__________________________________________________________________________________________________________________________
 
