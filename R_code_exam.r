@@ -814,9 +814,9 @@ melt_groundcover <- melt(monomoy_groundcover, id.vars='monomoycover')
 
 # To create the graph:
 ggplot(melt_groundcover, aes(x=monomoycover, y=value, fill=monomoycover)) + scale_fill_brewer(palette="Blues") + geom_bar(stat='identity') +
-facet_grid(.~ variable, labeller = as_labeller(years)) + labs(y= "Area (Ha)", x = "Tipologia di terreno")  + ggtitle("Tipologie di terreno e rispettive estensioni all'interno della Riserva Statale di Monomoy") +
-theme(plot.title = element_text(hjust = 0.5)) + theme(legend.position = "none")  + theme_bw() + theme(legend.position = "none") + theme(plot.title = element_text(hjust = 0.5)) +
-scale_x_discrete(limits=c("Sabbia nuda","Vegetazione"))
+facet_grid(.~ variable, labeller = as_labeller(years)) + labs(y= "Area (ha)", x = "Tipologia di terreno")  + ggtitle("Tipologie di terreno e rispettive estensioni nella Riserva Statale di Monomoy dall'anno 2013 al 2020") +
+theme_bw() + scale_x_discrete(limits=c("Sabbia nuda","Vegetazione")) + theme(axis.text.x=element_blank()) + guides(fill=guide_legend("Tipologia di terreno")) +
+theme(plot.title = element_text(hjust = 0.5))
 
 # __________Monomoy data frame for bare sand and plover_______________________________________________________________________________________________________________________
 
@@ -829,11 +829,11 @@ monomoy_sand_plover <- data.frame(sand_year, sand_area, sand_pairs)
 monomoy_sand_plover
 
 plover_graph_sand <- ggplot(monomoy_sand_plover, aes(x =factor(sand_year))) + theme_bw() +
-labs(x = "Year") + ggtitle("Number of breeding pairs of plovers and area of bare sand in the Monomoy National Wildlife Refuge")  +
+labs(x = "Anno") + ggtitle("Numero di coppie nidificanti del corriere canoro ed estensione della sabbia nuda nella Riserva Statale di Monomoy")  +
 theme(plot.title = element_text(hjust = 0.5)) +
   geom_col(aes(y = sand_area), size = 1, color = "darkblue", fill = "white") + 
   geom_line(aes(y = 12*sand_pairs), size = 1.5, color="red", group = 1) +
-  scale_y_continuous(name = "Area (ha)", limits = c(0,750), breaks = seq(0,750, by = 100), sec.axis = sec_axis(~./12, name = "Mating plover pairs")) 
+  scale_y_continuous(name = "Area di sabbia nuda (ha)", limits = c(0,750), breaks = seq(0,750, by = 100), sec.axis = sec_axis(~./12, name = "Numero di coppie nidificanti")) 
 
 
 grid.arrange(plover_graph_sand, nrow=1)
@@ -849,11 +849,11 @@ monomoy_veg_plover <- data.frame(veg_year, veg_area, veg_pairs)
 monomoy_veg_plover
 
 plover_graph_veg <- ggplot(monomoy_veg_plover, aes(x =factor(veg_year))) + theme_bw() +
-labs(x = "Year") + ggtitle("Number of breeding pairs of plovers and area of sand dune and salt marsh vegetation in the Monomoy National Wildlife Refuge")  +
+labs(x = "Anno") + ggtitle("Numero di coppie nidificanti del corriere canoro ed estensione della vegetazione costiera nella Riserva Statale di Monomoy")  +
 theme(plot.title = element_text(hjust = 0.5)) +
   geom_col(aes(y = veg_area), size = 1, color = "darkblue", fill = "white") + 
   geom_line(aes(y = 12*veg_pairs), size = 1.5, color="red", group = 1) +
-  scale_y_continuous(name = "Area (ha)", limits = c(0,750), breaks = seq(0,750, by = 100), sec.axis = sec_axis(~./12, name = "Mating plover pairs")) 
+  scale_y_continuous(name = "Area di vegetazione costiera (ha)", limits = c(0,750), breaks = seq(0,750, by = 100), sec.axis = sec_axis(~./12, name = "Numero di coppie nidificanti")) 
 
 
 grid.arrange(plover_graph_veg, nrow=1)
@@ -880,7 +880,7 @@ cor_sand_plover
 # R = 0.8614462
 
 # To create the scatter plot with line of best fit:
-scatter_sand_plover <- ggscatter(monomoy_sand_plover, x = "sand_area", y = "sand_pairs", add = "reg.line", conf.int = TRUE, cor.coef = TRUE, cor.method = "pearson", xlab = "Area of bare sand (ha)", ylab = "Number of breeding pairs")
+scatter_sand_plover <- ggscatter(monomoy_sand_plover, x = "sand_area", y = "sand_pairs", add = "reg.line", conf.int = TRUE, cor.coef = TRUE, cor.method = "pearson", xlab = "Area di sabbia nuda (ha)", ylab = "Numero di coppie nidificanti")
 scatter_sand_plover
 
 # __________For vegetation and plover pairs___________________________________________________________________________________________________________________________________
@@ -900,13 +900,13 @@ cor_veg_plover
 # R = 0.5905803 
 
 # To create the scatter plot with line of best fit:
-scatter_veg_plover <- ggscatter(monomoy_veg_plover, x = "veg_area", y = "veg_pairs", add = "reg.line", conf.int = TRUE, cor.coef = TRUE, cor.method = "pearson", xlab = "Area of vegetation (ha)", ylab = "Number of breeding pairs")
+scatter_veg_plover <- ggscatter(monomoy_veg_plover, x = "veg_area", y = "veg_pairs", add = "reg.line", conf.int = TRUE, cor.coef = TRUE, cor.method = "pearson", xlab = "Area di vegetazione costiera (ha)", ylab = "Numero di coppie nidificanti")
 scatter_veg_plover
 
 # ____________________________________________________________________________________________________________________________________________________________________________
 
 # To plot both scatter plots together:
-both_scatters <- grid.arrange(scatter_sand_plover, scatter_veg_plover, nrow=1, top= "Correlation between the number of breeding pairs of piping plovers compared to the area of bare sand and dune vegetation in the Riserva Statale di Monomoy")
+both_scatters <- grid.arrange(scatter_sand_plover, scatter_veg_plover, nrow=1, top= "Correlazione fra il numero di coppie nidificanti del corriere canoro e rispettive estensioni \n della sabbia nuda e della vegetazione costiera nella Riserva Statale di Monomoy tra l'anno 2013 e il 2020")
 both_scatters
 
 # ____________________________________________________________________________________________________________________________________________________________________________
