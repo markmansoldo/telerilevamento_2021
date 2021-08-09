@@ -626,6 +626,11 @@ par(mfrow=c(1,2))
 plotRGB(PCA_cod_2013$map, 4, 3, 1, stretch="Lin")
 plotRGB(PCA_cod_2020$map, 4, 3, 1, stretch="Lin")
 
+# Plotting with NIR, Green and Blue:
+par(mfrow=c(1,2))
+plotRGB(PCA_cod_2013$map, 4, 3, 1, stretch="Lin")
+plotRGB(PCA_cod_2020$map, 4, 3, 1, stretch="Lin")
+
 
 # __________Normalized Difference Water Index (NDWI)__________(McFeeters, 1996)______________________________________________________________________________________________
 
@@ -689,6 +694,28 @@ plot(NDWI_cod_2020land, col=tropical)
 NDWI_cod_diffland <- NDWI_cod_2013land - NDWI_cod_2020land
 
 plot(NDWI_cod_diffland, col=changer)
+
+# __________Standard Deviation of the NDWI___________________________________________________________________________________________________________________________________
+
+# __________NDWI___________________________________________________________
+
+# Standard deviation for 2013:
+sd_NDWI_2013 <- focal(NDWI2013, w=matrix(1/15, nrow=3, ncol=3), fun=sd)
+plot(sd_NDWI_2013, col=tropical)
+
+# Standard deviation for 2020:
+sd_NDWI_2020 <- focal(NDWI2020, w=matrix(1/15, nrow=3, ncol=3), fun=sd)
+plot(sd_NDWI_2020, col=tropical)
+
+# __________NDWIa___________________________________________________________
+
+# Standard deviation for 2013:
+sd_NDWIa_2013 <- focal(NDWIa2013, w=matrix(1/15, nrow=3, ncol=3), fun=sd)
+plot(sd_NDWIa_2013, col=tropical)
+
+# Standard deviation for 2020:
+sd_NDWIa_2020 <- focal(NDWIa2020, w=matrix(1/15, nrow=3, ncol=3), fun=sd)
+plot(sd_NDWIa_2020, col=tropical)
 
 # __________Normalized Difference Water Index (NDWIa)__________(Wolf, 2012; WorldView 2 equation adapted for Landsat 8)______________________________________________________
 
