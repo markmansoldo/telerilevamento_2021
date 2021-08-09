@@ -145,6 +145,7 @@ greek <- colorRampPalette(c("dark blue","blue","white"))(100)
 blbl <- colorRampPalette(c("black","blue","white"))(100)
 changer <- colorRampPalette(c("steelblue3","black","yellow"))(100)
 tropical <- colorRampPalette(c("pink","navy","yellow"))(100)
+tropinv <- colorRampPalette(c("yellow","navy","white"))(100)
 candy <- colorRampPalette(c("blueviolet","pink","white"))(100)
 fire <- colorRampPalette(c("white","orange3","purple"))(100)
 
@@ -790,8 +791,8 @@ NDVI2013 <- (cropcod_2013$cod_2013_B5 - cropcod_2013$cod_2013_B4)/(cropcod_2013$
 NDVI2020 <- (cropcod_2020$cod_2020_B5 - cropcod_2020$cod_2020_B4)/(cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B4)
 
 par(mfrow=c(1,2))
-plot(NDVI2013, col=mono)
-plot(NDVI2020, col=mono)
+plot(NDVI2013, col=tropical)
+plot(NDVI2020, col=tropical)
 
 # Difference with water and underwater sediment still present:
 NDVIdiff <- NDVI2013-NDVI2020
@@ -817,13 +818,22 @@ plot(NDVI2020land, col=mono)
 BSI2013 <- ((cropcod_2013$cod_2013_B6 + cropcod_2013$cod_2013_B4) - (cropcod_2013$cod_2013_B5 + cropcod_2013$cod_2013_B2))/((cropcod_2013$cod_2013_B6 + cropcod_2013$cod_2013_B4) + (cropcod_2013$cod_2013_B5 + cropcod_2013$cod_2013_B2))
 BSI2020 <- ((cropcod_2020$cod_2020_B6 + cropcod_2020$cod_2020_B4) - (cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B2))/((cropcod_2020$cod_2020_B6 + cropcod_2020$cod_2020_B4) + (cropcod_2020$cod_2020_B5 + cropcod_2020$cod_2020_B2))
 
+# To make a simple plot:
 par(mfrow=c(1,2))
-plot(BSI2013, col=mono)
-plot(BSI2020, col=mono)
+plot(BSI2013, col=tropical)
+plot(BSI2020, col=tropical)
 
-BSIdiff <- BSI2013-BSI2020
+# To make a level plot:
+BSI_2013_lvl <- levelplot(BSI2013, col.regions=tropical, main="BSI nel 2013")
+BSI_2020_lvl <- levelplot(BSI2020, col.regions=tropical, main="BSI nel 2020")
+grid.arrange(BSI_2013_lvl, BSI_2020_lvl, nrow=1)
 
-plot(BSIdiff, col=changer)
+BSIdiff <- BSI2020-BSI2013
+
+plot(BSIdiff, col=tropinv)
+
+# To create a levelplot showing the difference between the first and last year studied:
+levelplot(BSIdiff, col.regions=tropinv, main="Differenza nel BSI tra \n l'anno 2013 e il 2020")
 
 #____________________________________________________________________________________________________________________________________________________________________________
 # __________Monomoy National Wildlife Refuge______________________________________________________________________________________________________________
