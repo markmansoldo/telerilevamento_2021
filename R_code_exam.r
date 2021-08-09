@@ -616,13 +616,24 @@ NDWI2018 <- (cropcod_2018$cod_2018_B3 - cropcod_2018$cod_2018_B5)/(cropcod_2018$
 NDWI2019 <- (cropcod_2019$cod_2019_B3 - cropcod_2019$cod_2019_B5)/(cropcod_2019$cod_2019_B3 + cropcod_2019$cod_2019_B5)
 NDWI2020 <- (cropcod_2020$cod_2020_B3 - cropcod_2020$cod_2020_B5)/(cropcod_2020$cod_2020_B3 + cropcod_2020$cod_2020_B5)
 
+
+par(mfrow=c(2,4))
+plot(NDWI2013, col=tropical)
+plot(NDWI2014, col=tropical)
+plot(NDWI2015, col=tropical)
+plot(NDWI2016, col=tropical)
+plot(NDWI2017, col=tropical)
+plot(NDWI2018, col=tropical)
+plot(NDWI2019, col=tropical)
+plot(NDWI2020, col=tropical)
+
 par(mfrow=c(1,2))
 plot(NDWI2013, col=tropical)
 plot(NDWI2020, col=tropical)
 
-NDWIdiff <- NDWI2013-NDWI2020
+NDWIdiff <- NDWI2020- NDWI2013
 
-plot(NDWIdiff, col=changer)
+levelplot(NDWIdiff, col.regions=changer, main="Differenza nel NDWI tra \n l'anno 2013 e il 2020")
 
 # To remove all land values and mark them as NA, allowing us to see the shallow sands and bathymetry:
 NDWI_cod_2013land <- reclassify(NDWI2013, cbind(-Inf, -0.1, NA), right=FALSE)
@@ -667,10 +678,15 @@ plot(NDWIa2013, col=tropical)
 plot(NDWIa2020, col=tropical)
 
 
-NDWIadiff <- NDWIa2013-NDWIa2020
+NDWIadiff <- NDWIa2020-NDWIa2013
 
 # To plot the difference between the first and last year studied:
-plot(NDWIadiff, col=changer)
+levelplot(NDWIadiff, col.regions=changer, main="Differenza nel NDWIa tra \n l'anno 2013 e il 2020")
+
+# To plot NDWI and NDWIa together:
+lvlplotNDWI <- levelplot(NDWIdiff, col.regions=changer, main="Differenza nel NDWI tra \n l'anno 2013 e il 2020")
+lvlplotNDWIa <- levelplot(NDWIadiff, col.regions=changer, main="Differenza nel NDWIa tra \n l'anno 2013 e il 2020")
+grid.arrange(lvlplotNDWI, lvlplotNDWIa, nrow=1)
 
 # To apply the NDWI to all eight years:
 NDWIa2013_cod <- (cropcod_2013$cod_2013_B1 - cropcod_2013$cod_2013_B5)/(cropcod_2013$cod_2013_B1 + cropcod_2013$cod_2013_B5)
@@ -694,7 +710,7 @@ NDWIa_cod_2020land <- reclassify(NDWIa2020_cod, cbind(-Inf, -0.1, NA), right=FAL
 
 # Show shallow water in black:
 par(mfrow=c(2,4))
-plot(NDWIa_cod_2013land, col=greek)
+plot(NDWIa_cod_2013land, col="blue")
 plot(NDWIa_cod_2014land, col=greek)
 plot(NDWIa_cod_2015land, col=greek)
 plot(NDWIa_cod_2016land, col=greek)
