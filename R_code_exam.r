@@ -172,7 +172,7 @@ plotRGB(cropcod_2019, 4, 3, 2, stretch="Lin")
 plotRGB(cropcod_2020, 4, 3, 2, stretch="Lin")
 
 # Very useful for bathymetric studies:
-par(mfrow=c(1,8))
+par(mfrow=c(2,4))
 plotRGB(cropcod_2013, 4, 3, 1, stretch="Lin")
 plotRGB(cropcod_2014, 4, 3, 1, stretch="Lin")
 plotRGB(cropcod_2015, 4, 3, 1, stretch="Lin")
