@@ -195,7 +195,7 @@ plotRGB(cropcod_2019, 1, 2, 3, stretch="Lin")
 plotRGB(cropcod_2020, 1, 2, 3, stretch="Lin")
 
 # Emphasises vegetation and terrain:
-par(mfrow=c(1,8))
+par(mfrow=c(2,4))
 plotRGB(cropcod_2013, 5, 6, 7, stretch="Lin")
 plotRGB(cropcod_2014, 5, 6, 7, stretch="Lin")
 plotRGB(cropcod_2015, 5, 6, 7, stretch="Lin")
