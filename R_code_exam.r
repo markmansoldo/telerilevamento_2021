@@ -603,7 +603,7 @@ grid.arrange(cover2014, cover2020, nrow=1)
 
 # __________Principal Components Analysis (PCA)______________________________________________________________________________________________________________________________
 
-# Aggregating the pixels by a factor of 10:
+# Aggregating the pixels by a factor of 4:
 agg_cod_2013 <- aggregate(cropcod_2013, fact=4)
 agg_cod_2013
 
@@ -621,7 +621,7 @@ PCA_cod_2020 <- rasterPCA(agg_cod_2020)
 summary(PCA_cod_2013$model)
 summary(PCA_cod_2020$model)
 
-# Plotting with Red, Green and Coastal (often used in bathymetry studies)
+# Plotting with Red, Green and Coastal, often used in bathymetric studies:
 par(mfrow=c(1,2))
 plotRGB(PCA_cod_2013$map, 4, 3, 1, stretch="Lin")
 plotRGB(PCA_cod_2020$map, 4, 3, 1, stretch="Lin")
