@@ -503,37 +503,6 @@ ggplot(data=ha_increase, aes(x=cod_ha_year, y=ha_land_change, group=1)) +
   ggtitle("Cambiamento nell'estensione della terra emersa intorno a Chatham, Massachusetts dall'anno 2013 al 2020") + theme(plot.title = element_text(hjust = 0.5))
 
 
-# __________Principal Components Analysis (PCA)______________________________________________________________________________________________________________________________
-
-# Aggregating the pixels by a factor of 4:
-agg_cod_2013 <- aggregate(cropcod_2013, fact=4)
-agg_cod_2013
-
-agg_cod_2020 <- aggregate(cropcod_2020, fact=4)
-agg_cod_2020
-
-# Plotting the aggregated pixels using the NIR and SWIR bands
-par(mfrow=c(1,2))
-plotRGB(agg_cod_2013, 5, 6, 7, stretch="Lin")
-plotRGB(agg_cod_2020, 5, 6, 7, stretch="Lin")
-
-PCA_cod_2013 <- rasterPCA(agg_cod_2013)
-PCA_cod_2020 <- rasterPCA(agg_cod_2020)
-
-summary(PCA_cod_2013$model)
-summary(PCA_cod_2020$model)
-
-# Plotting with Red, Green and Coastal, often used in bathymetric studies:
-par(mfrow=c(1,2))
-plotRGB(PCA_cod_2013$map, 4, 3, 1, stretch="Lin")
-plotRGB(PCA_cod_2020$map, 4, 3, 1, stretch="Lin")
-
-# Plotting with NIR, Green and Blue:
-par(mfrow=c(1,2))
-plotRGB(PCA_cod_2013$map, 4, 3, 1, stretch="Lin")
-plotRGB(PCA_cod_2020$map, 4, 3, 1, stretch="Lin")
-
-
 # __________Normalized Difference Water Index (NDWI)__________(McFeeters, 1996)______________________________________________________________________________________________
 
 # NDWI = (Green-NIR)/(Green+NIR)
@@ -835,7 +804,7 @@ plot(monomoy_2014)
 monomoy_2013 <- crop(x = cod_2013, y = monomoy_extent)
 plot(monomoy_2013)
 
-# __________Analyze distribution of sandy beaches within the nature reserve___________________________________________________________________________________________________
+# __________Analyse distribution of sandy beaches within the nature reserve___________________________________________________________________________________________________
 
 # Emphasises coastal sands with bright white sand:
 par(mfrow=c(2,4))
